@@ -7,4 +7,4 @@
 * Alex Kesler
 * Bryce Perrier (had to leave the group)
 # Goals
-The main of this priject is to read in sonic data and to represent it as a graph. The other goals that will be implemented include...
+The main goals of this project is to read in sonic data and to represent it as a graph with sonification. The other goals that will be implemented are exporting the graph and printing the graph.
