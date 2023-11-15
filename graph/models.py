@@ -6,8 +6,6 @@ class GraphModel(models.Model):
     graph_name  = models.CharField(max_length=20, help_text='Enter graph name')
     Xlabel = models.CharField(max_length=20, help_text='Enter x-axis label')
     Ylabel = models.CharField(max_length=20, help_text='Enter y-axis label')
-    X_value = models.AutoField()
-    Y_value = models.AutoField()
 
     def __str__(self):
         return self.graph_name
@@ -16,4 +14,12 @@ class GraphModel(models.Model):
         """Returns the URL to access a particular instance of the model."""
         return reverse('model-detail-view', args=[str(self.id)])
     
+
+class graphpoint(models.Model):
+    graph = models.ForeignKey(GraphModel, related_name= 'Graph_Name', on_delete=models.CASCADE)
+    xvalue = models.IntegerField(blank=True, null=True)
+    yvalue = models.IntegerField(blank=True, null = True)
+
+    def __str__(self):
+        return self.graph.graph_name + ' point'
     

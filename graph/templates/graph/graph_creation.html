@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Graph Sonification</title>
+        <style>
+            body {
+        background-color: #CBE6FF; 
+        margin: 0; 
+        padding: 0; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+    
+    .navbar {
+        background-color: #C1C0C0; 
+        height: 60px; 
+        width: 100%; 
+        position: fixed; 
+        top: 0; 
+    }
+    
+    .logo {
+        position: absolute;
+        top: 0px;
+        left: 0px; 
+    }
+    
+    .step-container {
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+        max-width: 600px;
+        margin-bottom: 20px; 
+        margin-top: 80px; 
+    }
+    
+    .step1, .step2, .step3 {
+        width: 30%;
+        max-width: 180px;
+        padding: 10px;
+    }
+    
+    .upload-container {
+        width: 80%;
+        max-width: 800px;
+        height: 400px;
+        padding: 30px;
+        text-align: center;
+        background-color: #fff; 
+        border: 2px dashed #333; 
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .upload-icon {
+        font-size: 48px;
+    }
+    
+    .upload-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #0085FF;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .form-container {
+        max-width: 600px; 
+        padding: 20px;
+        text-align: center;
+        background-color: #fff; 
+        border: 2px solid #333; 
+    }
+    
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .form input {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 80%;
+    }
+    
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://i.ibb.co/Fq6FxGL/image-2023-10-30-194523221.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">        
+            </div>
+        </div>
+        <p>{{ graph_name }}</p>
+    </body>
+</html>
