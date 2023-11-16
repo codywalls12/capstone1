@@ -128,10 +128,14 @@
 
         <form action="{% url 'graph:graph_creation' %}" method="post">
             {% csrf_token %}
-            <fieldset>
-                <label>Enter Graph Name</label>
-                <input type="text" name="graph_name" id="graph_name">
-            </fieldset>
+            <fieldset class="form">
+        <label>Enter Graph Name</label>
+        <input type="text" name="graph_name" id="graph_name">
+        <label>Enter X values</label>
+        <input type="text" name="x_values" id="x_values">
+	<label>Enter Y values</label>
+        <input type="text" name="y_values" id="y_values">
+    </fieldset>
             <input type="submit" value="Enter">
         </form>
 
