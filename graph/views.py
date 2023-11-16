@@ -17,7 +17,7 @@ def graph_creation(request):
     
     y_Values= [int(d) for d in y_val.split(',')]
     x_Values= x_val.split(',')
-    p = figure(x_range=x_Values, height=350, title="Fruit Counts", toolbar_location=None, tools="")
+    p = figure(x_range=x_Values, height=350, title=graph_name, toolbar_location=None, tools="")
     p.vbar(x=x_Values, top=y_Values, width=0.9)
     script, div = components(p)
 
