@@ -5,103 +5,105 @@
     <title>Graph Sonification</title>
     <style>
         body {
-    background-color: #CBE6FF; 
-    margin: 0; 
-    padding: 0; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
+            background-color: #CBE6FF; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
 
-.navbar {
-    background-color: #C1C0C0; 
-    height: 60px; 
-    width: 100%; 
-    position: fixed; 
-    top: 0; 
-}
+        .navbar {
+            background-color: #C1C0C0; 
+            height: 60px; 
+            width: 100%; 
+            position: fixed; 
+            top: 0; 
+            margin-bottom: 20px; 
+            z-index: 1000; 
+        }
 
-.logo {
-    position: absolute;
-    top: 0px;
-    left: 0px; 
-}
+        .logo {
+            position: absolute;
+            top: 0px;
+            left: 0px; 
+        }
 
-.step-container {
-    display: flex;
-    justify-content: space-around;
-    width: 60%;
-    max-width: 600px;
-    margin-bottom: 20px; 
-    margin-top: 80px; 
-}
+        .step-container {
+            display: flex;
+            justify-content: space-around;
+            width: 60%;
+            max-width: 600px;
+            margin-bottom: 20px; 
+            margin-top: 80px;
+        }
 
-.step1, .step2, .step3 {
-    width: 30%;
-    max-width: 180px;
-    padding: 10px;
-}
+        .step1, .step2, .step3 {
+            width: 30%;
+            max-width: 180px;
+            padding: 10px;
+        }
 
-.upload-container {
-    width: 80%;
-    max-width: 800px;
-    height: 400px;
-    padding: 30px;
-    text-align: center;
-    background-color: #fff; 
-    border: 2px dashed #333; 
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+        .upload-container {
+            width: 80%;
+            max-width: 800px;
+            height: 400px;
+            padding: 30px;
+            text-align: center;
+            background-color: #fff; 
+            border: 2px dashed #333; 
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-.upload-icon {
-    font-size: 48px;
-}
+        .upload-icon {
+            font-size: 48px;
+        }
 
-.upload-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0085FF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
+        .upload-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0085FF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
 
-.form-container {
-    max-width: 600px; 
-    padding: 20px;
-    text-align: center;
-    background-color: #fff; 
-    border: 2px solid #333; 
-}
+        .form-container {
+            max-width: 600px; 
+            padding: 20px;
+            text-align: center;
+            background-color: #fff; 
+            border: 2px solid #333;
+            margin-top: 20px; 
+            margin-bottom: 10px;
+        }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.form input {
-    margin-bottom: 10px;
-    padding: 8px;
-    width: 80%;
-}
+        .form input {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 80%;
+        }
 
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -123,29 +125,50 @@
         <button class="upload-button" onclick="uploadFile()">Upload File</button>
     </div>
 
-    <div class="form-container">
+    <<div class="form-container">
         <h2>Graph Settings</h2>
 
         <form action="{% url 'graph:graph_creation' %}" method="post">
             {% csrf_token %}
-            <fieldset class="form">
-        <label>Enter Graph Name</label>
-        <input type="text" name="graph_name" id="graph_name">
-        <label>Enter X values</label>
-        <input type="text" name="x_values" id="x_values">
-	<label>Enter Y values</label>
-        <input type="text" name="y_values" id="y_values">
-    </fieldset>
+            <fieldset class="form" id="inputFields">
+                <label for="graph_name">Enter Graph Name</label>
+                <input type="text" name="graph_name" id="graph_name">
+
+                <label for="xy_values">Enter X and Y values</label>
+                <div class="xy-container" id="xy_container">
+                    <div>
+                        <input type="text" name="x_values[]" class="xy-input" placeholder="X">
+                        <input type="text" name="y_values[]" class="xy-input" placeholder="Y">
+                    </div>
+                </div>
+                <button type="button" onclick="addInput()">Add X and Y Values</button>
+            </fieldset>
+
             <input type="submit" value="Enter">
         </form>
-
-<!--    Old submit button
-        <div class="form">
-        
-            <button type="submit">Create Graph</button>
-        </div>
     </div>
--->
-    
+
+    <script>
+        function addInput() {
+            const container = document.getElementById("xy_container");
+            const inputDiv = document.createElement("div");
+
+            const inputX = document.createElement("input");
+            inputX.type = "text";
+            inputX.name = "x_values[]";
+            inputX.classList.add("xy-input");
+            inputX.placeholder = "X";
+
+            const inputY = document.createElement("input");
+            inputY.type = "text";
+            inputY.name = "y_values[]";
+            inputY.classList.add("xy-input");
+            inputY.placeholder = "Y";
+
+            inputDiv.appendChild(inputX);
+            inputDiv.appendChild(inputY);
+            container.appendChild(inputDiv);
+        }
+    </script>
 </body>
 </html>
