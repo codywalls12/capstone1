@@ -14,7 +14,7 @@ def graph_creation(request):
         x_values = request.POST.getlist('x_values[]')
         y_values = request.POST.getlist('y_values[]')
 
-        p = figure(x_range=x_values, height=350, title=graph_name, toolbar_location=None, tools="")
+        p = figure(x_range=x_values, height=350, title=graph_name, tools="pan,box_zoom,wheel_zoom,reset,save", toolbar_location="right")
         p.vbar(x=x_values, top=y_values, width=0.9)
         script, div = components(p)
 
