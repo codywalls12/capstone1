@@ -143,7 +143,7 @@
                     csvDropzone.classList.remove("dragover");
                     const csvFile = event.dataTransfer.files[0];
 
-                    if (fileName.endsWith(".csv") || fileName.endsWith(".xlsx")) {
+                    if (csvFile.endsWith(".csv") || csvFile.endsWith(".xlsx")) {
                             alert("csv file has been selected");
                             handleCsvFile(csvFile);
                         }   else {
@@ -152,9 +152,6 @@
 
                 });
 
-                function handleCsvFile(file) {
-                    console.log("handling the excel file:", file.name);
-                }
             </script>
         </body>
 
