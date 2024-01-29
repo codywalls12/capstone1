@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
-    <link rel = "stylesheet" href = "main.css">
     <style>
         body {
     background-color: #CBE6FF; 
@@ -103,6 +102,42 @@
     margin-top: 20px;
 }
 
+.drop-zone {
+    max-width: 150px;
+    height: 150px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Quicksane', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 10px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+
+
+}
     </style>
 </head>
 <body>
@@ -194,12 +229,19 @@
 
     -->
         <body>
+            
             <div class = "drop-zone">
-                <span class = "drop-zone__prompt"> Drop File Here or Click To Upload </span>
+                <!-- <span class = "drop-zone__prompt"> Drop File Here or Click To Upload </span> -->
+                <div class = "drop-zone__thumb" data-label = "myfile.txt">
+
+                </div>
+                <input type = "file" name = "myFile" class = "drop-zone__input">
             </div>
-
-
-            <script src = "main.js"></script>
+            
+            <script>
+                
+            </script>
+        
         </body>
 
 
