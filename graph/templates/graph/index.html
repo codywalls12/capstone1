@@ -143,18 +143,20 @@
             csvDropzone.classList.remove("dragover"); 
             const csvFile = event.dataTransfer.files[0]; 
   
-            if (csvFile.type === "text/csv" ||  
-                csvFile.type === "application/vnd.ms-excel") { 
+            if (csvFile.name.toLowerCase().endswith(".csv") ||  
+                csvFile.name.toLowerCase().endswith(".xlsx")) { 
                 alert("csv file has been selected"); 
                 handleCsvFile(csvFile); 
             } else { 
                 alert("Please drop a CSV file."); 
             } 
         }); 
+
+        
             </script>
         </body>
 
-
+        
 
 
 
