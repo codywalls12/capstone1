@@ -135,8 +135,25 @@
     background-color: #cccccc;
     background-size: cover;
     position: relative;
+}
 
+.drop-zone__thumb::after{
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0,0,0,0.75);
+    font-size: 12px;
+    text-align: center;
+}
 
+.file-size {
+    color: #555;
+    font-size: 12px;
+    margin-top 5px;
 }
     </style>
 </head>
@@ -231,15 +248,96 @@
         <body>
             
             <div class = "drop-zone">
-                <!-- <span class = "drop-zone__prompt"> Drop File Here or Click To Upload </span> -->
-                <div class = "drop-zone__thumb" data-label = "myfile.txt">
-
-                </div>
+                <span class = "drop-zone__prompt"> Drop File Here or Click To Upload </span>
                 <input type = "file" name = "myFile" class = "drop-zone__input">
             </div>
             
             <script>
-                
+                document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
+                    const dropZoneElement = inputElement.closest(".drop-zone");
+
+                    dropZoneElement.addEventListener("click", e => {
+                        inputElement.click();
+                    });
+
+                    inputElement.addEventListener("change", e=> {
+                        if (inputElement.files.length) {
+                            updateThumbnail(dropZoneElement, inputElement.files[0]);
+                        }
+                    });
+
+                    dropZoneElement.addEventListener("dragover", e => {
+                        e.preventDefault();
+                        dropZoneElement.classList.add("drop-zone--over");
+                    });
+
+                    ["dragleave", "dragend"].forEach(type => {
+                        dropZoneElement.addEventListener(type, e=> {
+                            dropZoneElement.classList.remove("drop-zone--over");
+                        });
+                    });
+
+                    dropZoneElement.addEventListener("drop", e => {
+                        e.preventDefault();
+                        //console.log(e.dataTransfer.files);
+                        if (e.dataTransfer.files.length) {
+                            inputElement.files = e.dataTransfer.files;
+                            updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                        }
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+
+                //@param {HTMLElement} dropZoneElement
+                //@param {File} file
+
+
+                function updateThumbnail(dropZoneElement, file) {
+                    console.log(dropZoneElement);
+                    console.log(file);
+
+                    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+                    console.log(file);
+
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        dropZoneElement.appendChild(thumbnailElement);   
+                    }
+
+                    thumbnailElement.dataset.label = file.name;
+
+                    const fileSizeElement = document.createElement("div");
+                    fileSizeElement.textContent = formatFileSize(file.size);
+                    thumbnailElement.appendChild(fileSizeElement);
+
+                    thumbnailElement.innerHTML = `
+                    <div>${file.name}</div>
+                    <div class="file-size">${formatFileSize(file.size)}</div>
+                `;
+
+                    if (file.name.toLowerCase().endsWith(".xlsx")){
+                        alert("excel file has been accepted");
+                    } else {
+                        alert(" please drop an excel file ");
+                    }
+
+                    function formatFileSize(size) {
+                        const kb = size / 1024;
+                        if (kb < 1024) {
+                            return kb.toFixed(2) + "kb";
+                        } else {
+                            const mb = kb / 1024;
+                            return mb.toFixed(2) + "mb";
+                        }
+                    }
+
+                }
             </script>
         
         </body>
