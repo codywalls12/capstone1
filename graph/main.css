@@ -5,4 +5,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    font-family: 'Quicksane', sans-serif;
+    font-size: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 10px;
 }
