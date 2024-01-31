@@ -36,7 +36,7 @@
     width: 60%;
     max-width: 600px;
     margin-bottom: 20px; 
-    margin-top: 80px; 
+    margin-top: 200px; 
 }
 
 .step1, .step2, .step3 {
@@ -156,6 +156,8 @@
     margin-top: 5px;
 }
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -245,6 +247,8 @@
     </body> 
 
     -->
+
+    
         <body>
             
             <div class = "drop-zone">
@@ -253,6 +257,7 @@
             </div>
             
             <script>
+                
                 document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                     const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -286,7 +291,10 @@
                         }
                         dropZoneElement.classList.remove("drop-zone--over");
                     });
+
+                
                 });
+
 
                 //@param {HTMLElement} dropZoneElement
                 //@param {File} file
@@ -297,6 +305,7 @@
                     console.log(file);
 
                     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+                    console.log('hi there');
 
                     console.log(file);
 
@@ -318,11 +327,24 @@
 
                     thumbnailElement.innerHTML = `
                     <div>${file.name}</div>
-                    <div class="file-size">${formatFileSize(file.size)}</div>
-                `;
+                    <div class="file-size">${formatFileSize(file.size)}</div>`;
 
                     if (file.name.toLowerCase().endsWith(".xlsx")){
                         alert("excel file has been accepted");
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, {type: "array"});
+                            const sheetName = workbook.SheetNames[0];
+                            const sheet = workbook.Sheets[sheetName];
+                            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1});
+                            console.log("excel data", jsonData);
+
+                            
+                        };
+                        reader.readAsArrayBuffer(file);
+                        
+
                     } else {
                         alert(" please drop an excel file ");
                     }
@@ -337,7 +359,35 @@
                         }
                     }
 
+                    function displayDataIntable(data) {
+                        const table = document.createElement("table");
+                        const headerRow = table.insertRow();
+                        for (let header of data[0]) {
+                            const cell = headerRow.insertCell();
+                            cell.textContent = header;
+                        }
+
+                        for (let i = 1; i < data.length; i++) {
+                            const row = table.insertRow();
+                            for (let j = 0; j < data[i].length; j++) {
+                                const cell = row.insertCell();
+                                cell.textContent = data[i][j];
+                            }
+                        }
+                    }
+
+
+
                 }
+
+
+
+
+            
+                
+
+
+                    
             </script>
         
         </body>
