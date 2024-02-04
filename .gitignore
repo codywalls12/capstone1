@@ -1,1 +1,3 @@
 venv/
+graph/__pycache__
+GraphSonification/__pycache__

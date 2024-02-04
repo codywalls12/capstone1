@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         body {
     background-color: #CBE6FF; 
@@ -36,13 +37,13 @@
     width: 60%;
     max-width: 600px;
     margin-bottom: 20px; 
-    margin-top: 80px; 
+    margin-top: 200px; 
 }
 
 .step1, .step2, .step3 {
     width: 30%;
     max-width: 180px;
-    padding: 10px;
+    border: 1px solid #333;
 }
 
 .upload-container {
@@ -52,7 +53,7 @@
     padding: 30px;
     text-align: center;
     background-color: #fff; 
-    border: 2px dashed #333; 
+    border: 1px solid #333; 
     margin-bottom: 20px;
     box-sizing: border-box;
     display: flex;
@@ -102,12 +103,70 @@
     margin-top: 20px;
 }
 
+.drop-zone {
+    max-width: 150px;
+    height: 150px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Quicksane', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 2px dashed #009578;
+    border-radius: 10px;
+}
+
+.drop-zone--over {
+    border-style: solid;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__thumb {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone__thumb::after{
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0,0,0,0.75);
+    font-size: 12px;
+    text-align: center;
+}
+
+.file-size {
+    color: #555;
+    font-size: 12px;
+    margin-top: 5px;
+}
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
+    <h1>Testing css</h1>
     <div class="navbar">
         <div class="logo">
+            <a href="/graph/">
             <img src="https://i.ibb.co/Fq6FxGL/image-2023-10-30-194523221.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">        
+            </a>
         </div>
     </div>
     
@@ -120,7 +179,228 @@
     <div class="upload-container">
         <span class="upload-icon">📄</span>
         <p>Browse your device to upload files</p>
-        <button class="upload-button" onclick="uploadFile()">Upload File</button>
+        
+
+        <!--
+        <body> 
+            <button id = "csv-dropzone" type = "file">
+                Drop excel file here
+            </button>
+            <script>
+                const csvDropzone = document.getElementById("csv-dropzone"); 
+  
+        csvDropzone.addEventListener("dragover", function (event) { 
+            event.preventDefault(); 
+            csvDropzone.classList.add("dragover"); 
+        }); 
+  
+        csvDropzone.addEventListener("dragleave", function (event) { 
+            event.preventDefault(); 
+            csvDropzone.classList.remove("dragover"); 
+        }); 
+  
+        csvDropzone.addEventListener("drop", function (event) { 
+            event.preventDefault(); 
+            csvDropzone.classList.remove("dragover"); 
+            const csvFile = event.dataTransfer.files[0]; 
+  
+            if (csvFile.name.toLowerCase().endswith(".csv") ||  
+                csvFile.name.toLowerCase().endswith(".xlsx")) { 
+                alert("csv file has been selected"); 
+                handleCsvFile(csvFile); 
+            } else { 
+                alert("Please drop a CSV file."); 
+            } 
+        }); 
+
+        
+            </script>
+        </body>
+
+
+    <head> 
+        <title>csv file</title> 
+        <link rel="stylesheet" href= 
+    "https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" /> 
+        <script src= 
+    "https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"> 
+          </script> 
+    </head> 
+      
+    <body> 
+        <form id="csv-upload-form"> 
+            <div class="dropzone" id="csv-dropzone"> 
+                <div class="dz-message"> 
+                    Drop CSV file here 
+                </div> 
+            </div> 
+        </form> 
+      
+        <script> 
+            const csvDropzone = new Dropzone("#csv-dropzone", { 
+                url: "/upload", 
+                acceptedFiles: ".csv, xls, xlsx", 
+                maxFiles: 1, 
+                init: function () { 
+                    this.on("success", function (file, response) { 
+                        console.log(response); 
+                    }); 
+                } 
+            }); 
+        </script> 
+    </body> 
+
+    -->
+
+    
+        <body>
+            
+            <div class = "drop-zone">
+                <span class = "drop-zone__prompt"> Drop File Here or Click To Upload </span>
+                <input type = "file" name = "myFile" class = "drop-zone__input">
+            </div>
+            
+            <script>
+                
+                document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
+                    const dropZoneElement = inputElement.closest(".drop-zone");
+
+                    dropZoneElement.addEventListener("click", e => {
+                        inputElement.click();
+                    });
+
+                    inputElement.addEventListener("change", e=> {
+                        if (inputElement.files.length) {
+                            updateThumbnail(dropZoneElement, inputElement.files[0]);
+                        }
+                    });
+
+                    dropZoneElement.addEventListener("dragover", e => {
+                        e.preventDefault();
+                        dropZoneElement.classList.add("drop-zone--over");
+                    });
+
+                    ["dragleave", "dragend"].forEach(type => {
+                        dropZoneElement.addEventListener(type, e=> {
+                            dropZoneElement.classList.remove("drop-zone--over");
+                        });
+                    });
+
+                    dropZoneElement.addEventListener("drop", e => {
+                        e.preventDefault();
+                        //console.log(e.dataTransfer.files);
+                        if (e.dataTransfer.files.length) {
+                            inputElement.files = e.dataTransfer.files;
+                            updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                        }
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+
+                
+                });
+
+
+                //@param {HTMLElement} dropZoneElement
+                //@param {File} file
+
+
+                function updateThumbnail(dropZoneElement, file) {
+                    console.log(dropZoneElement);
+                    console.log(file);
+
+                    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+                    console.log('hi there');
+
+                    console.log(file);
+
+                    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                    }
+
+                    if (!thumbnailElement) {
+                        thumbnailElement = document.createElement("div");
+                        thumbnailElement.classList.add("drop-zone__thumb");
+                        dropZoneElement.appendChild(thumbnailElement);   
+                    }
+
+                    thumbnailElement.dataset.label = file.name;
+
+                    const fileSizeElement = document.createElement("div");
+                    fileSizeElement.textContent = formatFileSize(file.size);
+                    thumbnailElement.appendChild(fileSizeElement);
+
+                    thumbnailElement.innerHTML = `
+                    <div>${file.name}</div>
+                    <div class="file-size">${formatFileSize(file.size)}</div>`;
+
+                    if (file.name.toLowerCase().endsWith(".xlsx")){
+                        alert("excel file has been accepted");
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, {type: "array"});
+                            const sheetName = workbook.SheetNames[0];
+                            const sheet = workbook.Sheets[sheetName];
+                            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1});
+                            console.log("excel data", jsonData);
+
+                            
+                        };
+                        reader.readAsArrayBuffer(file);
+                        
+
+                    } else {
+                        alert(" please drop an excel file ");
+                    }
+
+                    function formatFileSize(size) {
+                        const kb = size / 1024;
+                        if (kb < 1024) {
+                            return kb.toFixed(2) + "kb";
+                        } else {
+                            const mb = kb / 1024;
+                            return mb.toFixed(2) + "mb";
+                        }
+                    }
+
+                    function displayDataIntable(data) {
+                        const table = document.createElement("table");
+                        const headerRow = table.insertRow();
+                        for (let header of data[0]) {
+                            const cell = headerRow.insertCell();
+                            cell.textContent = header;
+                        }
+
+                        for (let i = 1; i < data.length; i++) {
+                            const row = table.insertRow();
+                            for (let j = 0; j < data[i].length; j++) {
+                                const cell = row.insertCell();
+                                cell.textContent = data[i][j];
+                            }
+                        }
+                    }
+
+
+
+                }
+
+
+
+
+            
+                
+
+
+                    
+            </script>
+        
+        </body>
+
+
+
+
+
+
     </div>
 
     <div class="form-container">
