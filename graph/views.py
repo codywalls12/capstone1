@@ -10,20 +10,23 @@ def index(request):
 
 def graph_creation(request):
     graph_name = request.POST.get('graph_name')
-    test_graph = GraphModel.objects.all()
-   
-    x_val = request.POST.get('x_values')
-    y_val= request.POST.get('y_values')
-    
-    y_Values= [int(d) for d in y_val.split(',')]
-    x_Values= x_val.split(',')
-    p = figure(x_range=x_Values, height=350, title=graph_name, toolbar_location=None, tools="")
-    p.vbar(x=x_Values, top=y_Values, width=0.9)
+    x_values = request.POST.getlist('x_values[]')
+    y_values = request.POST.getlist('y_values[]')
+
+    if not x_values or not y_values:
+        return HttpResponse("Error: x values or y values are missing")
+
+    if len(x_values) != len(y_values):
+        return HttpResponse("Error: Number of x values and y values do not match")
+
+    p = figure(x_range=x_values, height=350, title=graph_name, x_axis_label='X Values', y_axis_label='Y Values', tools="pan,box_zoom,wheel_zoom,reset,save", toolbar_location="right")
+    p.vbar(x=x_values, top=y_values, width=0.9)
     script, div = components(p)
 
-    context = {'test_graph': test_graph,
-               'graph_name': graph_name,
-               'script': script,
-               'div': div,}
+    context = {
+        'graph_name': graph_name,
+        'script': script,
+        'div': div,
+    }
 
     return render(request, "graph/graph_creation.html", context)
