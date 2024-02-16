@@ -336,13 +336,20 @@
     .chart-container canvas {
         display: block;
     }
+
+    #myBarChart {
+        margin-top: 1100px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #000000;
+    }
 	
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <canvas id = "myBarChart" width = "400" height = "400"></canvas>
+    <canvas class = "myBarChart " id = "myBarChart" ></canvas>
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
@@ -437,18 +444,22 @@
                                     console.log("excel data", jsonData);
 
                                     // assuming that the first row contains labels and the rest contains actual data
-                                    const labels = jsonData[0].slice(1);
-                                    const values = jsonData.slice(1).map(row => row[0]);
+                                    const labels = jsonData[0];
+                                    const values = jsonData[1];
                                     createBarChart(labels, values);
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
                                 alert("please drop an excel file");
                             }
+                            console.log("labels test");
+                            
+                            console.log("values test");
+                            
 
                             //prototype 1 for creating bar graph
                             function createBarChart(labels, values) {
-                                const ctx = document.getElementById('myBarChart').getContext('2d');
+                                const ctx = document.getElementById("myBarChart").getContext('2d');
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
