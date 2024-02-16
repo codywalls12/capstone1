@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
     <style>
@@ -324,13 +325,24 @@
 	   background-color: #006acc;
 
 	}
+
+    .chart-container {
+        margin-top: 500px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        overflow: hidden; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+    .chart-container canvas {
+        display: block;
+    }
 	
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-
+    <canvas id = "myBarChart" width = "400" height = "400"></canvas>
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
@@ -348,7 +360,11 @@
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     <input type="file" name="myFile" class="drop-zone__input">
+
+                    <div class = "chart-container">
+                        </div>
                 </div>
+                
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
@@ -383,6 +399,9 @@
                             dropZoneElement.classList.remove("drop-zone--over");
                         });
 
+                        
+                        
+
                         function updateThumbnail(dropZoneElement, file) {
                             let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
@@ -416,11 +435,42 @@
                                     const sheet = workbook.Sheets[sheetName];
                                     const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
                                     console.log("excel data", jsonData);
+
+                                    // assuming that the first row contains labels and the rest contains actual data
+                                    const labels = jsonData[0].slice(1);
+                                    const values = jsonData.slice(1).map(row => row[0]);
+                                    createBarChart(labels, values);
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
                                 alert("please drop an excel file");
                             }
+
+                            function createBarChart(labels, values) {
+                                const ctx = document.getElementById('myBarChart').getContext('2d');
+                                const myBarChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: 'data from excel',
+                                            data: values,
+                                            backgroundColor: 'rgba(75,192,192,0.2)',
+                                            borderColor:'rgba(75,192,192,1)',
+                                            borderWidth: 1
+                                        }]
+
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                            
 
                             function formatFileSize(size) {
                                 const kb = size / 1024;
@@ -436,6 +486,7 @@
                 </script>
             </div>
         </div>
+        
         <div class="form-container">
                 <h2>Graph Settings</h2>
 
@@ -573,6 +624,9 @@
         </script> 
     </body>
     -->
+
+    
+    
 
 </body>
 </html>
