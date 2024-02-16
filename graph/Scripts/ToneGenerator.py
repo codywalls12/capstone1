@@ -1,8 +1,12 @@
+# ToneGenerator.py
+# This script takes a numpy array and converts it to a .wav file
+
 import numpy as np 
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 
-
+# Class which contains the necessary functions for generating the desired wave type(sine, sawtooth, square, etc)
+# and then uses the scipy library to convert the information into a playable .wav file
 class ToneGenerator:
 
 	sr = 44100
@@ -12,7 +16,8 @@ class ToneGenerator:
 		self.length = None
 		self.signal = None
 
-
+	# this render function takes the desired length of the audio, the frequency, and the wave shape to be created
+	# and then generates that wave and returns it in self.signal
 	def render(self, length, freq, shape):
 		self.length = length
 		self.freq = freq
@@ -33,10 +38,12 @@ class ToneGenerator:
 			self.signal = np.random.random(int(self.length * ToneGenerator.sr)) * 2.0 - 1.0 
 		return self.signal
 
+	# This function will plot the wave and display it so it can be viewed if necessary
 	def plot(self):
 		plt.plot(self.s, self.signal)
 		plt.show()
 
+	# This function simply creates the .wav file
 	@staticmethod
 	def write_to_file(signal, name = "file.wav"):
 		signal*= 32767
@@ -52,6 +59,7 @@ class ToneGenerator:
 		return data * ((max_v / min_v) * -1)
 
 
+# This is where the script starts
 if __name__ == "__main__":
 	tone = ToneGenerator()
 	#print(tone.render(3.0, 234, "sawtooth"))
