@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-
-        
+    <head>  
         <link href=”http://cdn.pydata.org/bokeh/release/bokeh-3.3.1.min.css" rel=”stylesheet” type=”text/css”>
         <link href=”http://cdn.pydata.org/bokeh/release/bokeh-widgets-3.3.1.min.css" rel=”stylesheet” type=”text/css”>
 
-        
-
         <meta charset="UTF-8">
         <title>Graph Sonification</title>
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
         <style>
             body {
         background-color: #CBE6FF; 
@@ -24,18 +21,20 @@
     }
     
     .navbar {
-        background-color: #C1C0C0; 
-        height: 60px; 
-        width: 100%; 
-        position: fixed; 
-        top: 0; 
-    }
-    
-    .logo {
-        position: absolute;
-        top: 0px;
-        left: 0px; 
-    }
+            background-color: #C1C0C0; 
+            height: 100px; 
+            width: 100%; 
+            position: fixed; 
+            top: 0; 
+            margin-bottom: 20px; 
+            z-index: 1000; 
+        }
+
+        .logo {
+            position: absolute;
+            top: 0px;
+            left: 0px; 
+        }
     
     .step-container {
         display: flex;
@@ -113,9 +112,16 @@
     </head>
     <body>
         <div class="navbar">
+        <a href="{% url 'graph:index' %}">
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="100" width="190">        
+        </a>
+    </div>
+<!--         <div class="navbar">
             <div class="logo">
+                <a href="/graph/">
                 <img src="https://i.ibb.co/Fq6FxGL/image-2023-10-30-194523221.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">        
-            </div>
+                </a>
+            </div> -->
         </div>
         <p>{{ graph_name }}</p>
         {{ div| safe }}
