@@ -125,6 +125,7 @@
             margin-bottom: 10px;
             padding: 8px;
             width: 80%;
+            border: 1px solid #333;
 
         }
  	.new-button {
@@ -342,6 +343,7 @@
         width: 5px;
         height: 5px;
         border: 1px solid #000000;
+        padding: 0px;
     }
 	
     </style>
@@ -446,7 +448,7 @@
                                     // assuming that the first row contains labels and the rest contains actual data
                                     const labels = jsonData[0];
                                     const values = jsonData[1];
-                                    createBarChart(labels, values);
+                                    createBarChart(labels, values, file.name);
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
@@ -458,16 +460,16 @@
                             
 
                             //prototype 1 for creating bar graph
-                            function createBarChart(labels, values) {
+                            function createBarChart(labels, values, file) {
                                 const ctx = document.getElementById("myBarChart").getContext('2d');
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
                                         labels: labels,
                                         datasets: [{
-                                            label: 'data from excel',
+                                            label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,0.2)',
+                                            backgroundColor: 'rgba(75,192,192,1)',
                                             borderColor:'rgba(75,192,192,1)',
                                             borderWidth: 1
                                         }]
@@ -476,7 +478,8 @@
                                     options: {
                                         scales: {
                                             y: {
-                                                beginAtZero: true
+                                                beginAtZero: true,
+                                                text: 'y value here'
                                             }
                                         }
                                     }
