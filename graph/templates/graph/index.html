@@ -334,16 +334,40 @@
         overflow: hidden; 
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     }
-    .chart-container canvas {
+    .chart-container {
         display: block;
+        
     }
 
     #myBarChart {
-        margin-top: 1100px;
+        margin-top: 1000px;
+        width: 5px;
+        height: 5px;
+        border: 1px dashed #000000;
+        padding: 0px;
+    }
+
+    #myPieChart {
+        margin-top: 2000px;
         width: 5px;
         height: 5px;
         border: 1px solid #000000;
-        padding: 0px;
+        padding: 100px;
+    }
+
+    #myChart {
+        margin-top: 1500px;
+    }
+
+
+    .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: lightblue;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
     }
 	
     </style>
@@ -351,7 +375,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <canvas class = "myBarChart " id = "myBarChart" ></canvas>
+    <canvas id="myChart"></canvas>
+    
+    
+    
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
@@ -359,7 +386,7 @@
         </a>
 
     </div>
-    <div class="content-container">
+    <div class="content-container" width = "400" height = "400">
 
 
         <div class="left-half">   
@@ -369,11 +396,11 @@
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     <input type="file" name="myFile" class="drop-zone__input">
-
-                    <div class = "chart-container">
-                        </div>
                 </div>
-                
+                <div class = "circle" id = "circle1"></div>
+                <div class = "circle" id = "circle2"></div>
+                <div class = "circle" id = "circle3"></div>
+
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
@@ -448,7 +475,9 @@
                                     // assuming that the first row contains labels and the rest contains actual data
                                     const labels = jsonData[0];
                                     const values = jsonData[1];
-                                    createBarChart(labels, values, file.name);
+                                    //createBarChart(labels, values, file.name);
+                                    //createPieChart(labels, values, file.name);
+                                    //createScatterPlot(labels, values, file.name);
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
@@ -458,10 +487,32 @@
                             
                             console.log("values test");
                             
+                            let lastClickedCircle = null;
+
+                            document.getElementById('circle1').addEventListener('click', function() {
+                                
+                                const labels = ['Label1', 'Label2', 'Label3'];
+                                const values = [10, 20, 30];
+                                const file = 'test bar chart';
+                                createBarChart(labels, values, file);
+                                //lastClickedCircle = 'circle1';
+                            });
+
+                            document.getElementById('circle2').addEventListener('click', function() {
+                               
+                                const labels = ['Label1', 'Label2', 'Label3'];
+                                const values = [10, 20, 30];
+                                const file = 'test pie chart';
+                                createPieChart(labels, values, file);
+                                //lastClickedCircle = 'circle2';
+                            });
+
+
+
 
                             //prototype 1 for creating bar graph
                             function createBarChart(labels, values, file) {
-                                const ctx = document.getElementById("myBarChart").getContext('2d');
+                                const ctx = document.getElementById("myChart").getContext('2d');
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
@@ -479,11 +530,51 @@
                                         scales: {
                                             y: {
                                                 beginAtZero: true,
-                                                text: 'y value here'
+                                                title: {
+                                                    beginAtZero: true,
+                                                    text: 'y value here'
+                                                }
                                             }
                                         }
                                     }
                                 });
+                            }
+
+                            //prototype 1 for creating pie graph
+                            function createPieChart(labels, values, file) {
+                                const ctx = document.getElementById("myChart").getContext('2d');
+                                const myPieChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: file,
+                                            data: values,
+                                            backgroundColor: 'rgba(75,192,192,1)',
+                                            borderColor:'rgba(75,192,192,1)',
+                                            borderWidth: 1
+                                        }]
+
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                title: {
+                                                    beginAtZero: true,
+                                                    text: 'y value here'
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+
+
+                            
+
+                            function scatterPlot(labels, values, file) {
+
                             }
                             
 
