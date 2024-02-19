@@ -5,7 +5,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
-    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
 
         body {
@@ -259,7 +260,7 @@
             justify-content: center;
             align-items: center;
             right: 0;
-            center: 0;
+            /* center: 0; */
         }
 
         .dropbutton {
@@ -532,25 +533,26 @@
                     function defaultMode() {
                         let elementBody = document.body;
                         //let content = document.getElementById;
-                        elementBody.classname = "body";
+                        elementBody.className = "body";
                     }
                     function darkMode() {
-                        let elementBody = document.darkmode;
-                        let content = document.getElementById;
-                        elementBody.classname = "darkmode";
-                        content.innerText = "Dark Mode is now on"; //testing
+                        let elementBody = document.body;
+                        //const elementBody = document.getElementById("darkmode");
+                        let content = document.getElementById("darkmode"); //html id name
+                        elementBody.className = "darkmode"; //css class name
+                        content.innerText = "Dark Mode"; //testing
                     }
                     function protanopiaMode() {
-                        let elementBody = document.protanopia;
-                        elementBody.classname = "protanopia";
+                        let elementBody = document.body;
+                        elementBody.className = "protanopia";
                     }
                     function deuteranopiaMode() {
                         let elementBody = document.body;
-                        elementBody.classname = "deuteranopia";
+                        elementBody.className = "deuteranopia";
                     }
                     function tritanopiaMode() {
                         let elementBody = document.body;
-                        elementBody.classname = "tritanopia";
+                        elementBody.className = "tritanopia";
                     }
                 </script>
             </div>
@@ -595,16 +597,16 @@
 <div class="dropdown">
   <button class="dropbutton">Settings</button>
   <div class="dropdown-content">
-    <a href="#" onclick="defaultMode()">Default</a>
+    <!-- <a href="#" onclick="defaultMode()">Default</a>
     <a href="#" onclick="darkMode()">Dark Mode</a>
     <a href="#" onclick="protanopiaMode()">Protanopia</a>
     <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
-    <a href="#" onclick="tritanopiaMode()">Tritanopia</a>
-    <!-- <button onclick="defaultMode()">Default</button>
-    <button onclick="darkMode()">Dark Mode</button>
-    <button onclick="protanopia()">Protanopia </button>
-    <button onclick="deuteranopia()">Deuteranopia </button>
-    <button onclick="tritanopia()">Tritanopia  </button> -->
+    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
+    <button id="body" onclick="defaultMode()">Default</button>
+    <button id="darkmode" onclick="darkMode()">Dark Mode</button>
+    <button id="protanopia" onclick="protanopiaMode()">Protanopia</button>
+    <button id="deuteranopia" onclick="deuteranopiaMode()">Deuteranopia</button>
+    <button id="tritanopia" onclick="tritanopiaMode()">Tritanopia</button>
   </div>
 </div>
     </div>
