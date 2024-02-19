@@ -730,8 +730,17 @@
         </script> 
     </body>
     -->
+    {% load static %}
+    <audio id="audioPlayer" src="{% static 'graph/file.wav' %}"></audio>
 
-    
+    <button onclick="playAudio()">Play Audio</button>
+
+    <script>
+        function playAudio() {
+            var audio = document.getElementById('audioPlayer');
+            audio.play();
+        }
+    </script>
     
 
 </body>
