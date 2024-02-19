@@ -271,7 +271,7 @@
             border: none;
             z-index: 30;
             height: 60px; 
-            position: fixed;
+            /* postion: fixed; */
             width: 120px;
 
         }
@@ -535,13 +535,13 @@
                         elementBody.classname = "body";
                     }
                     function darkMode() {
-                        let elementBody = document.body;
-                        //let content = document.getElementById;
+                        let elementBody = document.darkmode;
+                        let content = document.getElementById;
                         elementBody.classname = "darkmode";
                         content.innerText = "Dark Mode is now ON";
                     }
                     function protanopiaMode() {
-                        let elementBody = document.body;
+                        let elementBody = document.protanopia;
                         elementBody.classname = "protanopia";
                     }
                     function deuteranopiaMode() {
@@ -595,7 +595,7 @@
 <div class="dropdown">
   <button class="dropbutton">Settings</button>
   <div class="dropdown-content">
-    <a href="#" onclick="defaultMode()">Default</a>
+    <a href="" onclick="defaultMode()">Default</a>
     <a href="#" onclick="darkMode()">Dark Mode</a>
     <a href="#" onclick="protanopiaMode()">Protanopia</a>
     <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
