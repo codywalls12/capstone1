@@ -1,8 +1,11 @@
+import numpy as np
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import GraphModel, graphpoint
 from bokeh.embed import components
 from bokeh.plotting import figure
+from graph import ToneGenerator
+from graph.ToneGenerator import ToneGenerator
 
 def index(request):
     context = {}
@@ -12,6 +15,19 @@ def graph_creation(request):
     graph_name = request.POST.get('graph_name')
     x_values = request.POST.getlist('x_values[]')
     y_values = request.POST.getlist('y_values[]')
+
+
+    tone = ToneGenerator()
+
+    
+    frequencies = []
+
+    for i in range(len(x_values)):
+        frequencies.append(x_values[i])
+    mellody = []
+    for i in range(len(frequencies)):
+        mellody += list(tone.render(0.5, int(frequencies[i]), "sin"))
+    ToneGenerator.write_to_file(np.array(mellody))
 
     if not x_values or not y_values:
         return HttpResponse("Error: x values or y values are missing")
