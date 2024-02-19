@@ -361,10 +361,10 @@
 
 
     .circle {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: lightblue;
+        width: 75px;
+        height: 75px;
+        
+        background-color:  #5585b5;
         display: inline-block;
         margin: 10px;
         cursor: pointer;
@@ -478,6 +478,22 @@
                                     //createBarChart(labels, values, file.name);
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
+
+                                    document.getElementById('circle1').addEventListener('click', function() {
+                                
+                                
+                                createBarChart(labels, values, file.name);
+                                //lastClickedCircle = 'circle1';
+                            });
+
+                            document.getElementById('circle2').addEventListener('click', function() {
+                               
+                                
+                                createPieChart(labels, values, file.name);
+                                //lastClickedCircle = 'circle2';
+                            });
+
+
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
@@ -489,23 +505,7 @@
                             
                             let lastClickedCircle = null;
 
-                            document.getElementById('circle1').addEventListener('click', function() {
-                                
-                                const labels = ['Label1', 'Label2', 'Label3'];
-                                const values = [10, 20, 30];
-                                const file = 'test bar chart';
-                                createBarChart(labels, values, file);
-                                //lastClickedCircle = 'circle1';
-                            });
-
-                            document.getElementById('circle2').addEventListener('click', function() {
-                               
-                                const labels = ['Label1', 'Label2', 'Label3'];
-                                const values = [10, 20, 30];
-                                const file = 'test pie chart';
-                                createPieChart(labels, values, file);
-                                //lastClickedCircle = 'circle2';
-                            });
+                            
 
 
 
