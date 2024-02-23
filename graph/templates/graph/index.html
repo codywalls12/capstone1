@@ -366,8 +366,12 @@
         
         background-color:  #5585b5;
         display: inline-block;
-        margin: 10px;
+        margin: 5px;
         cursor: pointer;
+    }
+
+    #circle1Label, #circle2Label, #circle3Label {
+        font-size: 10px;
     }
 	
     </style>
@@ -398,8 +402,11 @@
                     <input type="file" name="myFile" class="drop-zone__input">
                 </div>
                 <div class = "circle" id = "circle1"></div>
+                <label for="circle1" id = circle1Label>Bar Graph</label>
                 <div class = "circle" id = "circle2"></div>
+                <label for="circle2" id = "circle2Label">Pie Chart</label>
                 <div class = "circle" id = "circle3"></div>
+                <label for="circle3" id = "circle3Label">Scatter Plot</label>
 
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
@@ -479,18 +486,14 @@
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
 
-                                    document.getElementById('circle1').addEventListener('click', function() {
-                                
-                                
-                                createBarChart(labels, values, file.name);
-                                //lastClickedCircle = 'circle1';
+                            document.getElementById('circle1').addEventListener('click', function() {    
+                            createBarChart(labels, values, file.name);
+                            //lastClickedCircle = 'circle1';
                             });
 
                             document.getElementById('circle2').addEventListener('click', function() {
-                               
-                                
-                                createPieChart(labels, values, file.name);
-                                //lastClickedCircle = 'circle2';
+                            createPieChart(labels, values, file.name);
+                            //lastClickedCircle = 'circle2';
                             });
 
 
