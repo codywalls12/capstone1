@@ -1,4 +1,5 @@
 import numpy as np
+import os.path
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import GraphModel, graphpoint
@@ -6,6 +7,7 @@ from bokeh.embed import components
 from bokeh.plotting import figure
 from graph import ToneGenerator
 from graph.ToneGenerator import ToneGenerator
+
 
 def index(request):
     context = {}
@@ -17,17 +19,28 @@ def graph_creation(request):
     y_values = request.POST.getlist('y_values[]')
 
 
+
+    # Create file path to save .wav file to static folder
+    save_path = "graph/static/graph"
+    file_name = "graph_audio.wav"
+    graph_audio = os.path.join(save_path, file_name)
+
+
+    # Create an instance of the ToneGenerator
     tone = ToneGenerator()
 
-    
+    # Create a list to hold the values for frequencies
     frequencies = []
 
+    # This for loop goes throught the range of the y values entered by the user and adds them to the frequencies list
     for i in range(len(y_values)):
         frequencies.append(y_values[i])
     mellody = []
     for i in range(len(frequencies)):
         mellody += list(tone.render(0.5, int(frequencies[i]), "sin"))
-    ToneGenerator.write_to_file(np.array(mellody))
+    
+    # Once the mellody list has been created we write it to the proper file as a .wav file
+    ToneGenerator.write_to_file(np.array(mellody), graph_audio)
 
     if not x_values or not y_values:
         return HttpResponse("Error: x values or y values are missing")
