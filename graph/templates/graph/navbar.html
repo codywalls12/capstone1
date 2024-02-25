@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NavBar</title>
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg" style="background:#C1C0C0">
+  <div class="container-fluid">
+      <h1 style="background:#FFD493;">
+        <img src="https://i.ibb.co/Fq6FxGL/image-2023-10-30-194523221.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">      </h1>
+    <a class="navbar-brand" href="{% url 'home' %}"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul>
+            {% url 'home' as home_url %}
+            <span><a href="{{ home_url }}" class="btn btn-secondary">Home</a></span>
+            {% url 'graph' as graph_url %}
+            <span><a href="{{ graph_url }}" class="btn btn-secondary">Graph</a></span>
+            <!--{% url 'darkmode' as darkmode_url %}
+            <span><a href="{{ darkmode_url }}" class="btn btn-secondary">Darkmode</a></span>-->
+        </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!--if needed<nav class="navbar navbar-expand-lg" style="background:blue"></nav>-->
+
+<style>body { background:#CBE6FF }</style>
+</body>
+</html>
