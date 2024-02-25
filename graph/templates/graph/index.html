@@ -366,12 +366,8 @@
         
         background-color:  #5585b5;
         display: inline-block;
-        margin: 5px;
+        margin: 10px;
         cursor: pointer;
-    }
-
-    #circle1Label, #circle2Label, #circle3Label {
-        font-size: 10px;
     }
 	
     </style>
@@ -402,11 +398,8 @@
                     <input type="file" name="myFile" class="drop-zone__input">
                 </div>
                 <div class = "circle" id = "circle1"></div>
-                <label for="circle1" id = circle1Label>Bar Graph</label>
                 <div class = "circle" id = "circle2"></div>
-                <label for="circle2" id = "circle2Label">Pie Chart</label>
                 <div class = "circle" id = "circle3"></div>
-                <label for="circle3" id = "circle3Label">Scatter Plot</label>
 
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
@@ -486,14 +479,18 @@
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
 
-                            document.getElementById('circle1').addEventListener('click', function() {    
-                            createBarChart(labels, values, file.name);
-                            //lastClickedCircle = 'circle1';
+                                    document.getElementById('circle1').addEventListener('click', function() {
+                                
+                                
+                                createBarChart(labels, values, file.name);
+                                //lastClickedCircle = 'circle1';
                             });
 
                             document.getElementById('circle2').addEventListener('click', function() {
-                            createPieChart(labels, values, file.name);
-                            //lastClickedCircle = 'circle2';
+                               
+                                
+                                createPieChart(labels, values, file.name);
+                                //lastClickedCircle = 'circle2';
                             });
 
 
@@ -648,7 +645,7 @@
             const inputDiv = document.createElement("div");
 
             const inputX = document.createElement("input");
-            inputX.type = "text";
+            inputX.type = "number";
             inputX.name = "x_values[]";
             inputX.classList.add("xy-input");
             inputX.placeholder = "X";
@@ -733,17 +730,9 @@
         </script> 
     </body>
     -->
-    {% load static %}
-    <audio id="audioPlayer" src="{% static 'graph/file.wav' %}"></audio>
 
-    <button onclick="playAudio()">Play Audio</button>
 
-    <script>
-        function playAudio() {
-            var audio = document.getElementById('audioPlayer');
-            audio.play();
-        }
-    </script>
+    
     
 
 </body>
