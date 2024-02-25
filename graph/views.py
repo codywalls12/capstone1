@@ -22,8 +22,8 @@ def graph_creation(request):
     
     frequencies = []
 
-    for i in range(len(x_values)):
-        frequencies.append(x_values[i])
+    for i in range(len(y_values)):
+        frequencies.append(y_values[i])
     mellody = []
     for i in range(len(frequencies)):
         mellody += list(tone.render(0.5, int(frequencies[i]), "sin"))

@@ -125,6 +125,20 @@
         </div>
         <p>{{ graph_name }}</p>
         {{ div| safe }}
+
+
+
+        {% load static %}
+        <audio id="audioPlayer" src="{% static '..\file.wav' %}"></audio>
+    
+        <button onclick="playAudio()">Play Audio</button>
+    
+        <script>
+            function playAudio() {
+                var audio = document.getElementById('audioPlayer');
+                audio.play();
+            }
+        </script>
     </body>
 
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.3.1.min.js"></script>
