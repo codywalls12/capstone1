@@ -41,7 +41,7 @@
             width: 100%;
             max-width: 600px;
             margin-bottom: 20px; 
-            margin-top: 200px;
+            margin-top: 35px;
             flex-direction: column;
         }
 
@@ -89,7 +89,7 @@
             text-align: center;
             background-color: #fff; 
             border: 2px solid #333;
-            margin-top: 120px; 
+            margin-top: 83px; 
             margin-bottom: 20px; 
             align-self: center; 
             overflow-y: auto;
@@ -427,7 +427,7 @@
             color: #333;
         }
         .protanopia .dropdown:hover .dropbutton {
-            background-color: #808080;
+            background-color: #E0D2FE;
         }
 
 
@@ -473,7 +473,7 @@
             color: #333;
         }
         .deuteranopia .dropdown:hover .dropbutton {
-            background-color: #808080;
+            background-color: #EED1FF;
         }
 
 
@@ -519,6 +519,52 @@
             color: #333;
         }
         .tritanopia .dropdown:hover .dropbutton {
+            background-color: #624AFA;
+        }
+
+
+        .monochroma {
+            background-color: #BEBEBE; 
+        }
+        
+        .monochroma .drop-zone {
+            border: 2px dashed #757575;
+        }
+        .monochroma .drop-zone--over {
+            border-style: solid;
+        }
+        .monochroma .circle {
+            background-color: #949494;
+        }
+        .monochroma .form-container {
+            background-color: #F0F0F0; 
+            border: 2px solid black;
+            color: black;
+        }
+        .monochroma .upload-container {
+            background-color: #F0F0F0; 
+            border: 2px solid black;
+            color: black;
+        }
+        .monochroma #graph_name {
+            background-color: #F0F0F0;
+        }
+        .monochroma .xy-input {
+            background-color: #F0F0F0;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
+        .monochroma .new-button {
+            /* background-color: #3b6388; */
+            background-color: #949494;
+            color: #333;
+        }
+        .monochroma .dropbutton {
+            background-color: #fff;
+            color: #333;
+        }
+        .monochroma .dropdown:hover .dropbutton {
             background-color: #808080;
         }
 
@@ -776,6 +822,10 @@
                         let elementBody = document.body;
                         elementBody.className = "tritanopia";
                     }
+                    function monochromaMode() {
+                        let elementBody = document.body;
+                        elementBody.className = "monochroma";
+                    }
                 </script>
             </div>
         </div>
@@ -829,6 +879,7 @@
     <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
     <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
     <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+    <button id = "monochromaID" onclick= "monochromaMode()"> Monochroma </button>
   </div>
 </div>
     </div>
