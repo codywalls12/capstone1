@@ -39,7 +39,8 @@ body {
 .step1, .step2, .step3 {
     width: 50%;
     max-width: 180px;
-    padding: 10px;
+    padding: 30px;
+    margin-right: 10px;
 }
 
 .upload-container {
@@ -208,7 +209,6 @@ body {
     justify-content: center;
     align-items: center;
     right: 0;
-    /* center: 0; */
 }
 
 .dropbutton {
@@ -284,9 +284,48 @@ body {
 .chart-container canvas {
     display: block;
 }
+/*     .chart-container {
+display: block;     
+} */
+
+#myBarChart {
+margin-top: 1000px;
+width: 5px;
+height: 5px;
+border: 1px dashed #000000;
+padding: 0px;
+}
+
+#myPieChart {
+margin-top: 2000px;
+width: 5px;
+height: 5px;
+border: 1px solid #000000;
+padding: 100px;
+}
+
+#myChart {
+margin-top: 1500px;
+}
+
+
+.circle {
+width: 100px;
+height: 100px;
+
+background-color:  #5585b5;
+
+margin: 10px;
+cursor: pointer;
+}
+
+#circle1Label, #circle2Label, #circle3Label {
+font-size: 17px;
+display: block;
+}
 
 .darkmode {
-    background-color: #2e3237;
+    background-color: #2e3237; 
 }
 .darkmode .form-container {
     background-color: #333; 
@@ -298,12 +337,63 @@ body {
     border: 2px solid #fff;
     color: white;
 }
+.darkmode #graph_name {
+    background-color: #a4a4a4;
+}
+.darkmode .xy-input {
+    background-color: #a4a4a4;
+}
+/* .darkmode .upload-button {
+    background-color: red;
+} */
+.darkmode .new-button {
+    /* background-color: #3b6388; */
+    background-color: #fff;
+    color: #333;
+}
+.darkmode .dropbutton {
+    background-color: #fff;
+    color: #333;
+}
+.darkmode .dropdown:hover .dropbutton {
+    background-color: #808080;
+}
+
 .protanopia {
     background-color: #c4c5ee; 
 }
+.protanopia .new-button {
+    background-color: #0063c0;
+}
+.protanopia .dropbutton {
+    background-color: #0063c0;
+}
+.protanopia .dropdown:hover .dropbutton {
+    background-color: #005aaf;
+}
+
 .deuteranopia {
     background-color: #e1cdfc; 
 }
+.deuteranopia .new-button {
+    background-color: #006acc;
+}
+.deuteranopia .dropbutton {
+    background-color: #006acc;
+}
+.deuteranopia .dropdown:hover .dropbutton {
+    background-color: #0060bb;
+}
+
 .tritanopia {
     background-color: #bae7ff; 
+}
+.tritanopia .new-button {
+    background-color: #24747a;
+}
+.tritanopia .dropbutton {
+    background-color: #24747a;
+}
+.tritanopia .dropdown:hover .dropbutton {
+    background-color: #196368;
 }
