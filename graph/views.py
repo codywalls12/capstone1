@@ -8,6 +8,9 @@ def index(request):
     context = {}
     return render(request, "graph/index.html", context)
 
+def about_us(request):
+    return render(request, 'graph/about_us.html')
+
 def graph_creation(request):
     graph_name = request.POST.get('graph_name')
     x_values = request.POST.getlist('x_values[]')

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
 
         body {
-
             background-color: #CBE6FF; 
             margin: 0; 
             padding: 0; 
@@ -17,75 +19,61 @@
             justify-content: center;
             height: 100vh;
             font-family: Arial, sans-serif;
-
         }
 
         .navbar {
-
             background-color: #C1C0C0; 
-            height: 60px; 
+            height: 80px; 
             width: 100%; 
             position: fixed; 
             top: 0; 
             margin-bottom: 20px; 
-            z-index: 1; 
-
+            z-index: 1;
         }
 
         .logo {
-
             position: absolute;
             top: 0px;
             left: 0px; 
-
         }
 
-         .step-container {
-
+        .step-container {
             display: flex;
             justify-content: space-around;
             width: 100%;
             max-width: 600px;
             margin-bottom: 20px; 
             margin-top: 200px;
-	    flex-direction: column;
-
+            flex-direction: column;
         }
 
         .step1, .step2, .step3 {
-
             width: 50%;
             max-width: 180px;
             padding: 10px;
-
         }
 
         .upload-container {
-
             width: 80%;
             max-width: 800px;
             height: 400px;
             padding: 30px;
             text-align: center;
             background-color: #fff; 
-            border: 1px solid #333; 
+            border: 2px solid #333; 
             margin-bottom: 20px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
         }
 
         .upload-icon {
-
             font-size: 48px;
-
         }
 
         .upload-button {
-
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
@@ -93,41 +81,34 @@
             color: #fff;
             border: none;
             cursor: pointer;
-
         }
 
-       .form-container {
-
-    	   max-width: 300px; 
-    	   width: 40%; 
-   	   padding: 20px;
-    	   text-align: center;
-    	   background-color: #fff; 
-    	   border: 2px solid #333;
-    	   margin-top: 120px; 
-    	   margin-bottom: 20px; 
-    	   align-self: center; 
-	   overflow-y: auto;
-
-	}
+        .form-container {
+            max-width: 300px; 
+            width: 40%; 
+            padding: 20px;
+            text-align: center;
+            background-color: #fff; 
+            border: 2px solid #333;
+            margin-top: 120px; 
+            margin-bottom: 20px; 
+            align-self: center; 
+            overflow-y: auto;
+        }
 
         .form {
-
             display: flex;
             flex-direction: column;
             align-items: center;
-
         }
 
         .form input {
-
             margin-bottom: 10px;
             padding: 8px;
             width: 80%;
-
         }
- 	.new-button {
 
+        .new-button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
@@ -135,19 +116,26 @@
             color: #fff;
             border: none;
             cursor: pointer;
+        }
 
+	.aboutus-button {
+            padding: 33px;                 
+            font-size: 16px;
+            background-color: #0085FF;
+            color: #fff;
+            height: 80px;
+            position: relative;
+            top: -35px;
+	    left: 1455px;
         }
         .content {
-
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
-
         }
 
         .drop-zone {
-
             max-width: 150px;
             height: 150px;
             padding: 25px;
@@ -162,23 +150,17 @@
             color: #cccccc;
             border: 2px dashed #009578;
             border-radius: 10px;
-
         }
 
         .drop-zone--over {
-
             border-style: solid;
-
         }
 
         .drop-zone__input {
-
             display: none;
-
         }
 
         .drop-zone__thumb {
-
             width: 100px;
             height: 100px;
             border-radius: 5px;
@@ -186,11 +168,9 @@
             background-color: #cccccc;
             background-size: cover;
             position: relative;
-
         }
 
         .drop-zone__thumb::after{
-
             content: attr(data-label);
             position: absolute;
             bottom: 0;
@@ -201,28 +181,22 @@
             background: rgba(0,0,0,0.75);
             font-size: 12px;
             text-align: center;
-
         }
 
         .file-size {
-
             color: #555;
             font-size: 12px;
             margin-top: 5px;
-
         }
 
         .content-container {
-
             display: flex;
             width: 100%;
             height: 100%;
             margin-top: 100px;
-
         }
 
         .left-half {
-
             margin-top: 40px;
             flex: 1;
             height: 100%;
@@ -232,11 +206,9 @@
             align-items: center;
             position: relative; 
             z-index: 2; 
-
         }
 
         .rectangle-box {
-
             position: absolute;
             top: 50%;
             left: 50%;
@@ -245,11 +217,9 @@
             height: 100%;
             background-color: #f0f0f0;
             transform: translate(-50%, -50%);
-
         }
 
         .right-half {
-
             margin-top: 40px;
             margin-left: 100px;
             flex: 1;
@@ -258,84 +228,202 @@
             flex-direction: column; 
             justify-content: center;
             align-items: center;
-	    right: 0;
-	    center: 0;
+            right: 0;
+            /* center: 0; */
         }
 
-	.dropbutton {
+        .dropbutton {
+            background-color: #0085FF;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            z-index: 30;
+            height: 60px; 
+            /* postion: fixed; */
+            width: 120px;
+        }
 
-  	   background-color: #0085FF;
-      	   color: white;
-  	   padding: 10px;
-  	   font-size: 18px;
-  	   border: none;
-  	   z-index: 30;
-  	   height: 60px; 
-  	   postion: fixed;
-  	   width: 120px;
+        .dropdown {
+            right: 0;
+            top: 0;
+            z-index: 30;
+            position: fixed;
+            display: inline-block;
+            height: 60px;        
+        }
 
+        .dropdown-content {
+            display: none;
+            position: fixed;
+            background-color: white;   
+            z-index: 1;  
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown-content button {
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            display: block;
+            border: none;
+            padding: 12px 16px;
+            font-size: 16px;
+            z-index: 30;
+            height: 40px; 
+            width: 120px;
+            text-align: left;
+        }
+        .dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbutton {
+            background-color: #006acc;
+        }
+
+        .chart-container {
+            margin-top: 500px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            overflow: hidden; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+        .chart-container canvas {
+            display: block;
+        }
+        
+        .darkmode {
+            background-color: #2e3237; 
+        }
+        .darkmode .form-container {
+            background-color: #333; 
+            border: 2px solid #fff;
+            color: white;
+        }
+        .darkmode .upload-container {
+            background-color: #333; 
+            border: 2px solid #fff;
+            color: white;
+        }
+        .darkmode .xy-input {
+            background-color: #a4a4a4;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
+        .darkmode .new-button {
+            /* background-color: #3b6388; */
+            background-color: #fff;
+            color: #333;
+        }
+
+	.darkmode .aboutus-button {
+        background-color: #fff;
+        color: #333;
+        }
+
+        .darkmode .dropbutton {
+            background-color: #fff;
+            color: #333;
+        }
+        .darkmode .dropdown:hover .dropbutton {
+            background-color: #808080;
+        }
+
+        .protanopia {
+            background-color: #c4c5ee; 
+        }
+
+        .protanopia .new-button {
+            background-color: #0063c0;
+        }
+
+	.protanopia .aboutus-button {
+
+        background-color: #0063c0;
+        
+   	}
+
+        .protanopia .dropbutton {
+            background-color: #0063c0;
+        }
+
+        .protanopia .dropdown:hover .dropbutton {
+            background-color: #005aaf;
+        }
+
+        .deuteranopia {
+            background-color: #e1cdfc; 
+        }
+
+        .deuteranopia .new-button {
+            background-color: #006acc;
+        }
+
+	.deuteranopia .aboutus-button {
+        
+	    background-color: #006acc;
+     
 	}
 
-	.dropdown {
+        .deuteranopia .dropbutton {
+            background-color: #006acc;
+        }
 
-	   right: 0;
-	   top: 0;
-	   z-index: 30;
-  	   position: fixed;
-  	   display: inline-block;
- 	   height: 60px; 
-	  
- 	 
+        .deuteranopia .dropdown:hover .dropbutton {
+            background-color: #0060bb;
+        }
+        
+        .tritanopia {
+            background-color: #bae7ff; 
+        }
+
+        .tritanopia .new-button {
+            background-color: #24747a;
+        }
+
+	.tritanopia .aboutus-button {
+           
+	    background-color: #24747a;
+   	
 	}
 
-	.dropdown-content {
+        .tritanopia .dropbutton {
+            background-color: #24747a;
+        }
 
-  	   display: none;
-  	   position: fixed;
-  	   background-color: white;
-  	   
-  	   z-index: 1;
-	 
-	}
+        .tritanopia .dropdown:hover .dropbutton {
+            background-color: #196368;
+        }
 
-	.dropdown-content a {
-
-  	   color: black;
-  	   padding: 12px 16px;
-  	   text-decoration: none;
-  	   display: block;
-
-	}
-
-	.dropdown-content a:hover {
-	
-	   background-color: #ddd;
-
-	}
-
-	.dropdown:hover .dropdown-content {
-
-	   display: block;
-
-	}
-
-	.dropdown:hover .dropbutton {
-
-	   background-color: #006acc;
-
-	}
-	
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-
+    <canvas id = "myBarChart" width = "400" height = "400"></canvas>
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="80" width="140">        
         </a>
+        
+       <a href="{% url 'graph:about_us' %}" class="aboutus-button">About Us</a>
+
 
     </div>
     <div class="content-container">
@@ -348,7 +436,11 @@
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     <input type="file" name="myFile" class="drop-zone__input">
+
+                    <div class = "chart-container">
+                        </div>
                 </div>
+                
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
@@ -383,6 +475,9 @@
                             dropZoneElement.classList.remove("drop-zone--over");
                         });
 
+                        
+                        
+
                         function updateThumbnail(dropZoneElement, file) {
                             let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
@@ -416,11 +511,43 @@
                                     const sheet = workbook.Sheets[sheetName];
                                     const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
                                     console.log("excel data", jsonData);
+
+                                    // assuming that the first row contains labels and the rest contains actual data
+                                    const labels = jsonData[0].slice(1);
+                                    const values = jsonData.slice(1).map(row => row[0]);
+                                    createBarChart(labels, values);
                                 };
                                 reader.readAsArrayBuffer(file);
                             } else {
                                 alert("please drop an excel file");
                             }
+
+                            //prototype 1 for creating bar graph
+                            function createBarChart(labels, values) {
+                                const ctx = document.getElementById('myBarChart').getContext('2d');
+                                const myBarChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: 'data from excel',
+                                            data: values,
+                                            backgroundColor: 'rgba(75,192,192,0.2)',
+                                            borderColor:'rgba(75,192,192,1)',
+                                            borderWidth: 1
+                                        }]
+
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                            
 
                             function formatFileSize(size) {
                                 const kb = size / 1024;
@@ -433,9 +560,35 @@
                             }
                         }
                     });
+
+                    function defaultMode() {
+                        let elementBody = document.body;
+                        //let content = document.getElementById;
+                        elementBody.className = "body";
+                    }
+                    function darkMode() {
+                        let elementBody = document.body;
+                        //const elementBody = document.getElementById("darkmode");
+                        let content = document.getElementById("darkmodeID"); //html id name
+                        elementBody.className = "darkmode"; //css class name
+                        content.innerText = "Dark Mode"; //testing
+                    }
+                    function protanopiaMode() {
+                        let elementBody = document.body;
+                        elementBody.className = "protanopia";
+                    }
+                    function deuteranopiaMode() {
+                        let elementBody = document.body;
+                        elementBody.className = "deuteranopia";
+                    }
+                    function tritanopiaMode() {
+                        let elementBody = document.body;
+                        elementBody.className = "tritanopia";
+                    }
                 </script>
             </div>
         </div>
+        
         <div class="form-container">
                 <h2>Graph Settings</h2>
 
@@ -475,10 +628,16 @@
 <div class="dropdown">
   <button class="dropbutton">Settings</button>
   <div class="dropdown-content">
-    <a href="#">Normal</a>
-    <a href="#">Protanopia </a>
-    <a href="#">Deuteranopia </a>
-    <a href="#">Tritanopia  </a>
+    <!-- <a href="#" onclick="defaultMode()">Default</a>
+    <a href="#" onclick="darkMode()">Dark Mode</a>
+    <a href="#" onclick="protanopiaMode()">Protanopia</a>
+    <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
+    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
+    <button id="bodyID" onclick="defaultMode()">Default</button>
+    <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
+    <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
+    <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
+    <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
   </div>
 </div>
     </div>
@@ -573,6 +732,5 @@
         </script> 
     </body>
     -->
-
 </body>
 </html>

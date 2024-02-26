@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-3.3.1.min.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-3.3.1.min.css" rel="stylesheet" type="text/css">
+
+    <meta charset="UTF-8">
+    <title>Graph Sonification</title>
+   
+<style>
+    body {
+        background-color: #CBE6FF; 
+        margin: 0; 
+        padding: 0; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+    
+    .navbar {
+        background-color: #C1C0C0; 
+        height: 80px; 
+        width: 100%; 
+        position: fixed; 
+        top: 0; 
+        margin-bottom: 20px; 
+        z-index: 1;
+        justify-content: space-between; 
+        align-items: center; 
+    }
+
+    .logo {
+        position: absolute;
+        top: 0px;
+        left: 0px; 
+    }
+
+    .aboutus-button {
+        padding: 33px;                 
+        font-size: 16px;
+        background-color: #0085FF;
+        color: #fff;
+        height: 80px;
+        position: relative;
+        top: -35px;
+        left: 1455px;
+    }
+
+    .dropbutton {
+        background-color: #0085FF;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        z-index: 30;
+        height: 60px; 
+        width: 120px;
+    }
+
+    .dropdown {
+        right: 0;
+        top: 0;
+        z-index: 30;
+        position: fixed;
+        display: inline-block;
+        height: 100px;   
+	     
+    }
+
+    .dropdown-content {
+        display: none;
+        position: fixed;
+        background-color: white;   
+        z-index: 1;  
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 18px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown-content button {
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        display: block;
+        border: none;
+        padding: 12px 16px;
+        font-size: 16px;
+        z-index: 30;
+        height: 40px; 
+        width: 120px;
+        text-align: left;
+    }
+
+    .dropdown-content button:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbutton {
+        background-color: #006acc;
+    }
+
+    .chart-container {
+        margin-top: 500px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        overflow: hidden; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    .chart-container canvas {
+        display: block;
+    }
+    
+    .darkmode {
+        background-color: #2e3237; 
+    }
+
+    .darkmode .form-container {
+        background-color: #333; 
+        border: 2px solid #fff;
+        color: white;
+    }
+
+    .darkmode .upload-container {
+        background-color: #333; 
+        border: 2px solid #fff;
+        color: white;
+    }
+
+    .darkmode .xy-input {
+        background-color: #a4a4a4;
+    }
+
+    .darkmode .new-button {
+        background-color: #fff;
+        color: #333;
+    }
+
+    .darkmode .aboutus-button {
+        background-color: #fff;
+        color: #333;
+    }
+
+    .darkmode .mission-section  {
+        color: white;
+    }
+
+    .darkmode .about-section  {
+        color: white;
+    }
+
+    .darkmode .dropbutton {
+        background-color: #fff;
+        color: #333;
+    }
+
+    .darkmode .dropdown:hover .dropbutton {
+        background-color: #808080;
+    }
+
+    .protanopia {
+        background-color: #c4c5ee; 
+    }
+
+    .protanopia .new-button {
+        background-color: #0063c0;
+    }
+
+    .protanopia .aboutus-button {
+        background-color: #0063c0;
+    }
+
+    .protanopia .dropbutton {
+        background-color: #0063c0;
+    }
+
+    .protanopia .dropdown:hover .dropbutton {
+        background-color: #005aaf;
+    }
+
+    .deuteranopia {
+        background-color: #e1cdfc; 
+    }
+
+    .deuteranopia .new-button {
+        background-color: #006acc;
+    }
+
+    .deuteranopia .aboutus-button {
+        background-color: #006acc;
+    }
+
+    .deuteranopia .dropbutton {
+        background-color: #006acc;
+    }
+
+    .deuteranopia .dropdown:hover .dropbutton {
+        background-color: #0060bb;
+    }
+    
+    .tritanopia {
+        background-color: #bae7ff; 
+    }
+
+    .tritanopia .new-button {
+        background-color: #24747a;
+    }
+
+    .tritanopia .aboutus-button {
+        background-color: #24747a;
+    }
+    
+    .tritanopia .dropbutton {
+        background-color: #24747a;
+    }
+
+    .tritanopia .dropdown:hover .dropbutton {
+        background-color: #196368;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .about-section {
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 800px;
+    }
+
+    .mission-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+        max-width: 800px;
+    }
+
+    .team-member {
+        width: 600px; 
+        height: 200px; 
+        background-color: #fff; 
+        padding: 10px; 
+        box-sizing: border-box; 
+        margin-bottom: 12px; 
+        right: 0;
+        text-align:top;
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        font-size: 24px;
+    }
+
+    .member-description {
+        text-align:top;
+        display: flex; 
+        flex-direction: column; 
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        right: 0;
+        word-wrap: break-word;
+        font-size: 14px;
+    }
+
+</style>
+
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'graph:index' %}">
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="80" width="140">        
+        </a>
+        <a href="{% url 'graph:about_us' %}" class="aboutus-button">About Us</a>
+    </div>
+  
+    <div class="dropdown">
+        <button class="dropbutton">Settings</button>
+        <div class="dropdown-content">
+            <button id="bodyID" onclick="defaultMode()">Default</button>
+            <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
+            <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
+            <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
+            <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+        </div>
+    </div>
+    
+    <div class="about-section">
+        <div class="container">
+            <h2>About Us</h2>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="mission-section">
+        <div class="container">
+            <h2>Graph Sonification</h2>
+            <p>The goal for this project was to allow the user to upload create a graph using their preferred method and have the ability to have the data be presented to them using sonification.
+                The project so far has the ability for the user to create the graph using a file upload or enter the data manually. The project is being developed by a team of 5 during the Spring
+                2024 semester.</p>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <div class="container">
+            <h2>Our Team - Syntax Squad</h2>
+            
+            <div class="team-member">
+                <h6>Ethan Batres</h6>
+                <div class="member-description">
+                    <p>I worked on the front end alongside Brandon. I worked actual webpage and its layout, the form, navbar, logo, step images, and the about us page. 
+                        I created the buttons used to interact with the webpage. This is my first time working on front end development and it has been a great experience thus far.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <h6>Brandon Sharp</h6>
+                <div class="member-description">
+                    <p></p>
+                </div>
+            </div>
+            <div class="team-member">
+                <h6>Jason Wolfe</h6>
+                <div class="member-description">
+                    <p></p>
+                </div>
+            </div>
+            <div class="team-member">
+                <h6>Cody Walls</h6>
+                <div class="member-description">
+                    <p></p>
+                </div>
+            </div>
+            <div class="team-member">
+                <h6>Alex Kieter</h6>
+                <div class="member-description">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function defaultMode() {
+            let elementBody = document.body;
+            elementBody.className = "body";
+        }
+        function darkMode() {
+            let elementBody = document.body;
+            let content = document.getElementById("darkmodeID");
+            elementBody.className = "darkmode";
+            content.innerText = "Dark Mode"; //testing
+        }
+        function protanopiaMode() {
+            let elementBody = document.body;
+            elementBody.className = "protanopia";
+        }
+        function deuteranopiaMode() {
+            let elementBody = document.body;
+            elementBody.className = "deuteranopia";
+        }
+        function tritanopiaMode() {
+            let elementBody = document.body;
+            elementBody.className = "tritanopia";
+        }
+    </script>
+</body>
+</html>
