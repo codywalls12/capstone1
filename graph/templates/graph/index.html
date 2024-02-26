@@ -41,7 +41,7 @@
             width: 100%;
             max-width: 600px;
             margin-bottom: 20px; 
-            margin-top: 200px;
+            margin-top: 35px;
             flex-direction: column;
         }
 
@@ -89,7 +89,7 @@
             text-align: center;
             background-color: #fff; 
             border: 2px solid #333;
-            margin-top: 120px; 
+            margin-top: 83px; 
             margin-bottom: 20px; 
             align-self: center; 
             overflow-y: auto;
@@ -327,7 +327,7 @@
         width: 100px;
         height: 100px;
         
-        background-color:  #5585b5;
+        background-color:  #0085FF;
         
         margin: 10px;
         cursor: pointer;
@@ -341,6 +341,16 @@
 
 	.darkmode {
             background-color: #2e3237; 
+        }
+        
+        .darkmode .drop-zone {
+            border: 2px dashed white;
+        }
+        .darkmode .drop-zone--over {
+            border-style: solid;
+        }
+        .darkmode .circle {
+            background-color: white;
         }
         .darkmode .form-container {
             background-color: #333; 
@@ -374,44 +384,196 @@
             background-color: #808080;
         }
 
-        .protanopia {
-            background-color: #c4c5ee; 
-        }
-        .protanopia .new-button {
-            background-color: #0063c0;
-        }
-        .protanopia .dropbutton {
-            background-color: #0063c0;
-        }
-        .protanopia .dropdown:hover .dropbutton {
-            background-color: #005aaf;
-        }
 
-        .deuteranopia {
-            background-color: #e1cdfc; 
-        }
-        .deuteranopia .new-button {
-            background-color: #006acc;
-        }
-        .deuteranopia .dropbutton {
-            background-color: #006acc;
-        }
-        .deuteranopia .dropdown:hover .dropbutton {
-            background-color: #0060bb;
+        .protanopia {
+            background-color: #73DCF6; 
         }
         
-        .tritanopia {
-            background-color: #bae7ff; 
+        .protanopia .drop-zone {
+            border: 2px dashed #C7E823;
         }
+        .protanopia .drop-zone--over {
+            border-style: solid;
+        }
+        .protanopia .circle {
+            background-color: #E0D2FE;
+        }
+        .protanopia .form-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .protanopia .upload-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .protanopia #graph_name {
+            background-color: white;
+        }
+        .protanopia .xy-input {
+            background-color: white;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
+        .protanopia .new-button {
+            /* background-color: #3b6388; */
+            background-color: #E0D2FE;
+            color: #333;
+        }
+        .protanopia .dropbutton {
+            background-color: #fff;
+            color: #333;
+        }
+        .protanopia .dropdown:hover .dropbutton {
+            background-color: #E0D2FE;
+        }
+
+
+        .deuteranopia {
+            background-color: #BFECFF; 
+        }
+        
+        .deuteranopia .drop-zone {
+            border: 2px dashed #E7F4BE;
+        }
+        .deuteranopia .drop-zone--over {
+            border-style: solid;
+        }
+        .deuteranopia .circle {
+            background-color: #C1E4FC;
+        }
+        .deuteranopia .form-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .deuteranopia .upload-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .deuteranopia #graph_name {
+            background-color: white;
+        }
+        .deuteranopia .xy-input {
+            background-color: white;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
+        .deuteranopia .new-button {
+            /* background-color: #3b6388; */
+            background-color: #C1E4FC;
+            color: #333;
+        }
+        .deuteranopia .dropbutton {
+            background-color: #fff;
+            color: #333;
+        }
+        .deuteranopia .dropdown:hover .dropbutton {
+            background-color: #EED1FF;
+        }
+
+
+        .tritanopia {
+            background-color: #21E1FB; 
+        }
+        
+        .tritanopia .drop-zone {
+            border: 2px dashed #9CF3FF;
+        }
+        .tritanopia .drop-zone--over {
+            border-style: solid;
+        }
+        .tritanopia .circle {
+            background-color: #624AFA;
+        }
+        .tritanopia .form-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .tritanopia .upload-container {
+            background-color: white; 
+            border: 2px solid black;
+            color: black;
+        }
+        .tritanopia #graph_name {
+            background-color: white;
+        }
+        .tritanopia .xy-input {
+            background-color: white;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
         .tritanopia .new-button {
-            background-color: #24747a;
+            /* background-color: #3b6388; */
+            background-color: #624AFA;
+            color: #333;
         }
         .tritanopia .dropbutton {
-            background-color: #24747a;
+            background-color: #fff;
+            color: #333;
         }
         .tritanopia .dropdown:hover .dropbutton {
-            background-color: #196368;
+            background-color: #624AFA;
         }
+
+
+        .monochroma {
+            background-color: #BEBEBE; 
+        }
+        
+        .monochroma .drop-zone {
+            border: 2px dashed #757575;
+        }
+        .monochroma .drop-zone--over {
+            border-style: solid;
+        }
+        .monochroma .circle {
+            background-color: #949494;
+        }
+        .monochroma .form-container {
+            background-color: #F0F0F0; 
+            border: 2px solid black;
+            color: black;
+        }
+        .monochroma .upload-container {
+            background-color: #F0F0F0; 
+            border: 2px solid black;
+            color: black;
+        }
+        .monochroma #graph_name {
+            background-color: #F0F0F0;
+        }
+        .monochroma .xy-input {
+            background-color: #F0F0F0;
+        }
+        /* .darkmode .upload-button {
+            background-color: red;
+        } */
+        .monochroma .new-button {
+            /* background-color: #3b6388; */
+            background-color: #949494;
+            color: #333;
+        }
+        .monochroma .dropbutton {
+            background-color: #fff;
+            color: #333;
+        }
+        .monochroma .dropdown:hover .dropbutton {
+            background-color: #808080;
+        }
+
+
+
+
+        
+
+        
 	
     </style>
 
@@ -566,8 +728,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: 'rgba(0,0,0,.5)',
+                                            borderColor:'rgba(0,0,0,1)',
                                             borderWidth: 1
                                         }]
 
@@ -596,8 +758,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: 'rgba(0,0,0,.5)',
+                                            borderColor:'rgba(0,0,0,1)',
                                             borderWidth: 1
                                         }]
 
@@ -660,6 +822,10 @@
                         let elementBody = document.body;
                         elementBody.className = "tritanopia";
                     }
+                    function monochromaMode() {
+                        let elementBody = document.body;
+                        elementBody.className = "monochroma";
+                    }
                 </script>
             </div>
         </div>
@@ -713,6 +879,7 @@
     <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
     <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
     <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+    <button id = "monochromaID" onclick= "monochromaMode()"> Monochroma </button>
   </div>
 </div>
     </div>
