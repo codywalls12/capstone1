@@ -10,16 +10,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
-h1 {
-    color: grey
-}
-
 .navbar {
     background-color: #C1C0C0; 
     height: 60px; 
     width: 100%; 
     position: fixed; 
     top: 0; 
+    margin-bottom: 20px; 
+    z-index: 1;
 }
 
 .logo {
@@ -31,18 +29,18 @@ h1 {
 .step-container {
     display: flex;
     justify-content: space-around;
-    width: 60%;
+    width: 100%;
     max-width: 600px;
     margin-bottom: 20px; 
-    margin-top: 80px; 
-/*     margin-top: 200px;  */
+    margin-top: 200px;
+    flex-direction: column;
 }
 
 .step1, .step2, .step3 {
-    width: 30%;
+    width: 50%;
     max-width: 180px;
-    padding: 10px;
-/*     border: 1px solid #333; */
+    padding: 30px;
+    margin-right: 10px;
 }
 
 .upload-container {
@@ -51,9 +49,8 @@ h1 {
     height: 400px;
     padding: 30px;
     text-align: center;
-    background-color: #fff;
-    border: 2px dashed #333; 
-/*     border: 1px solid #333;  */
+    background-color: #fff; 
+    border: 2px solid #333; 
     margin-bottom: 20px;
     box-sizing: border-box;
     display: flex;
@@ -77,11 +74,16 @@ h1 {
 }
 
 .form-container {
-    max-width: 600px; 
+    max-width: 300px; 
+    width: 40%; 
     padding: 20px;
     text-align: center;
     background-color: #fff; 
-    border: 2px solid #333; 
+    border: 2px solid #333;
+    margin-top: 120px; 
+    margin-bottom: 20px; 
+    align-self: center; 
+    overflow-y: auto;
 }
 
 .form {
@@ -94,6 +96,16 @@ h1 {
     margin-bottom: 10px;
     padding: 8px;
     width: 80%;
+}
+
+.new-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0085FF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 .content {
@@ -155,4 +167,233 @@ h1 {
     color: #555;
     font-size: 12px;
     margin-top: 5px;
+}
+
+.content-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.left-half {
+    margin-top: 40px;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    z-index: 2; 
+}
+
+.rectangle-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    width: 90%;
+    height: 100%;
+    background-color: #f0f0f0;
+    transform: translate(-50%, -50%);
+}
+
+.right-half {
+    margin-top: 40px;
+    margin-left: 100px;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    right: 0;
+}
+
+.dropbutton {
+    background-color: #0085FF;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    z-index: 30;
+    height: 60px; 
+    /* postion: fixed; */
+    width: 120px;
+}
+
+.dropdown {
+    right: 0;
+    top: 0;
+    z-index: 30;
+    position: fixed;
+    display: inline-block;
+    height: 60px;        
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: white;   
+    z-index: 1;  
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-content button {
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    display: block;
+    border: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    z-index: 30;
+    height: 40px; 
+    width: 120px;
+    text-align: left;
+}
+.dropdown-content button:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbutton {
+    background-color: #006acc;
+}
+
+.chart-container {
+    margin-top: 500px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+.chart-container canvas {
+    display: block;
+}
+/*     .chart-container {
+display: block;     
+} */
+
+#myBarChart {
+margin-top: 1000px;
+width: 5px;
+height: 5px;
+border: 1px dashed #000000;
+padding: 0px;
+}
+
+#myPieChart {
+margin-top: 2000px;
+width: 5px;
+height: 5px;
+border: 1px solid #000000;
+padding: 100px;
+}
+
+#myChart {
+margin-top: 1500px;
+}
+
+
+.circle {
+width: 100px;
+height: 100px;
+
+background-color:  #5585b5;
+
+margin: 10px;
+cursor: pointer;
+}
+
+#circle1Label, #circle2Label, #circle3Label {
+font-size: 17px;
+display: block;
+}
+
+.darkmode {
+    background-color: #2e3237; 
+}
+.darkmode .form-container {
+    background-color: #333; 
+    border: 2px solid #fff;
+    color: white;
+}
+.darkmode .upload-container {
+    background-color: #333; 
+    border: 2px solid #fff;
+    color: white;
+}
+.darkmode #graph_name {
+    background-color: #a4a4a4;
+}
+.darkmode .xy-input {
+    background-color: #a4a4a4;
+}
+/* .darkmode .upload-button {
+    background-color: red;
+} */
+.darkmode .new-button {
+    /* background-color: #3b6388; */
+    background-color: #fff;
+    color: #333;
+}
+.darkmode .dropbutton {
+    background-color: #fff;
+    color: #333;
+}
+.darkmode .dropdown:hover .dropbutton {
+    background-color: #808080;
+}
+
+.protanopia {
+    background-color: #c4c5ee; 
+}
+.protanopia .new-button {
+    background-color: #0063c0;
+}
+.protanopia .dropbutton {
+    background-color: #0063c0;
+}
+.protanopia .dropdown:hover .dropbutton {
+    background-color: #005aaf;
+}
+
+.deuteranopia {
+    background-color: #e1cdfc; 
+}
+.deuteranopia .new-button {
+    background-color: #006acc;
+}
+.deuteranopia .dropbutton {
+    background-color: #006acc;
+}
+.deuteranopia .dropdown:hover .dropbutton {
+    background-color: #0060bb;
+}
+
+.tritanopia {
+    background-color: #bae7ff; 
+}
+.tritanopia .new-button {
+    background-color: #24747a;
+}
+.tritanopia .dropbutton {
+    background-color: #24747a;
+}
+.tritanopia .dropdown:hover .dropbutton {
+    background-color: #196368;
 }
