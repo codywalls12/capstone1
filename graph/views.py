@@ -2,7 +2,6 @@ import numpy as np
 import os.path
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import GraphModel, graphpoint
 from bokeh.embed import components
 from bokeh.plotting import figure
 from graph import ToneGenerator
