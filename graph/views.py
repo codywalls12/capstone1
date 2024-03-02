@@ -75,7 +75,14 @@ def excel_upload(request):
         form = ExcelDataForm(request.POST, request.FILES)
         if form.is_valid():
             print("Form is valid")
+            try:
+                print(next(iter(request.FILES))) # this will print the name of the file
+            except StopIteration:
+                 print("No file was uploaded!")
             form.save()
+            df = pd.read_excel("graph/static/graph/Uploaded_Data.xlxs")
+            first_column = df.iloc[:, 1]
+            print(first_column)
     else:
         print("request not POST")
         form = UploadForm()
