@@ -1,16 +1,25 @@
 import numpy as np
 import os.path
+import pandas as pd
 from django.shortcuts import render
 from django.http import HttpResponse
 from bokeh.embed import components
 from bokeh.plotting import figure
 from graph import ToneGenerator
 from graph.ToneGenerator import ToneGenerator
-
+from .forms import ExcelDataForm
 
 def index(request):
-    context = {}
-    return render(request, "graph/index.html", context)
+    if request.method == 'POST':
+        form = ExcelDataForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Process the uploaded file, for example, save it to a specific location
+            form.save()
+            df = pd.read_excel(form)
+            print(df)
+    else:
+        form = ExcelDataForm()
+    return render(request, "graph/index.html", {'form': form})
 
 def graph_creation(request):
     graph_name = request.POST.get('graph_name')
@@ -41,8 +50,8 @@ def graph_creation(request):
     # Once the mellody list has been created we write it to the proper file as a .wav file
     ToneGenerator.write_to_file(np.array(mellody), graph_audio)
 
-    if not x_values or not y_values:
-        return HttpResponse("Error: x values or y values are missing")
+    #if not x_values or not y_values:
+       # return HttpResponse("Error: x values or y values are missing")
 
     if len(x_values) != len(y_values):
         return HttpResponse("Error: Number of x values and y values do not match")
@@ -58,3 +67,16 @@ def graph_creation(request):
     }
 
     return render(request, "graph/graph_creation.html", context)
+
+def excel_upload(request):
+    print("Entered excel_upload")
+    if request.method == 'POST':
+        print("Entered request.method==post")
+        form = ExcelDataForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("Form is valid")
+            form.save()
+    else:
+        print("request not POST")
+        form = UploadForm()
+    return render(request, 'graph/graph_creation.html', {'form': form})

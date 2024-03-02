@@ -298,7 +298,25 @@
         }
     	</script>
 
-
+        <!-- Going to try another method for getting data from excel sheet here -->
+        <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload Excel File</button>
+        </form>
+        
+        <!--
+        <form action="{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="excelFile">Choose Excel File:</label>
+            <input type="file" name="excelFile" id="excelFile" accept=".xls, .xlsx" required>
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+        -->
+        
+        
+        
         
 
 
