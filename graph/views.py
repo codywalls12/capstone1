@@ -81,9 +81,9 @@ def excel_upload(request):
                  print("No file was uploaded!")
             form.save()
             print(form.instance.filename())
-            #df = pd.read_excel("graph/static/graph/Uploaded_Data.xlxs")
-            #first_column = df.iloc[:, 1]
-            #print(first_column)
+            df = pd.read_excel("graph/static/graph/" + form.instance.filename())
+            first_column = df.iloc[:, 1]
+            print(first_column)
     else:
         print("request not POST")
         form = UploadForm()
