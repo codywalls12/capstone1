@@ -27,7 +27,6 @@ body {
     top: 0; 
     margin-bottom: 20px; 
     z-index: 1000;
-    
 }
 
 .logo {
@@ -42,9 +41,8 @@ body {
     justify-content: space-around;
     width: 60%;
     max-width: 600px;
-    margin-bottom: 100px; 
+    margin-bottom: 20px; 
     margin-top: 80px;
-    flex-direction: column;
 }
 
 .step-container2 {
@@ -58,7 +56,7 @@ body {
 }
 
 .step1, .step2, .step3 {
-    width: 50%; /*50%*/
+    width: 30%; /*50%*/
     max-width: 180px;
     padding: 10px; /*30px*/
     /*margin-right: 10px;*/
