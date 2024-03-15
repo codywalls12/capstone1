@@ -13,9 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <canvas id="myChart"></canvas>
-    
-    
+    <canvas id="myChart" height = '75' width = '220' aria-label="Chart" tabindex="0" role="img"></canvas>
+     
     
 
     <div class="navbar">
@@ -34,15 +33,12 @@
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     <input type="file" name="myFile" class="drop-zone__input">
-
-                    <div class = "chart-container">
-                        </div>
                 </div>
-                <div class = "circle" id = "circle1"></div>
+                <button class = "circle" id = "circle1"></button>
                 <label for = "circle1" id = "circle1Label"> Bar Graph </label>
-                <div class = "circle" id = "circle2"></div>
+                <button class = "circle" id = "circle2"></button>
                 <label for = "circle2" id = "circle2Label"> Pie Chart </label>
-                <div class = "circle" id = "circle3"></div>
+                <button class = "circle" id = "circle3"></button>
                 <label for = "circle3" id = "circle3Label"> Scatter Plot </label>
 
                 <script>
@@ -164,8 +160,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: 'rgba(0,0,0,.5)',
+                                            borderColor:'rgba(0,0,0,1)',
                                             borderWidth: 1
                                         }]
 
@@ -194,8 +190,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: 'rgba(0,0,0,.5)',
+                                            borderColor:'rgba(0,0,0,1)',
                                             borderWidth: 1
                                         }]
 
@@ -276,10 +272,10 @@
                         <input type="text" name="graph_name" id="graph_name">
 
 			<label for="X_name">Enter X Values Name</label>
-                        <input type="text" name="X_name" id="graph_name">
+                        <input type="text" name="X_name" id="graph_name" placeholder="Name of X">
 
 			<label for="Y_name">Enter Y Values Name</label>
-                        <input type="text" name="Y_name" id="graph_name">
+                        <input type="text" name="Y_name" id="graph_name" placeholder="Name of Y">
 
                         <label for="xy_values">Enter X and Y values</label>
                         <div class="xy-container" id="xy_container">
@@ -297,9 +293,9 @@
             </div>
         <div class="right-half">
             <div class="step-container">
-                <img class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
-                <img class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
-                <img class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
+                <img class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step one: upload your data" border="0">
+                <img class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step two: choose your settings" border="0">
+                <img class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step three: create your graph" border="0">
             </div>
         </div>
 <div class="dropdown">
