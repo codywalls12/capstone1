@@ -234,10 +234,16 @@
                         }
                     });
 
-		    function defaultMode() {
+		            function defaultMode() {
                         let elementBody = document.body;
-                        //let content = document.getElementById;
                         elementBody.className = "body";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/SfDTf84/step1.jpg";
+                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
                     }
                     function darkMode() {
                         let elementBody = document.body;
@@ -245,22 +251,57 @@
                         let content = document.getElementById("darkmodeID"); //html id name
                         elementBody.className = "darkmode"; //css class name
                         content.innerText = "Dark Mode"; //testing
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function protanopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "protanopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function deuteranopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "deuteranopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function tritanopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "tritanopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function monochromaMode() {
                         let elementBody = document.body;
                         elementBody.className = "monochroma";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                 </script>
             </div>
@@ -297,9 +338,9 @@
             </div>
         <div class="right-half">
             <div class="step-container">
-                <img class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
-                <img class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
-                <img class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
+                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
+                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
+                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
             </div>
         </div>
 <div class="dropdown">
@@ -315,7 +356,7 @@
     <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
     <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
     <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
-    <button id = "monochromaID" onclick= "monochromaMode()"> Monochroma </button>
+    <button id = "monochromaID" onclick="monochromaMode()">Monochroma</button>
   </div>
 </div>
     </div>
