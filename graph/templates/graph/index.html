@@ -13,8 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <canvas id="myChart" height = '75' width = '220' aria-label="Chart" tabindex="0" role="img"></canvas>
-     
+    <canvas id="myChart"></canvas>
+    
     
 
     <div class="navbar">
@@ -33,12 +33,15 @@
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     <input type="file" name="myFile" class="drop-zone__input">
+
+                    <div class = "chart-container">
+                        </div>
                 </div>
-                <button class = "circle" id = "circle1"></button>
+                <div class = "circle" id = "circle1"></div>
                 <label for = "circle1" id = "circle1Label"> Bar Graph </label>
-                <button class = "circle" id = "circle2"></button>
+                <div class = "circle" id = "circle2"></div>
                 <label for = "circle2" id = "circle2Label"> Pie Chart </label>
-                <button class = "circle" id = "circle3"></button>
+                <div class = "circle" id = "circle3"></div>
                 <label for = "circle3" id = "circle3Label"> Scatter Plot </label>
 
                 <script>
@@ -160,8 +163,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(0,0,0,.5)',
-                                            borderColor:'rgba(0,0,0,1)',
+                                            backgroundColor: 'rgba(75,192,192,1)',
+                                            borderColor:'rgba(75,192,192,1)',
                                             borderWidth: 1
                                         }]
 
@@ -190,8 +193,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(0,0,0,.5)',
-                                            borderColor:'rgba(0,0,0,1)',
+                                            backgroundColor: 'rgba(75,192,192,1)',
+                                            borderColor:'rgba(75,192,192,1)',
                                             borderWidth: 1
                                         }]
 
@@ -230,10 +233,16 @@
                         }
                     });
 
-		    function defaultMode() {
+		            function defaultMode() {
                         let elementBody = document.body;
-                        //let content = document.getElementById;
                         elementBody.className = "body";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/SfDTf84/step1.jpg";
+                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
                     }
                     function darkMode() {
                         let elementBody = document.body;
@@ -241,22 +250,57 @@
                         let content = document.getElementById("darkmodeID"); //html id name
                         elementBody.className = "darkmode"; //css class name
                         content.innerText = "Dark Mode"; //testing
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function protanopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "protanopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function deuteranopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "deuteranopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function tritanopiaMode() {
                         let elementBody = document.body;
                         elementBody.className = "tritanopia";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                     function monochromaMode() {
                         let elementBody = document.body;
                         elementBody.className = "monochroma";
+
+                        let image1 = document.getElementById("step1");
+                        let image2 = document.getElementById("step2");
+                        let image3 = document.getElementById("step3");
+                        image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+                        image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
                 </script>
             </div>
@@ -272,10 +316,10 @@
                         <input type="text" name="graph_name" id="graph_name">
 
 			<label for="X_name">Enter X Values Name</label>
-                        <input type="text" name="X_name" id="graph_name" placeholder="Name of X">
+                        <input type="text" name="X_name" id="graph_name">
 
 			<label for="Y_name">Enter Y Values Name</label>
-                        <input type="text" name="Y_name" id="graph_name" placeholder="Name of Y">
+                        <input type="text" name="Y_name" id="graph_name">
 
                         <label for="xy_values">Enter X and Y values</label>
                         <div class="xy-container" id="xy_container">
@@ -293,9 +337,9 @@
             </div>
         <div class="right-half">
             <div class="step-container">
-                <img class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step one: upload your data" border="0">
-                <img class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step two: choose your settings" border="0">
-                <img class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step three: create your graph" border="0">
+                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
+                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
+                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
             </div>
         </div>
 <div class="dropdown">
@@ -311,7 +355,7 @@
     <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
     <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
     <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
-    <button id = "monochromaID" onclick= "monochromaMode()"> Monochroma </button>
+    <button id = "monochromaID" onclick="monochromaMode()">Monochroma</button>
   </div>
 </div>
     </div>
