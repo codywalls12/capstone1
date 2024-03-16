@@ -393,7 +393,8 @@ display: block;
 
 
 .protanopia {
-    background-color: #73DCF6; 
+    background-color: #DEE0FC;
+    /* background-color: #73DCF6;  */
 }
 .protanopia .drop-zone {
     border: 2px dashed #C7E823;
@@ -424,23 +425,27 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    /* background-color: #3b6388; */
-    background-color: #E0D2FE;
-    color: #333;
+    background-color: #3C81FC;
+    color: #fff;
+    /* background-color: #E0D2FE; */
+    /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #fff;
-    color: #333;
+    background-color: #3C81FC;
+    color: #fff;
+    /* background-color: #fff;
+    color: #333; */
 }
 .protanopia .dropdown:hover .dropbutton {
-    background-color: #E0D2FE;
+    background-color: #3267C9;
+    /* background-color: #E0D2FE; */
 }
 
 
 .deuteranopia {
-    background-color: #BFECFF; 
+    background-color: #E8DDFF;
+    /* background-color: #BFECFF;  */
 }
-
 .deuteranopia .drop-zone {
     border: 2px dashed #E7F4BE;
 }
@@ -470,21 +475,26 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    /* background-color: #3b6388; */
-    background-color: #C1E4FC;
-    color: #333;
+    background-color: #0088EA;
+    color: #fff;
+    /* background-color: #C1E4FC;
+    color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #fff;
-    color: #333;
+    background-color: #0088EA;
+    color: #fff;
+    /* background-color: #fff;
+    color: #333; */
 }
 .deuteranopia .dropdown:hover .dropbutton {
-    background-color: #EED1FF;
+    background-color: #006DBC;
+    /* background-color: #EED1FF; */
 }
 
 
 .tritanopia {
-    background-color: #21E1FB; 
+    background-color: #C8E6F9;
+    /* background-color: #21E1FB; */
 }
 .tritanopia .drop-zone {
     border: 2px dashed #9CF3FF;
@@ -515,16 +525,20 @@ display: block;
     background-color: red;
 } */
 .tritanopia .new-button {
-    /* background-color: #3b6388; */
-    background-color: #624AFA;
-    color: #333;
+    background-color: #00949D;
+    color: #fff;
+    /* background-color: #624AFA;
+    color: #333; */
 }
 .tritanopia .dropbutton {
-    background-color: #fff;
-    color: #333;
+    background-color: #00949D;
+    color: #fff;
+    /* background-color: #fff;
+    color: #333; */
 }
 .tritanopia .dropdown:hover .dropbutton {
-    background-color: #624AFA;
+    background-color: #00767D;
+    /* background-color: #624AFA; */
 }
 
 
