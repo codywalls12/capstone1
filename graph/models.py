@@ -1,16 +1,25 @@
 from django.db import models
 from django.urls import reverse
-import os.path
+
 # Create your models here.
+class GraphModel(models.Model):
+    graph_name  = models.CharField(max_length=20, help_text='Enter graph name')
+    Xlabel = models.CharField(max_length=20, help_text='Enter x-axis label')
+    Ylabel = models.CharField(max_length=20, help_text='Enter y-axis label')
 
+    def __str__(self):
+        return self.graph_name
+    
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of the model."""
+        return reverse('model-detail-view', args=[str(self.id)])
+    
 
-def update_filename(instance, filename):
-    path = "graph/static/graph/"
-    format = "Uploaded_Data.xlxs"
-    return os.path.join(path, format)
+class graphpoint(models.Model):
+    graph = models.ForeignKey(GraphModel, related_name= 'Graph_Name', on_delete=models.CASCADE)
+    xvalue = models.IntegerField(blank=True, null=True)
+    yvalue = models.IntegerField(blank=True, null = True)
 
-class ExcelFile(models.Model):
-    file = models.FileField(upload_to = "graph/static/graph/")
-
-    def filename(self):
-        return os.path.basename(self.file.name)
+    def __str__(self):
+        return self.graph.graph_name + ' point'
+    
