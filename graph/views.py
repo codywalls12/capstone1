@@ -8,6 +8,20 @@ from bokeh.plotting import figure
 from graph import ToneGenerator
 from graph.ToneGenerator import ToneGenerator
 from .forms import ExcelDataForm
+from .forms import UploadFileForm
+
+def excel_upload_view(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = request.FILES['myFile']
+            with open('path/to/save/file.xlsx', 'wb') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
+            return HttpResponseRedirect('/success/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload_form.html', {'form': form})
 
 def index(request):
     if request.method == 'POST':
