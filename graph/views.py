@@ -23,28 +23,28 @@ def excel_upload(request):
         if form.is_valid():
             excel_file = request.FILES['file']
             df = pd.read_excel(excel_file)
-            # Assuming the Excel file contains a column named 'data' for demonstration
+            
             data = df['data']
 
-            # Create graphs
+            
             plt.figure(figsize=(10, 6))
 
-            # Bar graph
+            
             plt.subplot(1, 3, 1)
             data.plot(kind='bar')
             plt.title('Bar Chart')
 
-            # Pie chart
+            
             plt.subplot(1, 3, 2)
             data.plot(kind='pie')
             plt.title('Pie Chart')
 
-            # Scatter plot
+            
             plt.subplot(1, 3, 3)
             plt.scatter(data.index, data.values)
             plt.title('Scatter Plot')
 
-            # Save the plot
+            
             plot_filename = '/path/to/static/folder/plot.png'
             plt.savefig(plot_filename)
 
@@ -88,7 +88,7 @@ def graph_creation(request):
 
 
 
-    # Create file path to save .wav file to static folder
+    
     save_path = "graph/static/graph"
     file_name = "graph_audio.wav"
     graph_audio = os.path.join(save_path, file_name)
