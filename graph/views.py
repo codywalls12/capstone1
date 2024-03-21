@@ -8,6 +8,66 @@ from bokeh.plotting import figure
 from graph import ToneGenerator
 from graph.ToneGenerator import ToneGenerator
 from .forms import ExcelDataForm
+from .forms import UploadFileForm
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from django.shortcuts import render
+from .forms import UploadForm
+
+
+#test
+def excel_upload(request):
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            excel_file = request.FILES['file']
+            df = pd.read_excel(excel_file)
+            
+            data = df['data']
+
+            
+            plt.figure(figsize=(10, 6))
+
+            
+            plt.subplot(1, 3, 1)
+            data.plot(kind='bar')
+            plt.title('Bar Chart')
+
+            
+            plt.subplot(1, 3, 2)
+            data.plot(kind='pie')
+            plt.title('Pie Chart')
+
+            
+            plt.subplot(1, 3, 3)
+            plt.scatter(data.index, data.values)
+            plt.title('Scatter Plot')
+
+            
+            plot_filename = '/path/to/static/folder/plot.png'
+            plt.savefig(plot_filename)
+
+            return render(request, 'graph_result.html', {'plot_filename': plot_filename})
+
+    else:
+        form = UploadForm()
+    
+    return render(request, 'upload_excel.html', {'form': form})
+
+
+def excel_upload_view(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = request.FILES['myFile']
+            with open('path/to/save/file.xlsx', 'wb') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
+            return HttpResponseRedirect('/success/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'upload_form.html', {'form': form})
 
 def index(request):
     if request.method == 'POST':
@@ -28,7 +88,7 @@ def graph_creation(request):
 
 
 
-    # Create file path to save .wav file to static folder
+    
     save_path = "graph/static/graph"
     file_name = "graph_audio.wav"
     graph_audio = os.path.join(save_path, file_name)
@@ -88,3 +148,5 @@ def excel_upload(request):
         print("request not POST")
         form = UploadForm()
     return render(request, 'graph/graph_creation.html', {'form': form})
+
+
