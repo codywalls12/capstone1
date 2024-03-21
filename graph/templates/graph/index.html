@@ -25,14 +25,27 @@
     <div class="content-container" width = "400" height = "400">
 
 
+        <!-- 
+            <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload Excel File</button>
+        </form>
+        -->
+
         <div class="left-half">   
             <div class="upload-container">
                 <span class="upload-icon">📄</span>
                 <p>Browse your device to upload files</p>
+                <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
-                    <input type="file" name="myFile" class="drop-zone__input">
+                    {% csrf_token %}
+                    <input type = "file" name = "myFile" class = "drop-zone__input">
                 </div>
+                <button type="submit"> submit file</button>
+                </form>
+                
                 <div class = "circle" id = "circle1"></div>
                 <div class = "circle" id = "circle2"></div>
                 <div class = "circle" id = "circle3"></div>
