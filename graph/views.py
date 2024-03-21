@@ -85,7 +85,6 @@ def graph_creation(request):
 def excel_upload(request):
     print("Entered excel_upload")
     if request.method == 'POST':
-        print("Entered request.method==post")
         form = ExcelDataForm(request.POST, request.FILES)
         if form.is_valid():
             print("Form is valid")
@@ -94,10 +93,18 @@ def excel_upload(request):
             except StopIteration:
                  print("No file was uploaded!")
             form.save()
-            print(form.instance.filename())
-            df = pd.read_excel("graph/static/graph/" + form.instance.filename())
-            first_column = df.iloc[:, 1]
-            print(first_column)
+            #Check if excel file
+            if form.instance.filename().endswith(".xlsx"):
+                df = pd.read_excel("graph/static/graph/" + form.instance.filename())
+
+            #Check if csv file
+            elif form.instance.filename().endswith(".csv"):
+                df = pd.read_csv("graph/static/graph/" + form.instance.filename())
+
+            graph_x_axis = df.iloc[:, form.instance.x_values]
+            graph_y_axis = df.iloc[:, form.instance.y_values]
+
+            print(graph_x_axis, graph_y_axis)
     else:
         print("request not POST")
         form = UploadForm()

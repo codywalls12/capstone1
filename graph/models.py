@@ -11,6 +11,7 @@ def update_filename(instance, filename):
 
 class ExcelFile(models.Model):
     file = models.FileField(upload_to = "graph/static/graph/")
-
+    x_values = models.IntegerField()
+    y_values = models.IntegerField()
     def filename(self):
         return os.path.basename(self.file.name)
