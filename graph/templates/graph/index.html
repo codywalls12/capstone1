@@ -164,7 +164,7 @@
                                 var canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
                                 canvas.width = 1000;
-                                canvas.height = 400;
+                                canvas.height = 1000;
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
@@ -190,6 +190,14 @@
                                                     text: 'y value here'
                                                 }
                                             }
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding : {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
                                         }
                                     }
                                 });
@@ -228,6 +236,14 @@
                                                     text: 'y value here'
                                                 }
                                             }
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding: {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
                                         }
                                     }
                                 });

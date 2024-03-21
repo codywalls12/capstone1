@@ -13,6 +13,14 @@
             cursor: pointer;
     }
 
+    #myCanvas {
+        position: relative; /* Ensures positioning is relative to the container */
+        margin-top: 150%; /* Adjust the distance from the top as needed */
+        height: 700px;
+        width:  700px;
+        padding: 40px;
+    }
+
 
 
         body {
@@ -73,7 +81,7 @@
 
             width: 80%;
             max-width: 800px;
-            height: 400px;
+            height: 600px;
             padding: 30px;
             text-align: center;
             background-color: #fff; 
@@ -370,7 +378,7 @@
 
     .circle {
         width: 75px;
-        height: 75px;
+        height: 33px;
         
         background-color:  #5585b5;
         display: inline-block;
