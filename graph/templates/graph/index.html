@@ -15,7 +15,7 @@
 <body>
     
     <div id = "canvasContainer"></div>
-    <div id = "canvasContainer"></div>
+    
     
 
     <div class="navbar">
@@ -27,13 +27,7 @@
     <div class="content-container" width = "400" height = "400">
 
 
-        <!-- 
-            <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Upload Excel File</button>
-        </form>
-        -->
+       
 
         <!-- 
             <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
@@ -48,13 +42,12 @@
                 <span class="upload-icon">📄</span>
                 <p>Browse your device to upload files</p>
                 <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
-                <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
+                
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     {% csrf_token %}
                     <input type = "file" name = "myFile" class = "drop-zone__input">
-                    {% csrf_token %}
-                    <input type = "file" name = "myFile" class = "drop-zone__input">
+                    
                 </div>
                 <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
                 </form>
@@ -62,12 +55,7 @@
                 <div class = "circle" id = "circle1"> Bar Graph</div>
                 <div class = "circle" id = "circle2"> Pie Chart</div>
                 <div class = "circle" id = "circle3"> Scatter Plot</div>
-                <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
-                </form>
                 
-                <div class = "circle" id = "circle1"> Bar Graph</div>
-                <div class = "circle" id = "circle2"> Pie Chart</div>
-                <div class = "circle" id = "circle3"> Scatter Plot</div>
 
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
@@ -188,14 +176,7 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
-                                var container = document.getElementById("canvasContainer");
-                                var canvas = document.createElement("canvas");
-                                canvas.id = "myCanvas";
-                                canvas.width = 1000;
-                                canvas.height = 1000;
-                                //const ctx = document.getElementById("myChart").getContext('2d');
-                                var ctx = canvas.getContext('2d');
-                                container.appendChild(canvas);
+                                
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
@@ -251,14 +232,7 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
-                                var container = document.getElementById("canvasContainer");
-                                var canvas = document.createElement("canvas");
-                                canvas.id = "myCanvas";
-                                canvas.width = 1000;
-                                canvas.height = 1000;
-                                //const ctx = document.getElementById("myChart").getContext('2d');
-                                var ctx = canvas.getContext('2d');
-                                container.appendChild(canvas);
+                                
                                 const myPieChart = new Chart(ctx, {
                                     type: 'pie',
                                     data: {
