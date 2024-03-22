@@ -15,6 +15,7 @@
 <body>
     
     <div id = "canvasContainer"></div>
+    <div id = "canvasContainer"></div>
     
 
     <div class="navbar">
@@ -34,16 +35,33 @@
         </form>
         -->
 
+        <!-- 
+            <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload Excel File</button>
+        </form>
+        -->
+
         <div class="left-half">   
             <div class="upload-container">
                 <span class="upload-icon">📄</span>
                 <p>Browse your device to upload files</p>
                 <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
+                <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     {% csrf_token %}
                     <input type = "file" name = "myFile" class = "drop-zone__input">
+                    {% csrf_token %}
+                    <input type = "file" name = "myFile" class = "drop-zone__input">
                 </div>
+                <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
+                </form>
+                
+                <div class = "circle" id = "circle1"> Bar Graph</div>
+                <div class = "circle" id = "circle2"> Pie Chart</div>
+                <div class = "circle" id = "circle3"> Scatter Plot</div>
                 <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
                 </form>
                 
@@ -170,6 +188,14 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
@@ -201,13 +227,30 @@
                                             left: 20,
                                             right: 20
                                         }
+                                    }, 
+                                    layout: {
+                                        padding : {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
+                                        }
                                     }
                                 });
+                                
                                 
                             }
 
                             //prototype 1 for creating pie graph
                             function createPieChart(labels, values, file) {
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
                                 var container = document.getElementById("canvasContainer");
                                 var canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
@@ -238,6 +281,14 @@
                                                     text: 'y value here'
                                                 }
                                             }
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding: {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
                                         }
                                     }, 
                                     layout: {
