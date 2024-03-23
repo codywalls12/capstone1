@@ -254,6 +254,19 @@
     transform: translate(-50%, -50%);
 }
 
+        .right-half {
+
+            margin-top: 40px;
+            margin-left: 100px;
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+	    right: 0;
+	    
+        }
 .right-half {
     margin-top: 40px;
     margin-left: 100px;
@@ -275,7 +288,7 @@
   	   border: none;
   	   z-index: 30;
   	   height: 60px; 
-  	   postion: fixed;
+  	   
   	   width: 120px;
 
 	}
