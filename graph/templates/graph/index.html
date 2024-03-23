@@ -426,11 +426,12 @@
 
 
 <div class = "screenReaderSwitch"> 
-    <label> [TEST] Screen Reader</label>
+    
     <label class="switch">
         <input type="checkbox" id="toggleSlider">
         <span class="slider"></span>
       </label>
+      <div id="statusMessage" aria-live="polite"></div>
 </div>
 
 
@@ -439,17 +440,36 @@
 
 	<script>
 
-const toggleSlider = document.getElementById('toggleSlider');
-toggleSlider.addEventListener('change', function() {
-  // Toggle your functionality here
-  if (this.checked) {
-    // Slider is checked (ON) state
-    console.log('Slider is ON');
-  } else {
-    // Slider is unchecked (OFF) state
-    console.log('Slider is OFF');
-  }
-});
+            const toggleSlider = document.getElementById('toggleSlider');
+            const statusMessage = document.getElementById('statusMessage');
+
+            function speakStatusMessage(message) {
+                const speechSynthesis = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(message);
+                speechSynthesis.speak(utterance);
+                }
+
+
+
+            toggleSlider.addEventListener('change', function() {
+            // Toggle your functionality here
+            if (this.checked) {
+                // Slider is checked (ON) state
+                const message = 'Screen reader has been turned on';
+                const showMessage = "Screen Reader On"
+                statusMessage.textContent = showMessage;
+                speakStatusMessage(message);
+                console.log('Slider is ON');
+            } else {
+                // Slider is unchecked (OFF) state
+                const message = 'Screen reader has been turned off';
+                const showMessage = "Screen Reader Off"
+                statusMessage.textContent = showMessage;
+                speakStatusMessage(message);
+                console.log('Slider is OFF');
+            }
+            });
+            statusMessage.textContent = toggleSlider.checked ? 'Screen Reader is ON' : 'Screen Reader is OFF';
 
         function addInput() {
             const container = document.getElementById("xy_container");
