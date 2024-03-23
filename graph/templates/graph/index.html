@@ -425,10 +425,10 @@
 </div>
 
 <div class = "screenReaderSwitch"> 
+    <label> Screen Reader </label>
     <label class="switch">
-        <input type="checkbox" id="toggle-switch">
-        <label> screen reader switch</label>
-        <span class="slider round"></span>
+        <input type="checkbox" id="toggleSlider">
+        <span class="slider"></span>
       </label>
     </div>
 
@@ -436,6 +436,19 @@
 
 
 	<script>
+
+const toggleSlider = document.getElementById('toggleSlider');
+toggleSlider.addEventListener('change', function() {
+  // Toggle your functionality here
+  if (this.checked) {
+    // Slider is checked (ON) state
+    console.log('Slider is ON');
+  } else {
+    // Slider is unchecked (OFF) state
+    console.log('Slider is OFF');
+  }
+});
+
         function addInput() {
             const container = document.getElementById("xy_container");
             const inputDiv = document.createElement("div");
