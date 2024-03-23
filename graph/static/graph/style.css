@@ -12,7 +12,9 @@
             border: none;
             cursor: pointer;
     }
-
+ .switch {
+    margin-top: 40px;
+ }
     #myCanvas {
         position: relative; /* Ensures positioning is relative to the container */
         margin-top: 150%; /* Adjust the distance from the top as needed */
@@ -264,16 +266,30 @@
     right: 0;
 }
 
-.dropbutton {
-    background-color: #0085FF;
-    color: white;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    z-index: 30;
-    height: 60px; 
-    width: 120px;
-}
+	.dropbutton {
+
+  	   background-color: #0085FF;
+      	   color: white;
+  	   padding: 10px;
+  	   font-size: 18px;
+  	   border: none;
+  	   z-index: 30;
+  	   height: 60px; 
+  	   postion: fixed;
+  	   width: 120px;
+
+	}
+    .screenReaderSwitch {
+        margin-top: 100px;
+        margin-right: 40px;
+        position: relative;
+        display: inline-block;
+         width: 60px;
+        height: 34px;
+    }
+
+    
+
 
 .dropdown {
     right: 0;
