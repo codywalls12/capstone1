@@ -295,7 +295,21 @@
                             }
                         }
                     });
-
+                    function toggledrop(){
+                        document.getElementById("dropperdowner").classList.toggle("show");
+                    }
+                    window.onclick = function(event){
+                        if (!event.target.matches('.dropbutton')){
+                            var dropdowns = document.getElementByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdown.length; i++){
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')){
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
 		            function defaultMode() {
                         let elementBody = document.body;
                         elementBody.className = "body";
@@ -406,8 +420,8 @@
             </div>
         </div>
 <div class="dropdown">
-  <button class="dropbutton">Settings</button>
-  <div class="dropdown-content">
+  <button onclick="toggledrop()" class="dropbutton">Settings</button>
+  <div id="dropperdowner" class="dropdown-content">
     <!-- <a href="#" onclick="defaultMode()">Default</a>
     <a href="#" onclick="darkMode()">Dark Mode</a>
     <a href="#" onclick="protanopiaMode()">Protanopia</a>

@@ -318,13 +318,11 @@
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 .dropdown:hover .dropbutton {
     background-color: #006acc;
 }
+
+.show {display:block;}
 
 .chart-container {
     margin-top: 500px; 
