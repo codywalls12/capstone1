@@ -55,9 +55,13 @@
                 <div class = "circle" id = "circle1"> Bar Graph</div>
                 <div class = "circle" id = "circle2"> Pie Chart</div>
                 <div class = "circle" id = "circle3"> Scatter Plot</div>
+                <button id="savePdfBtn">Save as PDF</button>
                 
-
-                <script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                <script >
+                    
+                    
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -131,22 +135,28 @@
                                     // assuming that the first row contains labels and the rest contains actual data
                                     const labels = jsonData[0];
                                     const values = jsonData[1];
+                                    
                                     //createBarChart(labels, values, file.name);
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
 
                                     document.getElementById('circle1').addEventListener('click', function() {
+                                    color = window.getComputedStyle(document.getElementById('circle1')).getPropertyValue('background-color');
                                 
-                                
-                                createBarChart(labels, values, file.name);
+                                createBarChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle1';
                             });
 
                             document.getElementById('circle2').addEventListener('click', function() {
-                               
+                                color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
                                 
-                                createPieChart(labels, values, file.name);
+                                createPieChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle2';
+                            });
+
+                            document.getElementById('circle3').addEventListener('click', function() {
+                                color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
+                                createScatterPlot(labels, values, file.name, color);
                             });
 
 
@@ -164,12 +174,12 @@
                             
 
 
-
+                            window.jsPDF = window.jspdf.jsPDF
 
                             //prototype 1 for creating bar graph
-                            function createBarChart(labels, values, file) {
-                                var container = document.getElementById("canvasContainer");
-                                var canvas = document.createElement("canvas");
+                            function createBarChart(labels, values, file, color) {
+                                const container = document.getElementById("canvasContainer");
+                                const canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
                                 canvas.width = 1000;
                                 canvas.height = 1000;
@@ -184,8 +194,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: color,
+                                            borderColor: 'black',
                                             borderWidth: 1
                                         }]
 
@@ -209,21 +219,34 @@
                                             right: 20
                                         }
                                     }, 
-                                    layout: {
-                                        padding : {
-                                            top: 20,
-                                            bottom: 20,
-                                            left: 20,
-                                            right: 20
-                                        }
-                                    }
+                                    
                                 });
+
+                                // the save graph selected as pdf consts
+
+                                
+                                    const savePdfBtn = document.getElementById("savePdfBtn");
+                                    savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
+
+                                    var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
+                                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+                                    pdf.save('graph.pdf');
+                                });
+                                
+                                
+
+                                
+                                
+                            
+    
                                 
                                 
                             }
 
                             //prototype 1 for creating pie graph
-                            function createPieChart(labels, values, file) {
+                            function createPieChart(labels, values, file, color) {
                                 var container = document.getElementById("canvasContainer");
                                 var canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
@@ -240,9 +263,9 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
-                                            borderWidth: 1
+                                            backgroundColor: color,
+                                            borderColor: 'black',
+                                            borderWidth: .75
                                         }]
 
                                     },
@@ -265,23 +288,71 @@
                                             right: 20
                                         }
                                     }, 
-                                    layout: {
-                                        padding: {
-                                            top: 20,
-                                            bottom: 20,
-                                            left: 20,
-                                            right: 20
-                                        }
-                                    }
+                                    
+                                });
+                                // the save graph selected as pdf consts
+                                const savePdfBtn = document.getElementById("savePdfBtn");
+                                savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
+
+                                    var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
+                                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+                                    pdf.save('graph.pdf');
                                 });
                             }
 
 
+                            function createScatterPlot(labels, values, file) {
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
+                                
+                                const myPieChart = new Chart(ctx, {
+                                    type: 'scatter',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: file,
+                                            data: values,
+                                            backgroundColor: color,
+                                            borderColor:color,
+                                            borderWidth: 1
+                                        }]
+
+                                    },
+                                    options: {
+                                        scales: {
+                                            xAxes: [{
+                                                type: 'linear',
+                                                position: 'bottom'
+                                            }]
+                                        }
+                                    }, 
+                                     
+                                    
+                                });
+                                // the save graph selected as pdf consts
+                                const savePdfBtn = document.getElementById("savePdfBtn");
+                                savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
+
+                                    var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
+                                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+                                    pdf.save('graph.pdf');
+                                });
+                                
+                            }
+
                             
 
-                            function scatterPlot(labels, values, file) {
-
-                            }
+                            
                             
 
                             function formatFileSize(size) {
@@ -295,6 +366,22 @@
                             }
                         }
                     });
+
+                    function toggledrop(){
+                        document.getElementById("dropperdowner").classList.toggle("show");
+                    }
+                    window.onclick = function(event){
+                        if (!event.target.matches('.dropbutton')){
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++){
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')){
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
 
 		            function defaultMode() {
                         let elementBody = document.body;
@@ -365,6 +452,10 @@
                         image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                         image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
+
+                    
+                    
+                    
                 </script>
             </div>
         </div>
@@ -407,8 +498,8 @@
         </div>
 
 <div class="dropdown">
-  <button class="dropbutton">Settings</button>
-  <div class="dropdown-content">
+  <button onclick="toggledrop()" class="dropbutton">Settings</button>
+  <div id="dropperdowner" class="dropdown-content">
     <!-- <a href="#" onclick="defaultMode()">Default</a>
     <a href="#" onclick="darkMode()">Dark Mode</a>
     <a href="#" onclick="protanopiaMode()">Protanopia</a>

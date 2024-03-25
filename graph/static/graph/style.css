@@ -1,6 +1,13 @@
 
 
 
+#savePdfBtn {
+    background-color: #0085FF;
+    color: black;
+    border: 2px solid #0085FF;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 
 
     .submitFormButton {
@@ -402,9 +409,7 @@
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.show {display:block;}
 
 .dropdown:hover .dropbutton {
     background-color: #006acc;
@@ -476,6 +481,12 @@ display: block;
 }
 .darkmode .circle {
     background-color: white;
+    color: black;
+}
+.darkmode #savePdfBtn {
+    background-color: white;
+    border: white;
+    color: black;
 }
 .darkmode .form-container {
     background-color: #333; 
@@ -523,6 +534,11 @@ display: block;
 .protanopia .circle {
     background-color: #E0D2FE;
 }
+.protanopia #savePdfBtn {
+    background-color: #E0D2FE;
+    border: #E0D2FE;
+    color: black;
+}
 .protanopia .form-container {
     background-color: white; 
     border: 2px solid black;
@@ -543,13 +559,13 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #E0D2FE; */
     /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
@@ -573,6 +589,11 @@ display: block;
 .deuteranopia .circle {
     background-color: #C1E4FC;
 }
+.deuteranopia #savePdfBtn {
+    background-color: #C1E4FC;
+    border: #C1E4FC;
+    color: black;
+}
 .deuteranopia .form-container {
     background-color: white; 
     border: 2px solid black;
@@ -593,13 +614,13 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #C1E4FC;
     color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
@@ -623,6 +644,11 @@ display: block;
 .tritanopia .circle {
     background-color: #624AFA;
 }
+.tritanopia #savePdfBtn {
+    background-color: #624AFA;
+    border: #624AFA;
+    color: black;
+}
 .tritanopia .form-container {
     background-color: white; 
     border: 2px solid black;
@@ -643,13 +669,13 @@ display: block;
     background-color: red;
 } */
 .tritanopia .new-button {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #624AFA;
     color: #333; */
 }
 .tritanopia .dropbutton {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
@@ -671,6 +697,11 @@ display: block;
 }
 .monochroma .circle {
     background-color: #949494;
+}
+.monochroma #savePdfBtn {
+    background-color: #949494;
+    border: #949494;
+    color: black;
 }
 .monochroma .form-container {
     background-color: #F0F0F0; 
