@@ -13,36 +13,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <canvas id="myChart"></canvas>
     
+    <div id = "canvasContainer"></div>
+     
     
 
-    <div class="navbar">
-        <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
+
+<div class="navbar">
+    <div>
+      <a href="{% url 'graph:index' %}">
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">        
         </a>
-
     </div>
+
+    
+    <a href="{% url 'graph:about_us' %}" class="new-button">About Us</a>
+
+   
+    <div class="dropdown">
+        <button class="dropbutton">Settings</button>
+        <div class="dropdown-content">
+            <!-- Dropdown items -->
+            <button id="bodyID" onclick="defaultMode()">Default</button>
+            <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
+            <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
+            <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
+            <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+            <button id="monochromaID" onclick="monochromaMode()">Monochroma</button>
+        </div>
+    </div>
+</div>
+
     <div class="content-container" width = "400" height = "400">
 
+
+       
+
+        <!-- 
+            <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Upload Excel File</button>
+        </form>
+        -->
 
         <div class="left-half">   
             <div class="upload-container">
                 <span class="upload-icon">📄</span>
                 <p>Browse your device to upload files</p>
+                <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
+                
                 <div class="drop-zone">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
-                    <input type="file" name="myFile" class="drop-zone__input">
-
-                    <div class = "chart-container">
-                        </div>
+                    {% csrf_token %}
+                    <input type = "file" name = "myFile" class = "drop-zone__input">
+                    
                 </div>
-                <div class = "circle" id = "circle1"></div>
-                <label for = "circle1" id = "circle1Label"> Bar Graph </label>
-                <div class = "circle" id = "circle2"></div>
-                <label for = "circle2" id = "circle2Label"> Pie Chart </label>
-                <div class = "circle" id = "circle3"></div>
-                <label for = "circle3" id = "circle3Label"> Scatter Plot </label>
+                <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
+                </form>
+                
+                <div class = "circle" id = "circle1"> Bar Graph</div>
+                <div class = "circle" id = "circle2"> Pie Chart</div>
+                <div class = "circle" id = "circle3"> Scatter Plot</div>
+                
 
                 <script>
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
@@ -155,7 +188,15 @@
 
                             //prototype 1 for creating bar graph
                             function createBarChart(labels, values, file) {
-                                const ctx = document.getElementById("myChart").getContext('2d');
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
+                                
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
@@ -179,13 +220,39 @@
                                                 }
                                             }
                                         }
+                                    }, 
+                                    layout: {
+                                        padding : {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding : {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
+                                        }
                                     }
                                 });
+                                
+                                
                             }
 
                             //prototype 1 for creating pie graph
                             function createPieChart(labels, values, file) {
-                                const ctx = document.getElementById("myChart").getContext('2d');
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
+                                
                                 const myPieChart = new Chart(ctx, {
                                     type: 'pie',
                                     data: {
@@ -208,6 +275,22 @@
                                                     text: 'y value here'
                                                 }
                                             }
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding: {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
+                                        }
+                                    }, 
+                                    layout: {
+                                        padding: {
+                                            top: 20,
+                                            bottom: 20,
+                                            left: 20,
+                                            right: 20
                                         }
                                     }
                                 });
@@ -233,7 +316,7 @@
                         }
                     });
 
-		            function defaultMode() {
+		    function defaultMode() {
                         let elementBody = document.body;
                         elementBody.className = "body";
 
@@ -315,6 +398,14 @@
                         <label for="graph_name">Enter Graph Name</label>
                         <input type="text" name="graph_name" id="graph_name">
 
+  <label for="graph_type">Select Graph Type</label>
+            <select name="graph_type" id="graph_type">
+                <option value="bar">Bar Chart</option>
+               
+                <option value="scatter">Scatter Plot</option>
+                
+            </select>
+
 			<label for="X_name">Enter X Values Name</label>
                         <input type="text" name="X_name" id="graph_name">
 
@@ -342,22 +433,8 @@
                 <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
             </div>
         </div>
-<div class="dropdown">
-  <button class="dropbutton">Settings</button>
-  <div class="dropdown-content">
-    <!-- <a href="#" onclick="defaultMode()">Default</a>
-    <a href="#" onclick="darkMode()">Dark Mode</a>
-    <a href="#" onclick="protanopiaMode()">Protanopia</a>
-    <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
-    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
-    <button id="bodyID" onclick="defaultMode()">Default</button>
-    <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
-    <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
-    <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
-    <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
-    <button id = "monochromaID" onclick="monochromaMode()">Monochroma</button>
-  </div>
-</div>
+
+<!--
     </div>
 	<script>
         function addInput() {
@@ -382,7 +459,7 @@
         }
     	</script>
   
-	
+	-->
 
     <!--
     <body> 
@@ -450,5 +527,10 @@
         </script> 
     </body>
     -->
+    <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+       <button class="new-button" type="submit">Create Graph</button>
+    </form>
 </body>
 </html>

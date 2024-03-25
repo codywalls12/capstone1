@@ -1,261 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>  
-    <link href="http://cdn.pydata.org/bokeh/release/bokeh-3.3.1.min.css" rel="stylesheet" type="text/css">
-    <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-3.3.1.min.css" rel="stylesheet" type="text/css">
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'graph/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
    
+</head>
+
 <style>
-    body {
-        background-color: #CBE6FF; 
-        margin: 0; 
-        padding: 0; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        font-family: Arial, sans-serif;
-    }
-    
-    .navbar {
-        background-color: #C1C0C0; 
-        height: 80px; 
-        width: 100%; 
-        position: fixed; 
-        top: 0; 
-        margin-bottom: 20px; 
-        z-index: 1;
-        justify-content: space-between; 
-        align-items: center; 
-    }
 
-    .logo {
-        position: absolute;
-        top: 0px;
-        left: 0px; 
-    }
+.about-section {
 
-    .aboutus-button {
-        padding: 33px;                 
-        font-size: 16px;
-        background-color: #0085FF;
-        color: #fff;
-        height: 80px;
-        position: relative;
-        top: -35px;
-        left: 1455px;
-    }
+     padding: 50px 0;
+     text-align: center;
+     margin-top: 800px;
 
-    .dropbutton {
-        background-color: #0085FF;
-        color: white;
-        padding: 10px;
-        font-size: 18px;
-        border: none;
-        z-index: 30;
-        height: 60px; 
-        width: 120px;
-    }
+}
 
-    .dropdown {
-        right: 0;
-        top: 0;
-        z-index: 30;
-        position: fixed;
-        display: inline-block;
-        height: 100px;   
-	     
-    }
+.misson-section {
 
-    .dropdown-content {
-        display: none;
-        position: fixed;
-        background-color: white;   
-        z-index: 1;  
-    }
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     margin-top: 20px;
+     max-width: 800px;
 
-    .dropdown-content a {
-        color: black;
-        padding: 12px 18px;
-        text-decoration: none;
-        display: block;
-    }
+}
 
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-
-    .dropdown-content button {
-        background-color: white;
-        color: black;
-        text-decoration: none;
-        display: block;
-        border: none;
-        padding: 12px 16px;
-        font-size: 16px;
-        z-index: 30;
-        height: 40px; 
-        width: 120px;
-        text-align: left;
-    }
-
-    .dropdown-content button:hover {
-        background-color: #ddd;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbutton {
-        background-color: #006acc;
-    }
-
-    .chart-container {
-        margin-top: 500px; 
-        border: 1px solid #ccc; 
-        border-radius: 5px; 
-        overflow: hidden; 
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    }
-
-    .chart-container canvas {
-        display: block;
-    }
-    
-    .darkmode {
-        background-color: #2e3237; 
-    }
-
-    .darkmode .form-container {
-        background-color: #333; 
-        border: 2px solid #fff;
-        color: white;
-    }
-
-    .darkmode .upload-container {
-        background-color: #333; 
-        border: 2px solid #fff;
-        color: white;
-    }
-
-    .darkmode .xy-input {
-        background-color: #a4a4a4;
-    }
-
-    .darkmode .new-button {
-        background-color: #fff;
-        color: #333;
-    }
-
-    .darkmode .aboutus-button {
-        background-color: #fff;
-        color: #333;
-    }
-
-    .darkmode .mission-section  {
-        color: white;
-    }
-
-    .darkmode .about-section  {
-        color: white;
-    }
-
-    .darkmode .dropbutton {
-        background-color: #fff;
-        color: #333;
-    }
-
-    .darkmode .dropdown:hover .dropbutton {
-        background-color: #808080;
-    }
-
-    .protanopia {
-        background-color: #c4c5ee; 
-    }
-
-    .protanopia .new-button {
-        background-color: #0063c0;
-    }
-
-    .protanopia .aboutus-button {
-        background-color: #0063c0;
-    }
-
-    .protanopia .dropbutton {
-        background-color: #0063c0;
-    }
-
-    .protanopia .dropdown:hover .dropbutton {
-        background-color: #005aaf;
-    }
-
-    .deuteranopia {
-        background-color: #e1cdfc; 
-    }
-
-    .deuteranopia .new-button {
-        background-color: #006acc;
-    }
-
-    .deuteranopia .aboutus-button {
-        background-color: #006acc;
-    }
-
-    .deuteranopia .dropbutton {
-        background-color: #006acc;
-    }
-
-    .deuteranopia .dropdown:hover .dropbutton {
-        background-color: #0060bb;
-    }
-    
-    .tritanopia {
-        background-color: #bae7ff; 
-    }
-
-    .tritanopia .new-button {
-        background-color: #24747a;
-    }
-
-    .tritanopia .aboutus-button {
-        background-color: #24747a;
-    }
-    
-    .tritanopia .dropbutton {
-        background-color: #24747a;
-    }
-
-    .tritanopia .dropdown:hover .dropbutton {
-        background-color: #196368;
-    }
-
-    .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .about-section {
-        padding: 50px 0;
-        text-align: center;
-        margin-top: 800px;
-    }
-
-    .mission-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 20px;
-        max-width: 800px;
-    }
-
-    .team-member {
+.team-member {
         width: 600px; 
         height: 200px; 
         background-color: #fff; 
@@ -270,7 +50,7 @@
         font-size: 24px;
     }
 
-    .member-description {
+.member-description {
         text-align:top;
         display: flex; 
         flex-direction: column; 
@@ -282,29 +62,34 @@
         right: 0;
         word-wrap: break-word;
         font-size: 14px;
-    }
+}
 
 </style>
-
-</head>
 <body>
     <div class="navbar">
-        <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="80" width="140">        
+    <div>
+      <a href="{% url 'graph:index' %}">
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="120">        
         </a>
-        <a href="{% url 'graph:about_us' %}" class="aboutus-button">About Us</a>
     </div>
-  
+
+    
+    <a href="{% url 'graph:about_us' %}" class="new-button">About Us</a>
+
+   
     <div class="dropdown">
         <button class="dropbutton">Settings</button>
         <div class="dropdown-content">
+            <!-- Dropdown items -->
             <button id="bodyID" onclick="defaultMode()">Default</button>
             <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
             <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
             <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
             <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+            <button id="monochromaID" onclick="monochromaMode()">Monochroma</button>
         </div>
     </div>
+</div>
     
     <div class="about-section">
         <div class="container">
@@ -316,8 +101,9 @@
     <div class="mission-section">
         <div class="container">
             <h2>Graph Sonification</h2>
-            <p>The design of the website is built with the core principles of accessibility and data visualization in mind. Our primary objective is to make it easier for users of all backgrounds to access and manipulate their data in a visually appealing manner. The user will be able to initiate their data visualization by uploading their file whether it be a spreadsheet, csv, or any other common data formats. Once the data is uploaded the platform will seamlessly convert the data into a visually appealing graph or your choice.play
-                Our intuitive graph creation tools will allow users to select specific sections and customize the visual elements. Even after the graph is created, the user maintains complete control. They can easily edit the underlying data, update values, and even add new information. The platform will automatically keep the visual representation up to date as their data changes. For any user who requires an auditory experience, the website will offer sonification capabilities. The user can have their graph represented audibly, with data points and trends translated into sound providing a unique way to understand the information in the graph. This sonification feature will cater to those with visual impairments and will also add a new dimension to interpret data. When the user is satisfied with the graph representing their data, they can effortlessly export the data in various formats, including pdf. The export feature will allow the user to save their visualized data to their desired location making it easier to share their information into maybe reports, presentation and or other documents.</p>
+            <p>The goal for this project was to allow the user to upload create a graph using their preferred method and have the ability to have the data be presented to them using sonification.
+                The project so far has the ability for the user to create the graph using a file upload or enter the data manually. The project is being developed by a team of 5 during the Spring
+                2024 semester.</p>
         </div>
     </div>
 
@@ -382,6 +168,7 @@
             let elementBody = document.body;
             elementBody.className = "tritanopia";
         }
+	
     </script>
 </body>
 </html>

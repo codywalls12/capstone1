@@ -1,14 +1,41 @@
-body {
-    background-color: #CBE6FF; 
-    margin: 0; 
-    padding: 0; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
+
+
+
+
+
+    .submitFormButton {
+        margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0085FF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+    }
+
+    #myCanvas {
+        position: relative; /* Ensures positioning is relative to the container */
+        margin-top: 150%; /* Adjust the distance from the top as needed */
+        height: 700px;
+        width:  700px;
+        padding: 40px;
+    }
+
+
+
+        body {
+
+            background-color: #CBE6FF; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+
+        }
 
 .navbar {
     background-color: #C1C0C0; 
@@ -35,16 +62,18 @@ body {
     left: 0px;
 }
 
-
 .step-container {
-    display: flex;
-    justify-content: space-around;
-    width: 60%;
-    max-width: 600px;
-    margin-bottom: 100px; 
-    margin-top: 80px;
-    flex-direction: column;
+
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 18px; 
+            margin-top: 20px;
+	    flex-direction: column;
+
 }
+
 .step-container2 {
     display: flex;
     justify-content: space-around;
@@ -62,21 +91,23 @@ body {
     /*margin-right: 10px;*/
 }
 
-.upload-container {
-    width: 80%;
-    max-width: 800px;
-    height: 400px;
-    padding: 30px;
-    text-align: center;
-    background-color: #fff; 
-    border: 2px dashed #333; 
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+        .upload-container {
+
+            width: 80%;
+            max-width: 800px;
+            height: 600px;
+            padding: 30px;
+            text-align: center;
+            background-color: #fff; 
+            border: 2px solid #333; 
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+        }
 
 .upload-icon {
     font-size: 48px;
@@ -92,18 +123,20 @@ body {
     cursor: pointer;
 }
 
-.form-container {
-    max-width: 300px;
-    width: 40%; 
-    padding: 20px;
-    text-align: center;
-    background-color: #fff; 
-    border: 2px solid #333;
-    margin-top: 83px; 
-    margin-bottom: 20px; 
-    align-self: center; 
-    overflow-y: auto;
-}
+       .form-container {
+
+    	   max-width: 300px; 
+    	   width: 40%; 
+   	   padding: 20px;
+    	   text-align: center;
+    	   background-color: #fff; 
+    	   border: 2px solid #333;
+    	   margin-top: 85px; 
+    	   margin-bottom: 20px; 
+    	   align-self: center; 
+	   overflow-y: auto;
+
+	}
 
 .form {
     display: flex;
@@ -118,6 +151,16 @@ body {
 }
 
 .new-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0085FF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.new-button2 {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -230,7 +273,9 @@ body {
     right: 0;
 }
 
+
 .dropbutton {
+
     background-color: #0085FF;
     color: white;
     padding: 10px;
@@ -333,11 +378,11 @@ height: 50px;
 
 .circle {
 width: 100px;
-height: 100px;
+height: 70px;
 
 background-color:  #0085FF;
 
-margin: 10px;
+margin: 25px;
 cursor: pointer;
 }
 
@@ -585,3 +630,47 @@ display: block;
 .monochroma .dropdown:hover .dropbutton {
     background-color: #808080;
 }
+
+    /*.chart-container {
+        margin-top: 500px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        overflow: hidden; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+    .chart-container {
+        display: block;
+        
+    }
+
+    #myBarChart {
+        margin-top: 1000px;
+        width: 5px;
+        height: 5px;
+        border: 1px dashed #000000;
+        padding: 0px;
+    }
+
+    #myPieChart {
+        margin-top: 2000px;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #000000;
+        padding: 100px;
+    }
+
+    #myChart {
+        margin-top: 1500px;
+    }
+
+
+    .circle {
+        width: 75px;
+        height: 33px;
+        
+        background-color:  #5585b5;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+    } */
+	
