@@ -3,7 +3,7 @@
 
 #savePdfBtn {
     background-color: #0085FF;
-    color: #fff;
+    color: black;
     border: 2px solid #0085FF;
     padding: 10px 20px;
     border-radius: 5px;
@@ -19,7 +19,9 @@
             border: none;
             cursor: pointer;
     }
-
+ .switch {
+    margin-top: 40px;
+ }
     #myCanvas {
         position: relative; /* Ensures positioning is relative to the container */
         margin-top: 150%; /* Adjust the distance from the top as needed */
@@ -259,6 +261,19 @@
     transform: translate(-50%, -50%);
 }
 
+        .right-half {
+
+            margin-top: 40px;
+            margin-left: 100px;
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+	    right: 0;
+	    
+        }
 .right-half {
     margin-top: 40px;
     margin-left: 100px;
@@ -271,16 +286,85 @@
     right: 0;
 }
 
-.dropbutton {
-    background-color: #0085FF;
-    color: white;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    z-index: 30;
-    height: 60px; 
-    width: 120px;
-}
+	.dropbutton {
+
+  	   background-color: #0085FF;
+      	color: white;
+  	   padding: 10px;
+  	   font-size: 18px;
+  	   border: none;
+  	   z-index: 30;
+  	   height: 60px; 
+  	   
+  	   width: 120px;
+
+	}
+
+    
+    .screenReaderSwitch {
+        margin-top: 50px;
+        margin-left: 1820px;
+        position: fixed;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+      }
+      
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+      }
+      
+      input:checked + .slider {
+        background-color: #006acc;
+      }
+      
+      input:focus + .slider {
+        box-shadow: 0 0 1px #006acc;
+      }
+      
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+    
+
 
 .dropdown {
     right: 0;
@@ -585,13 +669,13 @@ display: block;
     background-color: red;
 } */
 .tritanopia .new-button {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #624AFA;
     color: #333; */
 }
 .tritanopia .dropbutton {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
