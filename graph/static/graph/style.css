@@ -475,19 +475,19 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #E0D2FE; */
     /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .protanopia .dropdown:hover .dropbutton {
-    background-color: #3267C9;
+    background-color: #E0D2FE;
     /* background-color: #E0D2FE; */
 }
 
@@ -530,19 +530,19 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #C1E4FC;
     color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .deuteranopia .dropdown:hover .dropbutton {
-    background-color: #006DBC;
+    background-color: #C1E4FC;
     /* background-color: #EED1FF; */
 }
 
@@ -558,11 +558,11 @@ display: block;
     border-style: solid;
 }
 .tritanopia .circle {
-    background-color: #624AFA;
+    background-color: #00949D;
 }
 .tritanopia #savePdfBtn {
-    background-color: #624AFA;
-    border: #624AFA;
+    background-color: #00949D;
+    border: #00949D;
     color: black;
 }
 .tritanopia .form-container {
