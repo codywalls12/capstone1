@@ -616,7 +616,7 @@
         </script> 
     </body>
     -->
-    <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
+    <form action = "{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Upload Excel File</button>

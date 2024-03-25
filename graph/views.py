@@ -128,8 +128,7 @@ def graph_creation(request):
 
     return render(request, "graph/graph_creation.html", context)
 
-def excel_upload(request):
-    print("Entered excel_upload")
+def graph_form_upload(request):
     if request.method == 'POST':
         form = ExcelDataForm(request.POST, request.FILES)
         if form.is_valid():
