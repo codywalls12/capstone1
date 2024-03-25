@@ -397,10 +397,12 @@ display: block;
 }
 .darkmode .circle {
     background-color: white;
+    color: black;
 }
 .darkmode #savePdfBtn {
     background-color: white;
     border: white;
+    color: black;
 }
 .darkmode .form-container {
     background-color: #333; 
@@ -451,6 +453,7 @@ display: block;
 .protanopia #savePdfBtn {
     background-color: #E0D2FE;
     border: #E0D2FE;
+    color: black;
 }
 .protanopia .form-container {
     background-color: white; 
@@ -505,6 +508,7 @@ display: block;
 .deuteranopia #savePdfBtn {
     background-color: #C1E4FC;
     border: #C1E4FC;
+    color: black;
 }
 .deuteranopia .form-container {
     background-color: white; 
@@ -559,6 +563,7 @@ display: block;
 .tritanopia #savePdfBtn {
     background-color: #624AFA;
     border: #624AFA;
+    color: black;
 }
 .tritanopia .form-container {
     background-color: white; 
@@ -612,6 +617,7 @@ display: block;
 .monochroma #savePdfBtn {
     background-color: #949494;
     border: #949494;
+    color: black;
 }
 .monochroma .form-container {
     background-color: #F0F0F0; 
