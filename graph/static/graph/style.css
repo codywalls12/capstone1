@@ -475,13 +475,13 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #E0D2FE; */
     /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
@@ -530,13 +530,13 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #C1E4FC;
     color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
@@ -585,13 +585,13 @@ display: block;
     background-color: red;
 } */
 .tritanopia .new-button {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #624AFA;
     color: #333; */
 }
 .tritanopia .dropbutton {
-    background-color: #00949D;
+    background-color: #624AFA;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
