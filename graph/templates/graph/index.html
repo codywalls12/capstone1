@@ -55,9 +55,13 @@
                 <div class = "circle" id = "circle1"> Bar Graph</div>
                 <div class = "circle" id = "circle2"> Pie Chart</div>
                 <div class = "circle" id = "circle3"> Scatter Plot</div>
+                <button id="savePdfBtn">Save as PDF</button>
                 
-
-                <script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                <script >
+                    
+                    
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -170,12 +174,12 @@
                             
 
 
-
+                            window.jsPDF = window.jspdf.jsPDF
 
                             //prototype 1 for creating bar graph
                             function createBarChart(labels, values, file, color) {
-                                var container = document.getElementById("canvasContainer");
-                                var canvas = document.createElement("canvas");
+                                const container = document.getElementById("canvasContainer");
+                                const canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
                                 canvas.width = 1000;
                                 canvas.height = 1000;
@@ -217,12 +221,24 @@
                                     }, 
                                     
                                 });
+
+                                // the save graph selected as pdf consts
+                                const savePdfBtn = document.getElementById("savePdfBtn");
+                                savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
+
+                                    var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
+                                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+                                    pdf.save('graph.pdf');
+                                });
+    
                                 
                                 
                             }
 
                             //prototype 1 for creating pie graph
-                            function createPieChart(labels, values, file) {
+                            function createPieChart(labels, values, file, color) {
                                 var container = document.getElementById("canvasContainer");
                                 var canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
@@ -303,13 +319,12 @@
                                      
                                     
                                 });
+                                
                             }
 
                             
 
-                            function scatterPlot(labels, values, file) {
-
-                            }
+                            
                             
 
                             function formatFileSize(size) {
@@ -329,9 +344,9 @@
                     }
                     window.onclick = function(event){
                         if (!event.target.matches('.dropbutton')){
-                            var dropdowns = document.getElementByClassName("dropdown-content");
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
                             var i;
-                            for (i = 0; i < dropdown.length; i++){
+                            for (i = 0; i < dropdowns.length; i++){
                                 var openDropdown = dropdowns[i];
                                 if (openDropdown.classList.contains('show')){
                                     openDropdown.classList.remove('show');
@@ -409,6 +424,10 @@
                         image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                         image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
                     }
+
+                    
+                    
+                    
                 </script>
             </div>
         </div>
