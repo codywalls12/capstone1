@@ -131,22 +131,28 @@
                                     // assuming that the first row contains labels and the rest contains actual data
                                     const labels = jsonData[0];
                                     const values = jsonData[1];
+                                    
                                     //createBarChart(labels, values, file.name);
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
 
                                     document.getElementById('circle1').addEventListener('click', function() {
+                                    color = window.getComputedStyle(document.getElementById('circle1')).getPropertyValue('background-color');
                                 
-                                
-                                createBarChart(labels, values, file.name);
+                                createBarChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle1';
                             });
 
                             document.getElementById('circle2').addEventListener('click', function() {
-                               
+                                color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
                                 
-                                createPieChart(labels, values, file.name);
+                                createPieChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle2';
+                            });
+
+                            document.getElementById('circle3').addEventListener('click', function() {
+                                color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
+                                createScatterPlot(labels, values, file.name, color);
                             });
 
 
@@ -167,7 +173,7 @@
 
 
                             //prototype 1 for creating bar graph
-                            function createBarChart(labels, values, file) {
+                            function createBarChart(labels, values, file, color) {
                                 var container = document.getElementById("canvasContainer");
                                 var canvas = document.createElement("canvas");
                                 canvas.id = "myCanvas";
@@ -184,8 +190,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: color,
+                                            borderColor: color,
                                             borderWidth: 1
                                         }]
 
@@ -209,14 +215,7 @@
                                             right: 20
                                         }
                                     }, 
-                                    layout: {
-                                        padding : {
-                                            top: 20,
-                                            bottom: 20,
-                                            left: 20,
-                                            right: 20
-                                        }
-                                    }
+                                    
                                 });
                                 
                                 
@@ -240,8 +239,8 @@
                                         datasets: [{
                                             label: file,
                                             data: values,
-                                            backgroundColor: 'rgba(75,192,192,1)',
-                                            borderColor:'rgba(75,192,192,1)',
+                                            backgroundColor: color,
+                                            borderColor: color,
                                             borderWidth: 1
                                         }]
 
@@ -265,17 +264,46 @@
                                             right: 20
                                         }
                                     }, 
-                                    layout: {
-                                        padding: {
-                                            top: 20,
-                                            bottom: 20,
-                                            left: 20,
-                                            right: 20
-                                        }
-                                    }
+                                    
                                 });
                             }
 
+
+                            function createScatterPlot(labels, values, file) {
+                                var container = document.getElementById("canvasContainer");
+                                var canvas = document.createElement("canvas");
+                                canvas.id = "myCanvas";
+                                canvas.width = 1000;
+                                canvas.height = 1000;
+                                //const ctx = document.getElementById("myChart").getContext('2d');
+                                var ctx = canvas.getContext('2d');
+                                container.appendChild(canvas);
+                                
+                                const myPieChart = new Chart(ctx, {
+                                    type: 'scatter',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: file,
+                                            data: values,
+                                            backgroundColor: color,
+                                            borderColor:color,
+                                            borderWidth: 1
+                                        }]
+
+                                    },
+                                    options: {
+                                        scales: {
+                                            xAxes: [{
+                                                type: 'linear',
+                                                position: 'bottom'
+                                            }]
+                                        }
+                                    }, 
+                                     
+                                    
+                                });
+                            }
 
                             
 
