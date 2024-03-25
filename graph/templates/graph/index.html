@@ -223,8 +223,10 @@
                                 });
 
                                 // the save graph selected as pdf consts
-                                const savePdfBtn = document.getElementById("savePdfBtn");
-                                savePdfBtn.addEventListener('click', function() {
+
+                                
+                                    const savePdfBtn = document.getElementById("savePdfBtn");
+                                    savePdfBtn.addEventListener('click', function() {
                                     const pdfWidth = canvas.width; 
                                     const pdfHeight = canvas.height; 
 
@@ -232,6 +234,12 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
+                                
+                                
+
+                                
+                                
+                            
     
                                 
                                 
