@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{% static 'graph/style.css' %}">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <!-- <link rel="stylesheet" href="style.css"> -->
-
+    
+    <!-- <script src="{% static 'graph/colors.js' %}"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
 <body>
@@ -25,10 +26,7 @@
 
     </div>
     <div class="content-container" width = "400" height = "400">
-
-
-       
-
+ 
         <!-- 
             <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -233,17 +231,9 @@
                                     var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
-                                });
-                                
-                                
-
-                                
-                                
-                            
-    
-                                
-                                
+                                });                                
                             }
+
 
                             //prototype 1 for creating pie graph
                             function createPieChart(labels, values, file, color) {
@@ -353,8 +343,6 @@
                             
 
                             
-                            
-
                             function formatFileSize(size) {
                                 const kb = size / 1024;
                                 if (kb < 1024) {
@@ -381,81 +369,7 @@
                                 }
                             }
                         }
-                    }
-
-		            function defaultMode() {
-                        let elementBody = document.body;
-                        elementBody.className = "body";
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/SfDTf84/step1.jpg";
-                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
-                    }
-                    function darkMode() {
-                        let elementBody = document.body;
-                        //const elementBody = document.getElementById("darkmode");
-                        let content = document.getElementById("darkmodeID"); //html id name
-                        elementBody.className = "darkmode"; //css class name
-                        content.innerText = "Dark Mode"; //testing
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/dgCzR5q/step1D.jpg";
-                        image2.src = "https://i.ibb.co/3Y1XhVT/step2D.jpg";
-                        image3.src = "https://i.ibb.co/gPq6WcD/step3D.jpg";
-                    }
-                    function protanopiaMode() {
-                        let elementBody = document.body;
-                        elementBody.className = "protanopia";
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/yst2vrZ/step1Pro.jpg";
-                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
-                    }
-                    function deuteranopiaMode() {
-                        let elementBody = document.body;
-                        elementBody.className = "deuteranopia";
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/dKLvMKR/step1Deu.jpg";
-                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
-                    }
-                    function tritanopiaMode() {
-                        let elementBody = document.body;
-                        elementBody.className = "tritanopia";
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/YDf4fHm/step2tri-JPG.jpg";
-                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
-                    }
-                    function monochromaMode() {
-                        let elementBody = document.body;
-                        elementBody.className = "monochroma";
-
-                        let image1 = document.getElementById("step1");
-                        let image2 = document.getElementById("step2");
-                        let image3 = document.getElementById("step3");
-                        image1.src = "https://i.ibb.co/ySDqb4R/step1mono.jpg";
-                        image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-                        image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
-                    }
-
-                    
-                    
-                    
+                    }                   
                 </script>
             </div>
         </div>
@@ -505,27 +419,20 @@
     <a href="#" onclick="protanopiaMode()">Protanopia</a>
     <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
     <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
-    <button id="bodyID" onclick="defaultMode()">Default</button>
-    <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
-    <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
-    <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
-    <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
-    <button id = "monochromaID" onclick="monochromaMode()">Monochroma</button>
+    <button id="defaultID" onclick="defaultMode('defaultCSS')">Default</button>
+    <button id="darkmodeID" onclick="darkMode('darkmodeCSS')">Dark Mode</button>
+    <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')">Protanopia</button>
+    <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')">Deuteranopia</button>
+    <button id="tritanopiaID" onclick="tritanopiaMode('tritanopiaCSS')">Tritanopia</button>
+    <button id = "monochromaID" onclick="monochromaMode('monochromaCSS')">Monochroma</button>
   </div>
   
 </div>
 
 
-
-
-
-    </div>
-
+</div>
 
 	<script>
-
-            
-
         function addInput() {
             const container = document.getElementById("xy_container");
             const inputDiv = document.createElement("div");
@@ -546,9 +453,128 @@
             inputDiv.appendChild(inputY);
             container.appendChild(inputDiv);
         }
-    	</script>
-  
-	
+
+        
+        //This part below handles the color modes by setting the html page to the css type
+        var setMode = localStorage.getItem('theme');
+        console.log('theme:', setMode);
+
+        if (setMode == null) {
+            defaultMode('defaultCSS');
+        }
+        else if (setMode == 'defaultCSS') {
+            defaultMode('defaultCSS');
+        }
+        else if (setMode == 'darkmodeCSS') {
+            darkMode('darkmodeCSS');
+        }
+        else if (setMode == 'protanopiaCSS') {
+            protanopiaMode('protanopiaCSS');
+        }
+        else if (setMode == 'deuteranopiaCSS') {
+            deuteranopiaMode('deuteranopiaCSS');
+        }
+        else if (setMode == 'tritanopiaCSS') {
+            tritanopiaMode('tritanopiaCSS');
+        }
+        else if (setMode == 'monochromaCSS') {
+            monochromaMode('monochromaCSS');
+        }
+
+        function defaultMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "body";
+
+            //let content = document.getElementById("defaultID"); //html id name
+            content.innerText = "Default"; //testing
+            localStorage.setItem('theme', content); //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/SfDTf84/step1.jpg";
+            image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+            image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+        }
+        function darkMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "darkmode"; //css class name
+            
+            //const elementBody = document.getElementById("darkmode");
+            //let sheet = document.getElementById("darkmodeID");
+            //let content = document.getElementById("darkmodeID"); //html id name
+            //document.getElementById('darkmodeID') = sheet
+            content.innerText = "Dark Mode"; //testing
+            localStorage.setItem('theme', content); //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/dgCzR5q/step1D.jpg";
+            image2.src = "https://i.ibb.co/3Y1XhVT/step2D.jpg";
+            image3.src = "https://i.ibb.co/gPq6WcD/step3D.jpg";
+        }
+        function protanopiaMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "protanopia";
+
+            //let content = document.getElementById("protanopiaID"); //html id name
+            content.innerText = "Protanopia"; //testing
+            localStorage.setItem('theme', content); //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/yst2vrZ/step1Pro.jpg";
+            image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+            image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+        }
+        function deuteranopiaMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "deuteranopia";
+
+            //let content = document.getElementById("deuteranopiaID"); //html id name
+            content.innerText = "Deuteranopia"; //testing
+            localStorage.setItem('theme', content) //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/dKLvMKR/step1Deu.jpg";
+            image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+            image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+        }
+        function tritanopiaMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "tritanopia";
+
+            //let content = document.getElementById("tritanopiaID"); //html id name
+            content.innerText = "Tritanopia"; //testing
+            localStorage.setItem('theme', content) //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/YDf4fHm/step2tri-JPG.jpg";
+            image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+            image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+        }
+        function monochromaMode(content) {
+            let elementBody = document.body;
+            elementBody.className = "monochroma";
+
+            //let content = document.getElementById("monochromaID"); //html id name
+            content.innerText = "Monochroma"; //testing
+            localStorage.setItem('theme', content) //saves to local storage
+
+            let image1 = document.getElementById("step1");
+            let image2 = document.getElementById("step2");
+            let image3 = document.getElementById("step3");
+            image1.src = "https://i.ibb.co/ySDqb4R/step1mono.jpg";
+            image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
+            image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+        }
+    </script>
 
     <!--
     <body> 
