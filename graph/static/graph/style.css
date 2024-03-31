@@ -1,6 +1,13 @@
 
 
 
+#savePdfBtn {
+    background-color: #0085FF;
+    color: black;
+    border: 2px solid #0085FF;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 
 
     .submitFormButton {
@@ -12,7 +19,7 @@
             border: none;
             cursor: pointer;
     }
-
+ 
     #myCanvas {
         position: relative; /* Ensures positioning is relative to the container */
         margin-top: 150%; /* Adjust the distance from the top as needed */
@@ -252,6 +259,19 @@
     transform: translate(-50%, -50%);
 }
 
+        .right-half {
+
+            margin-top: 40px;
+            margin-left: 100px;
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+	    right: 0;
+	    
+        }
 .right-half {
     margin-top: 40px;
     margin-left: 100px;
@@ -264,16 +284,25 @@
     right: 0;
 }
 
-.dropbutton {
-    background-color: #0085FF;
-    color: white;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    z-index: 30;
-    height: 60px; 
-    width: 120px;
-}
+	.dropbutton {
+
+  	   background-color: #0085FF;
+      	color: white;
+  	   padding: 10px;
+  	   font-size: 18px;
+  	   border: none;
+  	   z-index: 30;
+  	   height: 60px; 
+  	   
+  	   width: 120px;
+
+	}
+
+    
+    
+
+    
+
 
 .dropdown {
     right: 0;
@@ -318,9 +347,7 @@
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.show {display:block;}
 
 .dropdown:hover .dropbutton {
     background-color: #006acc;
@@ -392,6 +419,12 @@ display: block;
 }
 .darkmode .circle {
     background-color: white;
+    color: black;
+}
+.darkmode #savePdfBtn {
+    background-color: white;
+    border: white;
+    color: black;
 }
 .darkmode .form-container {
     background-color: #333; 
@@ -439,6 +472,11 @@ display: block;
 .protanopia .circle {
     background-color: #E0D2FE;
 }
+.protanopia #savePdfBtn {
+    background-color: #E0D2FE;
+    border: #E0D2FE;
+    color: black;
+}
 .protanopia .form-container {
     background-color: white; 
     border: 2px solid black;
@@ -459,19 +497,19 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #E0D2FE; */
     /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .protanopia .dropdown:hover .dropbutton {
-    background-color: #3267C9;
+    background-color: #E0D2FE;
     /* background-color: #E0D2FE; */
 }
 
@@ -488,6 +526,11 @@ display: block;
 }
 .deuteranopia .circle {
     background-color: #C1E4FC;
+}
+.deuteranopia #savePdfBtn {
+    background-color: #C1E4FC;
+    border: #C1E4FC;
+    color: black;
 }
 .deuteranopia .form-container {
     background-color: white; 
@@ -509,19 +552,19 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #C1E4FC;
     color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .deuteranopia .dropdown:hover .dropbutton {
-    background-color: #006DBC;
+    background-color: #C1E4FC;
     /* background-color: #EED1FF; */
 }
 
@@ -537,7 +580,12 @@ display: block;
     border-style: solid;
 }
 .tritanopia .circle {
-    background-color: #624AFA;
+    background-color: #00949D;
+}
+.tritanopia #savePdfBtn {
+    background-color: #00949D;
+    border: #00949D;
+    color: black;
 }
 .tritanopia .form-container {
     background-color: white; 
@@ -587,6 +635,11 @@ display: block;
 }
 .monochroma .circle {
     background-color: #949494;
+}
+.monochroma #savePdfBtn {
+    background-color: #949494;
+    border: #949494;
+    color: black;
 }
 .monochroma .form-container {
     background-color: #F0F0F0; 

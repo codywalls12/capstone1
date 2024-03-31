@@ -4,7 +4,7 @@ from .models import ExcelFile
 class ExcelDataForm(forms.ModelForm):
     class Meta:
         model = ExcelFile
-        fields = ['file']
+        fields = ['file', 'x_values', 'y_values']
 
 class UploadFileForm(forms.Form):
     myFile = forms.FileField()
