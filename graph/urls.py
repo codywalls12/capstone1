@@ -8,5 +8,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("test", views.graph_creation, name="graph_creation"),
     path("Excel_Upload", views.excel_upload, name="excel_upload"),
+    path("graph_form_upload", views.graph_form_upload, name="graph_form_upload"),
     path('about_us/', views.about_us, name='about_us'),
 ]

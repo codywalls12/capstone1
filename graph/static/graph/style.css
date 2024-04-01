@@ -1,7 +1,10 @@
-
-
-
-
+#savePdfBtn {
+    background-color: #0085FF;
+    color: black;
+    border: 2px solid #0085FF;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 
     .submitFormButton {
         margin-top: 20px;
@@ -12,7 +15,7 @@
             border: none;
             cursor: pointer;
     }
-
+ 
     #myCanvas {
         position: relative; /* Ensures positioning is relative to the container */
         margin-top: 150%; /* Adjust the distance from the top as needed */
@@ -21,21 +24,17 @@
         padding: 40px;
     }
 
-
-
-        body {
-
-            background-color: #CBE6FF; 
-            margin: 0; 
-            padding: 0; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-
-        }
+body {
+    background-color: #CBE6FF; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
 
 .navbar {
     background-color: #C1C0C0; 
@@ -62,16 +61,15 @@
     left: 0px;
 }
 
+
 .step-container {
-
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 18px; 
-            margin-top: 20px;
-	    flex-direction: column;
-
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 18px; 
+    margin-top: 20px;
+    flex-direction: column;
 }
 
 .step-container2 {
@@ -91,23 +89,21 @@
     /*margin-right: 10px;*/
 }
 
-        .upload-container {
-
-            width: 80%;
-            max-width: 800px;
-            height: 600px;
-            padding: 30px;
-            text-align: center;
-            background-color: #fff; 
-            border: 2px solid #333; 
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-        }
+.upload-container {
+    width: 80%;
+    max-width: 800px;
+    height: 600px;
+    padding: 30px;
+    text-align: center;
+    background-color: #fff; 
+    border: 2px solid #333; 
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .upload-icon {
     font-size: 48px;
@@ -123,20 +119,20 @@
     cursor: pointer;
 }
 
-       .form-container {
+.form-container {
+    max-width: 300px; 
+    width: 40%; 
+    padding: 20px;
+    text-align: center;
+    background-color: #fff; 
+    border: 2px solid #333;
+    margin-top: 85px; 
+    margin-bottom: 20px; 
+    align-self: center; 
+    overflow-y: auto;
+}
 
-    	   max-width: 300px; 
-    	   width: 40%; 
-   	   padding: 20px;
-    	   text-align: center;
-    	   background-color: #fff; 
-    	   border: 2px solid #333;
-    	   margin-top: 85px; 
-    	   margin-bottom: 20px; 
-    	   align-self: center; 
-	   overflow-y: auto;
 
-	}
 
 .form {
     display: flex;
@@ -151,16 +147,6 @@
 }
 
 .new-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0085FF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.new-button2 {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -261,30 +247,37 @@
     transform: translate(-50%, -50%);
 }
 
-.right-half {
-    margin-top: 40px;
-    margin-left: 100px;
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    right: 0;
-}
+        .right-half {
+            margin-top: 20px;
+            margin-left: 40x;
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+	        right: 0;
+        }
 
+	.dropbutton {
 
-.dropbutton {
+  	   background-color: #0085FF;
+      	color: white;
+  	   padding: 10px;
+  	   font-size: 18px;
+  	   border: none;
+  	   z-index: 30;
+  	   height: 60px; 
+  	   
+  	   width: 120px;
 
-    background-color: #0085FF;
-    color: white;
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    z-index: 30;
-    height: 60px; 
-    width: 120px;
-}
+	}
+
+    
+    
+
+    
+
 
 .dropdown {
     right: 0;
@@ -329,9 +322,7 @@
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.show {display:block;}
 
 .dropdown:hover .dropbutton {
     background-color: #006acc;
@@ -403,6 +394,12 @@ display: block;
 }
 .darkmode .circle {
     background-color: white;
+    color: black;
+}
+.darkmode #savePdfBtn {
+    background-color: white;
+    border: white;
+    color: black;
 }
 .darkmode .form-container {
     background-color: #333; 
@@ -450,6 +447,11 @@ display: block;
 .protanopia .circle {
     background-color: #E0D2FE;
 }
+.protanopia #savePdfBtn {
+    background-color: #E0D2FE;
+    border: #E0D2FE;
+    color: black;
+}
 .protanopia .form-container {
     background-color: white; 
     border: 2px solid black;
@@ -470,19 +472,19 @@ display: block;
     background-color: red;
 } */
 .protanopia .new-button {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #E0D2FE; */
     /* color: #333; */
 }
 .protanopia .dropbutton {
-    background-color: #3C81FC;
+    background-color: #E0D2FE;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .protanopia .dropdown:hover .dropbutton {
-    background-color: #3267C9;
+    background-color: #E0D2FE;
     /* background-color: #E0D2FE; */
 }
 
@@ -499,6 +501,11 @@ display: block;
 }
 .deuteranopia .circle {
     background-color: #C1E4FC;
+}
+.deuteranopia #savePdfBtn {
+    background-color: #C1E4FC;
+    border: #C1E4FC;
+    color: black;
 }
 .deuteranopia .form-container {
     background-color: white; 
@@ -520,19 +527,19 @@ display: block;
     background-color: red;
 } */
 .deuteranopia .new-button {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #C1E4FC;
     color: #333; */
 }
 .deuteranopia .dropbutton {
-    background-color: #0088EA;
+    background-color: #C1E4FC;
     color: #fff;
     /* background-color: #fff;
     color: #333; */
 }
 .deuteranopia .dropdown:hover .dropbutton {
-    background-color: #006DBC;
+    background-color: #C1E4FC;
     /* background-color: #EED1FF; */
 }
 
@@ -548,7 +555,12 @@ display: block;
     border-style: solid;
 }
 .tritanopia .circle {
-    background-color: #624AFA;
+    background-color: #00949D;
+}
+.tritanopia #savePdfBtn {
+    background-color: #00949D;
+    border: #00949D;
+    color: black;
 }
 .tritanopia .form-container {
     background-color: white; 
@@ -598,6 +610,11 @@ display: block;
 }
 .monochroma .circle {
     background-color: #949494;
+}
+.monochroma #savePdfBtn {
+    background-color: #949494;
+    border: #949494;
+    color: black;
 }
 .monochroma .form-container {
     background-color: #F0F0F0; 
@@ -673,4 +690,50 @@ display: block;
         margin: 10px;
         cursor: pointer;
     } */
+
+.about-section {
+
+     padding: 50px 0;
+     text-align: center;
+     margin-top: 800px;
+
+}
+
+.misson-section {
+
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     margin-top: 20px;
+     max-width: 800px;
+
+}
+
+.team-member {
+    width: 600px; 
+    height: 200px; 
+    background-color: #fff; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    margin-bottom: 12px; 
+    display: flex; 
+    align-items: center; 
+    font-size: 14px;
+}
+
+.team-member .member-description {
+    flex: 1; /* Let the description take the remaining space */
+    padding-right: 20px; /* Add some space between image and description */
+}
+
+.team-member .image {
+    flex: 0 0 auto; /* Don't allow the image to grow or shrink */
+    margin-left: 20px; /* Add some space between image and text */
+}
+
+.team-member .image img {
+    max-width: 50%;
+    height: auto;
+}
 	
