@@ -574,6 +574,18 @@
             image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
+
+        function say( speech, callback){
+            const text = new SpeechSynthesisUtterance( speech );
+
+            if( callback ){
+                text.onend = callback;
+            }
+
+            speechSynthesis.cancel;
+            speechSynthesis.speak(text);
+        }
+        
     </script>
 
     <!--
