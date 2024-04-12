@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -584,6 +584,10 @@
 
             speechSynthesis.cancel;
             speechSynthesis.speak(text);
+        }
+
+        window.onfocus = function(event){
+            var focusedElement = event.relatedTarget;
         }
         
     </script>
