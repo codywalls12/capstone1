@@ -66,6 +66,9 @@
                         dropZoneElement.addEventListener("click", e => {
                             inputElement.click();
                         });
+                        dropZoneElement.addEventListener("focus",function(){
+                                    say("Button to add a file. Opens file explorer.",false);
+                                });
 
                         inputElement.addEventListener("change", e => {
                             if (inputElement.files.length) {
@@ -144,6 +147,9 @@
                                 createBarChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle1';
                             });
+                            document.getElementById('circle1').addEventListener("focus",function(){
+                                    say("Button to create a Bar Chart.",false);
+                                });
 
                             document.getElementById('circle2').addEventListener('click', function() {
                                 color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
@@ -151,11 +157,17 @@
                                 createPieChart(labels, values, file.name, color);
                                 //lastClickedCircle = 'circle2';
                             });
+                            document.getElementById('circle2').addEventListener("focus",function(){
+                                    say("Button to create a Pie Chart.",false);
+                                });
 
                             document.getElementById('circle3').addEventListener('click', function() {
                                 color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
                                 createScatterPlot(labels, values, file.name, color);
                             });
+                            document.getElementById('circle3').addEventListener("focus",function(){
+                                    say("Button to create a Scatter Plot.",false);
+                                });
 
 
                                 };
@@ -231,7 +243,10 @@
                                     var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
-                                });                                
+                                });  
+                                    savePdfBtn.addEventListener("focus",function(){
+                                    say("Button to Save to PDF.",false);
+                                });                              
                             }
 
 
@@ -290,6 +305,9 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
+                                savePdfBtn.addEventListener("focus",function(){
+                                    say("Button to Save to PDF.",false);
+                                });
                             }
 
 
@@ -337,6 +355,9 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
+                                savePdfBtn.addEventListener("focus",function(){
+                                    say("Button to Save to PDF.",false);
+                                });
                                 
                             }
 
@@ -369,7 +390,21 @@
                                 }
                             }
                         }
-                    }                   
+                    }
+                    const dropper = document.getElementByID("dropperdowner");
+                    dropper.addEventListener("focus",function(){
+                                    say("Button toggle for colorblindness settings dropdown menu.",false);
+                                });    
+                    function say(speech, callback) { //the speaker
+                            const text = new SpeechSynthesisUtterance(speech);
+
+                            if (callback) {
+                                text.onend = callback;
+                            }
+
+                            speechSynthesis.cancel;
+                            speechSynthesis.speak(text);
+                        }            
                 </script>
             </div>
         </div>
@@ -575,21 +610,44 @@
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
 
-        function say( speech, callback){
-            const text = new SpeechSynthesisUtterance( speech );
+        document.getElementById("step1").addEventListener("focus",function(){
+            say("Image: step one is to upload your data.",false);
+        });
+        document.getElementById("step2").addEventListener("focus",function(){
+            say("Image: step two is to choose your settings.",false);
+        });  
+        document.getElementById("step3").addEventListener("focus",function(){
+            say("Image: step three is to create your graph.",false);
+        });
+        document.getElementById("defaultID").addEventListener("focus",function(){
+            say("Button to select default colorblindness settings.",false);
+        }); 
+        document.getElementById("darkmodeID").addEventListener("focus",function(){
+            say("Button to select dark mode colorblindness settings.",false);
+        });  
+        document.getElementById("protanopiaID").addEventListener("focus",function(){
+            say("Button to select protanopia colorblindness settings.",false);
+        });     
+        document.getElementById("deuteranopiaID").addEventListener("focus",function(){
+            say("Button to select deuteranopia colorblindness settings.",false);
+        });       
+        document.getElementById("tritanopiaID").addEventListener("focus",function(){
+            say("Button to select tritanopia colorblindness settings.",false);
+        });   
+        document.getElementById("monochromaID").addEventListener("focus",function(){
+            say("Button to select monochroma colorblindness settings.",false);
+        });   
 
-            if( callback ){
-                text.onend = callback;
-            }
+        function say(speech, callback) { //the speaker
+                            const text = new SpeechSynthesisUtterance(speech);
 
-            speechSynthesis.cancel;
-            speechSynthesis.speak(text);
-        }
-        if(true){
-            window.onfocus = function(event){
-                say(event.relatedTarget.ariaLabel,false);
-            }
-        }
+                            if (callback) {
+                                text.onend = callback;
+                            }
+
+                            speechSynthesis.cancel;
+                            speechSynthesis.speak(text);
+                        }            
         
     </script>
 
