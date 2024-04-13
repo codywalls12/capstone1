@@ -401,12 +401,6 @@
                             }
                         }
                     }
-                    document.getElementById("dropperdowner").addEventListener("focus", function () {
-                        say("Button toggle for colorblindness settings dropdown menu.", true);
-                    });
-                    document.getElementById("dropperdowner").addEventListener("blur", function () {
-                        speechSynthesis.cancel;
-                    });
                     function say(speech, callback) { //the speaker
                         const text = new SpeechSynthesisUtterance(speech);
 
@@ -678,6 +672,12 @@
             say("Button to select monochroma colorblindness mode.", true);
         });
         document.getElementById("monochromaID").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("buttondrop").addEventListener("focus", function () {
+            say("Button toggle for colorblindness settings dropdown menu.", true);
+        });
+        document.getElementById("buttondrop").addEventListener("blur", function () {
             speechSynthesis.cancel;
         });
 
