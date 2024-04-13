@@ -23,6 +23,12 @@
         <a href="{% url 'graph:index' %}">
             <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
         </a>
+        <script>
+            var logo = document.getElementById("navbar");
+            logo.addEventListener("focus",function(){
+            say("Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it",true);
+        });   
+        </script>
 
     </div>
     <div class="content-container" width = "400" height = "400">
@@ -67,7 +73,7 @@
                             inputElement.click();
                         });
                         dropZoneElement.addEventListener("focus",function(){
-                                    say("Button to add a file. Opens file explorer.",false);
+                                    say("Button to add a file. Opens file explorer.",true);
                                 });
 
                         inputElement.addEventListener("change", e => {
@@ -148,7 +154,7 @@
                                 //lastClickedCircle = 'circle1';
                             });
                             document.getElementById('circle1').addEventListener("focus",function(){
-                                    say("Button to create a Bar Chart.",false);
+                                    say("Button to create a Bar Chart.",true);
                                 });
 
                             document.getElementById('circle2').addEventListener('click', function() {
@@ -158,7 +164,7 @@
                                 //lastClickedCircle = 'circle2';
                             });
                             document.getElementById('circle2').addEventListener("focus",function(){
-                                    say("Button to create a Pie Chart.",false);
+                                    say("Button to create a Pie Chart.",true);
                                 });
 
                             document.getElementById('circle3').addEventListener('click', function() {
@@ -166,7 +172,7 @@
                                 createScatterPlot(labels, values, file.name, color);
                             });
                             document.getElementById('circle3').addEventListener("focus",function(){
-                                    say("Button to create a Scatter Plot.",false);
+                                    say("Button to create a Scatter Plot.",true);
                                 });
 
 
@@ -245,7 +251,7 @@
                                     pdf.save('graph.pdf');
                                 });  
                                     savePdfBtn.addEventListener("focus",function(){
-                                    say("Button to Save to PDF.",false);
+                                    say("Button to Save to PDF.",true);
                                 });                              
                             }
 
@@ -306,7 +312,7 @@
                                     pdf.save('graph.pdf');
                                 });
                                 savePdfBtn.addEventListener("focus",function(){
-                                    say("Button to Save to PDF.",false);
+                                    say("Button to Save to PDF.",true);
                                 });
                             }
 
@@ -356,7 +362,7 @@
                                     pdf.save('graph.pdf');
                                 });
                                 savePdfBtn.addEventListener("focus",function(){
-                                    say("Button to Save to PDF.",false);
+                                    say("Button to Save to PDF.",true);
                                 });
                                 
                             }
@@ -391,9 +397,9 @@
                             }
                         }
                     }
-                    const dropper = document.getElementByID("dropperdowner");
+                    const dropper = document.getElementById("dropperdowner");
                     dropper.addEventListener("focus",function(){
-                                    say("Button toggle for colorblindness settings dropdown menu.",false);
+                                    say("Button toggle for colorblindness settings dropdown menu.",true);
                                 });    
                     function say(speech, callback) { //the speaker
                             const text = new SpeechSynthesisUtterance(speech);
@@ -611,31 +617,31 @@
         }
 
         document.getElementById("step1").addEventListener("focus",function(){
-            say("Image: step one is to upload your data.",false);
+            say("Image: step one is to upload your data.",true);
         });
         document.getElementById("step2").addEventListener("focus",function(){
-            say("Image: step two is to choose your settings.",false);
+            say("Image: step two is to choose your settings.",true);
         });  
         document.getElementById("step3").addEventListener("focus",function(){
-            say("Image: step three is to create your graph.",false);
+            say("Image: step three is to create your graph.",true);
         });
         document.getElementById("defaultID").addEventListener("focus",function(){
-            say("Button to select default colorblindness settings.",false);
+            say("Button to select default colorblindness settings.",true);
         }); 
         document.getElementById("darkmodeID").addEventListener("focus",function(){
-            say("Button to select dark mode colorblindness settings.",false);
+            say("Button to select dark mode colorblindness settings.",true);
         });  
         document.getElementById("protanopiaID").addEventListener("focus",function(){
-            say("Button to select protanopia colorblindness settings.",false);
+            say("Button to select protanopia colorblindness settings.",true);
         });     
         document.getElementById("deuteranopiaID").addEventListener("focus",function(){
-            say("Button to select deuteranopia colorblindness settings.",false);
+            say("Button to select deuteranopia colorblindness settings.",true);
         });       
         document.getElementById("tritanopiaID").addEventListener("focus",function(){
-            say("Button to select tritanopia colorblindness settings.",false);
+            say("Button to select tritanopia colorblindness settings.",true);
         });   
         document.getElementById("monochromaID").addEventListener("focus",function(){
-            say("Button to select monochroma colorblindness settings.",false);
+            say("Button to select monochroma colorblindness settings.",true);
         });   
 
         function say(speech, callback) { //the speaker
