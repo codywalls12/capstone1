@@ -10,13 +10,13 @@ django-import-export==3.3.7
 
 
 
-MarkupPy==1.14
-MarkupSafe==2.1.4
+
+
 matplotlib==3.8.2
 numpy==1.26.3
-odfpy==1.4.1
 
-packaging==23.2
+
+
 pandas==2.2.0
 pillow==10.2.0
 psycopg2-binary~=2.9.3
