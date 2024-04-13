@@ -130,9 +130,7 @@
                             fileSizeElement.textContent = formatFileSize(file.size);
                             thumbnailElement.appendChild(fileSizeElement);
 
-                            thumbnailElement.innerHTML = `
-                            <div>${file.name}</div>
-                            <div class="file-size">${formatFileSize(file.size)}</div>`;
+                            thumbnailElement.innerHTML = `<div>${file.name}</div><div class="file-size">${formatFileSize(file.size)}</div>`;
 
                             if (file.name.toLowerCase().endsWith(".xlsx")) {
                                 alert("excel file has been accepted");
@@ -467,14 +465,14 @@
         </div>
 
         <div class="dropdown">
-            <button onclick="toggledrop()" class="dropbutton"
+            <button id="buttondrop" onclick="toggledrop()" class="dropbutton"
                 aria-label="Button for Colorblindness Settings; toggles a dropdown selection menu.">Settings</button>
             <div id="dropperdowner" class="dropdown-content">
                 <!-- <a href="#" onclick="defaultMode()">Default</a>
-    <a href="#" onclick="darkMode()">Dark Mode</a>
-    <a href="#" onclick="protanopiaMode()">Protanopia</a>
-    <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
-    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
+                <a href="#" onclick="darkMode()">Dark Mode</a>
+                <a href="#" onclick="protanopiaMode()">Protanopia</a>
+                <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
+                <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
                 <button id="defaultID" onclick="defaultMode('defaultCSS')"
                     aria-label="Set to Default Mode.">Default</button>
                 <button id="darkmodeID" onclick="darkMode('darkmodeCSS')" aria-label="Set to Dark Mode.">Dark
@@ -636,7 +634,7 @@
             image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
-
+        //native screenreader
         document.getElementById("step1").addEventListener("focus", function () {
             say("Image: step one is to upload your data.", true);
         });
