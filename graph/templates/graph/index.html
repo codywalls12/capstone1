@@ -429,7 +429,7 @@
                     <button class="new-button" type="submit">Create Graph</button>
                 </form>
             </div>
- <div class="form-container"style = "width: 100%;margin-left: 40px; ">
+ <div class="form-container"style = "width: 600px;margin-left: 40px; ">
  <form action="{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
