@@ -397,10 +397,12 @@
                             }
                         }
                     }
-                    const dropper = document.getElementById("dropperdowner");
-                    dropper.addEventListener("focus",function(){
-                                    say("Button toggle for colorblindness settings dropdown menu.",true);
-                                });    
+                    document.getElementById("dropperdowner").addEventListener("focus",function(){
+                        say("Button toggle for colorblindness settings dropdown menu.",true);
+                    }); 
+                    document.getElementById("dropperdowner").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });   
                     function say(speech, callback) { //the speaker
                             const text = new SpeechSynthesisUtterance(speech);
 
@@ -628,21 +630,39 @@
         document.getElementById("defaultID").addEventListener("focus",function(){
             say("Button to select default colorblindness settings.",true);
         }); 
+        document.getElementById("defaultID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });  
         document.getElementById("darkmodeID").addEventListener("focus",function(){
             say("Button to select dark mode colorblindness settings.",true);
         });  
+        document.getElementById("darkmodeID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });  
         document.getElementById("protanopiaID").addEventListener("focus",function(){
             say("Button to select protanopia colorblindness settings.",true);
-        });     
+        });   
+        document.getElementById("protanopiaID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });    
         document.getElementById("deuteranopiaID").addEventListener("focus",function(){
             say("Button to select deuteranopia colorblindness settings.",true);
-        });       
+        });   
+        document.getElementById("deauteranopiaID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });      
         document.getElementById("tritanopiaID").addEventListener("focus",function(){
             say("Button to select tritanopia colorblindness settings.",true);
         });   
+        document.getElementById("tritanopiaID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });  
         document.getElementById("monochromaID").addEventListener("focus",function(){
             say("Button to select monochroma colorblindness settings.",true);
         });   
+        document.getElementById("monochromaID").addEventListener("blur",function(){
+                        speechSynthesis.cancel;
+                    });  
 
         function say(speech, callback) { //the speaker
                             const text = new SpeechSynthesisUtterance(speech);
@@ -651,7 +671,7 @@
                                 text.onend = callback;
                             }
 
-                            speechSynthesis.cancel;
+                            speechSynthesis.cancel();
                             speechSynthesis.speak(text);
                         }            
         
