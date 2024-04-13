@@ -21,7 +21,7 @@
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
         </a>
 
     </div>
@@ -41,7 +41,7 @@
                 <p>Browse your device to upload files</p>
                 <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
                 
-                <div class="drop-zone">
+                <div class="drop-zone" aria-label="Button that opens file explorer. Choose a suitable file for sonifictation.">
                     <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
                     {% csrf_token %}
                     <input type = "file" name = "myFile" class = "drop-zone__input">
@@ -50,10 +50,10 @@
                 <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
                 </form>
                 
-                <div class = "circle" id = "circle1"> Bar Graph</div>
-                <div class = "circle" id = "circle2"> Pie Chart</div>
-                <div class = "circle" id = "circle3"> Scatter Plot</div>
-                <button id="savePdfBtn">Save as PDF</button>
+                <div class = "circle" id = "circle1" aria-label="Button for a Bar Graph of file data"> Bar Graph</div>
+                <div class = "circle" id = "circle2" aria-label="Button for a Pie Chart of file data"> Pie Chart</div>
+                <div class = "circle" id = "circle3" aria-label="Button for a Scatter Plot of file data"> Scatter Plot</div>
+                <button id="savePdfBtn" aria-label="Button to save output to PDF">Save as PDF</button>
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -381,50 +381,50 @@
                     {% csrf_token %}
                     <fieldset class="form" id="inputFields">
                         <label for="graph_name">Enter Graph Name</label>
-                        <input type="text" name="graph_name" id="graph_name">
+                        <input type="text" name="graph_name" id="graph_name" aria-label="Enter Graph Name.">
 
 			<label for="X_name">Enter X Values Name</label>
-                        <input type="text" name="X_name" id="graph_name">
+                        <input type="text" name="X_name" id="graph_name" aria-label="Enter X Values Name.">
 
 			<label for="Y_name">Enter Y Values Name</label>
-                        <input type="text" name="Y_name" id="graph_name">
+                        <input type="text" name="Y_name" id="graph_name" aria-label="Enter Y Values Name.">
 
                         <label for="xy_values">Enter X and Y values</label>
                         <div class="xy-container" id="xy_container">
                             <div>
-                                <input type="text" name="x_values[]" class="xy-input" placeholder="X">
-                                <input type="text" name="y_values[]" class="xy-input" placeholder="Y">
+                                <input type="text" name="x_values[]" class="xy-input" placeholder="X" aria-label="Enter X values, seperated by commas.">
+                                <input type="text" name="y_values[]" class="xy-input" placeholder="Y" aria-label="Enter Y values, seperated by commas.">
                             </div>
                         </div>
-                        <button class="new-button" type="button" onclick="addInput()">Add X and Y Values</button>
+                        <button class="new-button" type="button" onclick="addInput()" aria-label="Add more X and Y Values.">Add X and Y Values</button>
 
                     </fieldset>
 
-                    <button class="new-button" type="submit">Create Graph</button>
+                    <button class="new-button" type="submit" aria-label="Button to Create Graph">Create Graph</button>
                 </form>
             </div>
         <div class="right-half">
             <div class="step-container">
-                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
-                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
-                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
+                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" aria-label="The first step is to upload your data." border="0">
+                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" aria-label="The second step is to choose settings." border="0">
+                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" aria-label="The last step is to create your graph." border="0">
             </div>
         </div>
 
 <div class="dropdown">
-  <button onclick="toggledrop()" class="dropbutton">Settings</button>
+  <button onclick="toggledrop()" class="dropbutton" aria-label="Button for Colorblindness Settings; toggles a dropdown selection menu.">Settings</button>
   <div id="dropperdowner" class="dropdown-content">
     <!-- <a href="#" onclick="defaultMode()">Default</a>
     <a href="#" onclick="darkMode()">Dark Mode</a>
     <a href="#" onclick="protanopiaMode()">Protanopia</a>
     <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
     <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
-    <button id="defaultID" onclick="defaultMode('defaultCSS')">Default</button>
-    <button id="darkmodeID" onclick="darkMode('darkmodeCSS')">Dark Mode</button>
-    <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')">Protanopia</button>
-    <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')">Deuteranopia</button>
-    <button id="tritanopiaID" onclick="tritanopiaMode('tritanopiaCSS')">Tritanopia</button>
-    <button id = "monochromaID" onclick="monochromaMode('monochromaCSS')">Monochroma</button>
+    <button id="defaultID" onclick="defaultMode('defaultCSS')" aria-label="Set to Default Mode.">Default</button>
+    <button id="darkmodeID" onclick="darkMode('darkmodeCSS')" aria-label="Set to Dark Mode.">Dark Mode</button>
+    <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')" aria-label="Set to Protanopia Mode.">Protanopia</button>
+    <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')" aria-label="Set to Deuteranopia Mode.">Deuteranopia</button>
+    <button id="tritanopiaID" onclick="tritanopiaMode('tritanopiaCSS')" aria-label="Set to Tritanopia Mode.">Tritanopia</button>
+    <button id = "monochromaID" onclick="monochromaMode('monochromaCSS')" aria-label="Set to Monochromia Mode.">Monochroma</button>
   </div>
   
 </div>
@@ -585,9 +585,10 @@
             speechSynthesis.cancel;
             speechSynthesis.speak(text);
         }
-
-        window.onfocus = function(event){
-            var focusedElement = event.relatedTarget;
+        if(true){
+            window.onfocus = function(event){
+                say(event.relatedTarget.ariaLabel,false);
+            }
         }
         
     </script>
@@ -661,7 +662,7 @@
     <form action = "{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Upload Excel File</button>
+        <button type="submit" aria-label="Upload Excel File.">Upload Excel File</button>
     </form>
 </body>
 </html>
