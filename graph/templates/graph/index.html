@@ -27,7 +27,7 @@
                 aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it"
                 height="60" width="100">
         </a>
-        <button class="reader-button" type="screen-reader" aria-label="Button to toggle the screen reader.">Screen Reader</button>
+        <button class="reader-button" id="screen-reader" type="button" aria-label="Button to toggle the screen reader.">Screen Reader</button>
     </div>
     <div class="content-container" width="400" height="400">
 
@@ -238,9 +238,6 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
-                                savePdfBtn.addEventListener("focus", function () {
-                                    say("Button to Save to PDF.", true);
-                                });
                             }
 
 
@@ -299,9 +296,6 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
-                                savePdfBtn.addEventListener("focus", function () {
-                                    say("Button to Save to PDF.", true);
-                                });
                             }
 
 
@@ -349,10 +343,6 @@
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
-                                savePdfBtn.addEventListener("focus", function () {
-                                    say("Button to Save to PDF.", true);
-                                });
-
                             }
 
 
@@ -616,123 +606,131 @@
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
         //native screenreader
-        document.getElementById("step1").addEventListener("focus", function () {
-            say("Image: step one is to upload your data.", true);
-        });
-        document.getElementById("step2").addEventListener("focus", function () {
-            say("Image: step two is to choose your settings.", true);
-        });
-        document.getElementById("step3").addEventListener("focus", function () {
-            say("Image: step three is to create your graph.", true);
-        });
-        document.getElementById("defaultID").addEventListener("focus", function () {
-            say("Button to select default colorblindness mode.", true);
-        });
-        document.getElementById("defaultID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("darkmodeID").addEventListener("focus", function () {
-            say("Button to select dark mode colorblindness mode.", true);
-        });
-        document.getElementById("darkmodeID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("protanopiaID").addEventListener("focus", function () {
-            say("Button to select protanopia colorblindness mode.", true);
-        });
-        document.getElementById("protanopiaID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("deuteranopiaID").addEventListener("focus", function () {
-            say("Button to select deuteranopia colorblindness mode.", true);
-        });
-        document.getElementById("deuteranopiaID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("tritanopiaID").addEventListener("focus", function () {
-            say("Button to select tritanopia colorblindness mode.", true);
-        });
-        document.getElementById("tritanopiaID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("monochromaID").addEventListener("focus", function () {
-            say("Button to select monochroma colorblindness mode.", true);
-        });
-        document.getElementById("monochromaID").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("buttondrop").addEventListener("focus", function () {
-            say("Button toggle for colorblindness settings dropdown menu.", true);
-        });
-        document.getElementById("buttondrop").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("buttondrop").addEventListener("focus", function () {
-            say("Button toggle for colorblindness settings dropdown menu.", true);
-        });
-        document.getElementById("buttondrop").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("circle1").addEventListener("focus", function () {
-            say("Button to create Bar Chart of file.", true);
-        });
-        document.getElementById("circle1").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("circle2").addEventListener("focus", function () {
-            say("Button to create Pie Chart of file.", true);
-        });
-        document.getElementById("circle2").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("circle3").addEventListener("focus", function () {
-            say("Button to create Scatter Plot of file.", true);
-        });
-        document.getElementById("circle3").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("create-graph-button").addEventListener("focus", function () {
-            say("Button to create a graph using entered values.", true);
-        });
-        document.getElementById("create-graph-button").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("more-X&Y-button").addEventListener("focus", function () {
-            say("Button to add more X and Y values", true);
-        });
-        document.getElementById("more-X&Y-button").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("x-values-in").addEventListener("focus", function () {
-            say("Input values for X, separated by commas", true);
-        });
-        document.getElementById("x-values-in").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("y-values-in").addEventListener("focus", function () {
-            say("Input values for Y, separated by commas", true);
-        });
-        document.getElementById("y-values-in").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("X_name").addEventListener("focus", function () {
-            say("Input a name for X", true);
-        });
-        document.getElementById("X_name").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("Y_name").addEventListener("focus", function () {
-            say("Input a name for Y", true);
-        });
-        document.getElementById("Y_name").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
-        document.getElementById("graph_name").addEventListener("focus", function () {
-            say("Input a name for the graph", true);
-        });
-        document.getElementById("graph_name").addEventListener("blur", function () {
-            speechSynthesis.cancel;
-        });
+        if(localStorage.getItem('reader') == "On"){
+            document.getElementById("step1").addEventListener("focus", function () {
+                say("Image: step one is to upload your data.", true);
+            });
+            document.getElementById("step2").addEventListener("focus", function () {
+                say("Image: step two is to choose your settings.", true);
+            });
+            document.getElementById("step3").addEventListener("focus", function () {
+                say("Image: step three is to create your graph.", true);
+            });
+            document.getElementById("defaultID").addEventListener("focus", function () {
+                say("Button to select default colorblindness mode.", true);
+            });
+            document.getElementById("defaultID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("darkmodeID").addEventListener("focus", function () {
+                say("Button to select dark mode colorblindness mode.", true);
+            });
+            document.getElementById("darkmodeID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("protanopiaID").addEventListener("focus", function () {
+                say("Button to select protanopia colorblindness mode.", true);
+            });
+            document.getElementById("protanopiaID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("deuteranopiaID").addEventListener("focus", function () {
+                say("Button to select deuteranopia colorblindness mode.", true);
+            });
+            document.getElementById("deuteranopiaID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("tritanopiaID").addEventListener("focus", function () {
+                say("Button to select tritanopia colorblindness mode.", true);
+            });
+            document.getElementById("tritanopiaID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("monochromaID").addEventListener("focus", function () {
+                say("Button to select monochroma colorblindness mode.", true);
+            });
+            document.getElementById("monochromaID").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("buttondrop").addEventListener("focus", function () {
+                say("Button toggle for colorblindness settings dropdown menu.", true);
+            });
+            document.getElementById("buttondrop").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("buttondrop").addEventListener("focus", function () {
+                say("Button toggle for colorblindness settings dropdown menu.", true);
+            });
+            document.getElementById("buttondrop").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("circle1").addEventListener("focus", function () {
+                say("Button to create Bar Chart of file.", true);
+            });
+            document.getElementById("circle1").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("circle2").addEventListener("focus", function () {
+                say("Button to create Pie Chart of file.", true);
+            });
+            document.getElementById("circle2").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("circle3").addEventListener("focus", function () {
+                say("Button to create Scatter Plot of file.", true);
+            });
+            document.getElementById("circle3").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("create-graph-button").addEventListener("focus", function () {
+                say("Button to create a graph using entered values.", true);
+            });
+            document.getElementById("create-graph-button").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("more-X&Y-button").addEventListener("focus", function () {
+                say("Button to add more X and Y values", true);
+            });
+            document.getElementById("more-X&Y-button").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("x-values-in").addEventListener("focus", function () {
+                say("Input values for X, separated by commas", true);
+            });
+            document.getElementById("x-values-in").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("y-values-in").addEventListener("focus", function () {
+                say("Input values for Y, separated by commas", true);
+            });
+            document.getElementById("y-values-in").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("X_name").addEventListener("focus", function () {
+                say("Input a name for X", true);
+            });
+            document.getElementById("X_name").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("Y_name").addEventListener("focus", function () {
+                say("Input a name for Y", true);
+            });
+            document.getElementById("Y_name").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("graph_name").addEventListener("focus", function () {
+                say("Input a name for the graph", true);
+            });
+            document.getElementById("graph_name").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("savePdfBtn").addEventListener("focus", function () {
+                say("Button to Save to PDF.", true);
+            });
+            document.getElementById("savePdfBtn").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+        }
 
         function say(speech, callback) { //the speaker
             const text = new SpeechSynthesisUtterance(speech);
@@ -744,6 +742,36 @@
             speechSynthesis.cancel();
             speechSynthesis.speak(text);
         }
+
+        document.getElementById("screen-reader").addEventListener("click",function(){
+            if(localStorage.getItem('reader') == null){
+                localStorage.setItem('reader',"Off");
+            }
+            if(localStorage.getItem('reader') == "Off"){
+                localStorage.setItem('reader',"On");
+                speechSynthesis.cancel();
+                say("Screen reader enabled.",true);
+            }
+            else{
+                localStorage.setItem('reader',"Off");
+                speechSynthesis.cancel();
+                say("Screen reader disabled.",true);
+            }
+        });
+        document.getElementById("screen-reader").addEventListener("focus",function(){
+            if(localStorage.getItem('reader') == null){
+                localStorage.setItem('reader',"Off");
+            }
+            if(localStorage.getItem('reader') == "Off"){
+                say("Button to toggle this site's screen reader, which is currently off.",true);
+            }
+            else{
+                say("Button to toggle this site's screen reader, which is currently on.",true);
+            }
+        });
+        document.getElementById("screen-reader").addEventListener("blur",function(){
+            speechSynthesis.cancel;
+        });
 
     </script>
 
