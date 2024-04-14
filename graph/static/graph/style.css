@@ -4,6 +4,7 @@
     border: 2px solid #0085FF;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-top:8px;
 }
 
     .submitFormButton {
@@ -272,7 +273,16 @@ body {
   	   width: 120px;
 
 	}
-
+ .aboutus-button{
+            background-color: #0085FF;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            z-index: 30;
+            height: 60px; 
+            width: 120px;
+        }
     
     
 
