@@ -391,7 +391,7 @@ width: 100px;
 height: 70px;
 
 background-color:  #0085FF;
-
+border: none;
 margin: 25px;
 cursor: pointer;
 }
