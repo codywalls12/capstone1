@@ -430,6 +430,7 @@
                 </form>
             </div>
  <div class="form-container"style="width: 600px; margin-left: 40px; overflow-x: hidden;">
+	<h2>File Upload Settings</h2>
  <form action="{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form }}
