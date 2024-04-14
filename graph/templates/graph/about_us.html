@@ -63,6 +63,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 60px;
     justify-content: center;
+    max-width: 1600px;
 }
 
 .team-section .bottom-cards {
@@ -111,7 +112,7 @@
 }
 
 .flip-card-back {
-    background-color: #2980b9;
+   background-color: #0085FF;
     color: white;
     transform: rotateY(180deg);
 }
@@ -126,7 +127,7 @@
         </a>
     </div>
 
- <a href="{% url 'graph:about_us' %}" class="new-button" style="position: fixed; top: -20px; right: calc(10px + 110px); height: 40px;"text-align: center;>About Us</a>
+ <a href="{% url 'graph:about_us' %}" class="dropbutton" style="position: fixed; top: 0px; right: calc(10px + 110px); height: 40px; text-align: center;line-height: 40px;text-decoration: none;">About Us</a>
 
    
     <div class="dropdown">
@@ -167,24 +168,11 @@
         <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src="https://i.ibb.co/qYRTcgJ/PXL-20240106-044200096-NIGHT.jpg" width="300" height="300">
-                </div>
-                <div class="flip-card-back">
-                    <h1>Ethan Batres</h1> 
-                    <p>Front End</p> 
-                    <p></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
                     <img src="" width="300" height="300">
                 </div>
                 <div class="flip-card-back">
-                    <h1>Brandon Sharp</h1> 
-                    <p>Front End</p> 
+                    <h1>Cody Walls</h1> 
+                    <p>Back End</p> 
                     <p></p>
                 </div>
             </div>
@@ -202,8 +190,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="bottom-cards">
 
         <div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
@@ -211,9 +197,24 @@
                     <img src="" width="300" height="300">
                 </div>
                 <div class="flip-card-back">
-                    <h1>Cody Walls</h1> 
+                    <h1>Alex Kieter</h1> 
                     <p>Back End</p> 
                     <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-cards">
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="https://i.ibb.co/qYRTcgJ/PXL-20240106-044200096-NIGHT.jpg" width="300" height="300">
+                </div>
+                <div class="flip-card-back">
+                    <h1>Ethan Batres</h1> 
+                    <p>Front End</p> 
+                    <p>I designed the overall look of the pages and buttons. This was my first time working on front end and I learned a lot from working on this project and I proud of the work the team and I made.</p>
                 </div>
             </div>
         </div>
@@ -224,8 +225,8 @@
                     <img src="" width="300" height="300">
                 </div>
                 <div class="flip-card-back">
-                    <h1>Alex Kieter</h1> 
-                    <p>Back End</p> 
+                    <h1>Brandon Sharp</h1> 
+                    <p>Front End</p> 
                     <p></p>
                 </div>
             </div>
