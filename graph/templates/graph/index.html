@@ -409,21 +409,21 @@
                     <input type="text" name="graph_name" id="graph_name" aria-label="Enter Graph Name.">
 
                     <label for="X_name">Enter X Values Name</label>
-                    <input type="text" name="X_name" id="graph_name" aria-label="Enter X Values Name.">
+                    <input type="text" name="X_name" id="X_name" aria-label="Enter X Values Name.">
 
                     <label for="Y_name">Enter Y Values Name</label>
-                    <input type="text" name="Y_name" id="graph_name" aria-label="Enter Y Values Name.">
+                    <input type="text" name="Y_name" id="Y_name" aria-label="Enter Y Values Name.">
 
                     <label for="xy_values">Enter X and Y values</label>
                     <div class="xy-container" id="xy_container">
                         <div>
-                            <input type="text" name="x_values[]" class="xy-input" placeholder="X"
+                            <input id="x-values-in" type="text" name="x_values[]" class="xy-input" placeholder="X"
                                 aria-label="Enter X values, seperated by commas.">
-                            <input type="text" name="y_values[]" class="xy-input" placeholder="Y"
+                            <input id="y-values-in" type="text" name="y_values[]" class="xy-input" placeholder="Y"
                                 aria-label="Enter Y values, seperated by commas.">
                         </div>
                     </div>
-                    <button class="new-button" type="button" onclick="addInput()"
+                    <button id="more-X&Y-button" class="new-button" type="button" onclick="addInput()"
                         aria-label="Add more X and Y Values.">Add X and Y Values</button>
 
                 </fieldset>
@@ -692,9 +692,45 @@
             speechSynthesis.cancel;
         });
         document.getElementById("create-graph-button").addEventListener("focus", function () {
-            say("Button to create Scatter Plot of file.", true);
+            say("Button to create a graph using entered values.", true);
         });
         document.getElementById("create-graph-button").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("more-X&Y-button").addEventListener("focus", function () {
+            say("Button to add more X and Y values", true);
+        });
+        document.getElementById("more-X&Y-button").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("x-values-in").addEventListener("focus", function () {
+            say("Input values for X, separated by commas", true);
+        });
+        document.getElementById("x-values-in").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("y-values-in").addEventListener("focus", function () {
+            say("Input values for Y, separated by commas", true);
+        });
+        document.getElementById("y-values-in").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("X_name").addEventListener("focus", function () {
+            say("Input a name for X", true);
+        });
+        document.getElementById("X_name").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("Y_name").addEventListener("focus", function () {
+            say("Input a name for Y", true);
+        });
+        document.getElementById("Y_name").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("graph_name").addEventListener("focus", function () {
+            say("Input a name for the graph", true);
+        });
+        document.getElementById("graph_name").addEventListener("blur", function () {
             speechSynthesis.cancel;
         });
 
