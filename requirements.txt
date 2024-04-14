@@ -1,6 +1,6 @@
 asgiref==3.7.2
 bokeh==2.4.1
-contourpy==1.2.0
+
 cycler==0.12.1
 defusedxml==0.7.1
 diff-match-patch==20230430
