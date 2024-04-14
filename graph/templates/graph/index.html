@@ -23,7 +23,7 @@
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0"
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" id="team-logo"
                 aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it"
                 height="60" width="100">
         </a>
@@ -426,11 +426,11 @@
 
         <div class="right-half">
             <div class="step-container">
-                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg"
+                <img id="step1" role="img" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg"
                     aria-label="The first step is to upload your data." border="0">
-                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg"
+                <img id="step2" role="img" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg"
                     aria-label="The second step is to choose settings." border="0">
-                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg"
+                <img id="step3" role="img" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg"
                     aria-label="The last step is to create your graph." border="0">
             </div>
         </div>
@@ -605,7 +605,7 @@
             image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
-        //native screenreader
+        //native screenreader listeners
         if(localStorage.getItem('reader') == "On"){
             document.getElementById("step1").addEventListener("focus", function () {
                 say("Image: step one is to upload your data.", true);
@@ -728,6 +728,12 @@
                 say("Button to Save to PDF.", true);
             });
             document.getElementById("savePdfBtn").addEventListener("blur", function () {
+                speechSynthesis.cancel;
+            });
+            document.getElementById("team-logo").addEventListener("focus", function () {
+                say("Image of the Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it", true);
+            });
+            document.getElementById("team-logo").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
         }
