@@ -146,6 +146,7 @@ def graph_form_upload(request):
             elif form.instance.filename().endswith(".csv"):
                 df = pd.read_csv("graph/static/graph/" + form.instance.filename())
 
+            df.dropna(inplace=True)
             graph_x_axis = df.iloc[:, form.instance.x_values]
             graph_y_axis = df.iloc[:, form.instance.y_values]
 
@@ -158,7 +159,7 @@ def graph_form_upload(request):
 
 
             # Create file path to save .wav file to static folder
-            save_path = "graph/static/graph"
+            save_path = "static/graph"
             file_name = "graph_audio.wav"
             graph_audio = os.path.join(save_path, file_name)
 
@@ -193,4 +194,16 @@ def graph_form_upload(request):
         form = UploadForm()
     return render(request, 'graph/graph_creation.html', context)
 
+
+def normalize_to_range(values):
+
+    min_val = min(values)
+    max_val = max(values)
+
+    normalized_values = []
+    for val in values:
+        normalized_val = ((val - min_val) / (max_val - min_val)) * (1000 - 250) + 250
+        normalized_values.append(normalized_val)
+
+    return normalized_values
 
