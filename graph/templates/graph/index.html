@@ -27,13 +27,7 @@
                 aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it"
                 height="60" width="100">
         </a>
-        <script>
-            var logo = document.getElementById("navbar");
-            logo.addEventListener("focus", function () {
-                say("Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it", true);
-            });   
-        </script>
-
+        <button class="reader-button" type="screen-reader" aria-label="Button to toggle the screen reader.">Screen Reader</button>
     </div>
     <div class="content-container" width="400" height="400">
 
@@ -62,9 +56,9 @@
                     <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
                 </form>
 
-                <div class="circle" id="circle1" aria-label="Button for a Bar Graph of file data"> Bar Graph</div>
-                <div class="circle" id="circle2" aria-label="Button for a Pie Chart of file data"> Pie Chart</div>
-                <div class="circle" id="circle3" aria-label="Button for a Scatter Plot of file data"> Scatter Plot</div>
+                <button class="circle" id="circle1" aria-label="Button for a Bar Graph of file data"> Bar Graph</button>
+                <button class="circle" id="circle2" aria-label="Button for a Pie Chart of file data"> Pie Chart</button>
+                <button class="circle" id="circle3" aria-label="Button for a Scatter Plot of file data"> Scatter Plot</button>
                 <button id="savePdfBtn" aria-label="Button to save output to PDF">Save as PDF</button>
 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
@@ -157,9 +151,6 @@
                                         createBarChart(labels, values, file.name, color);
                                         //lastClickedCircle = 'circle1';
                                     });
-                                    document.getElementById('circle1').addEventListener("focus", function () {
-                                        say("Button to create a Bar Chart.", true);
-                                    });
 
                                     document.getElementById('circle2').addEventListener('click', function () {
                                         color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
@@ -167,18 +158,11 @@
                                         createPieChart(labels, values, file.name, color);
                                         //lastClickedCircle = 'circle2';
                                     });
-                                    document.getElementById('circle2').addEventListener("focus", function () {
-                                        say("Button to create a Pie Chart.", true);
-                                    });
 
                                     document.getElementById('circle3').addEventListener('click', function () {
                                         color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
                                         createScatterPlot(labels, values, file.name, color);
                                     });
-                                    document.getElementById('circle3').addEventListener("focus", function () {
-                                        say("Button to create a Scatter Plot.", true);
-                                    });
-
 
                                 };
                                 reader.readAsArrayBuffer(file);
@@ -447,6 +431,9 @@
                 <button class="new-button" type="submit" aria-label="Button to Create Graph">Create Graph</button>
             </form>
         </div>
+
+        
+
         <div class="right-half">
             <div class="step-container">
                 <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg"
@@ -469,8 +456,8 @@
                 <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
                 <button id="defaultID" onclick="defaultMode('defaultCSS')"
                     aria-label="Set to Default Mode.">Default</button>
-                <button id="darkmodeID" onclick="darkMode('darkmodeCSS')" aria-label="Set to Dark Mode.">Dark
-                    Mode</button>
+                <button id="darkmodeID" onclick="darkMode('darkmodeCSS')" 
+                    aria-label="Set to Dark Mode.">Dark Mode</button>
                 <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')"
                     aria-label="Set to Protanopia Mode.">Protanopia</button>
                 <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')"
@@ -678,6 +665,30 @@
             say("Button toggle for colorblindness settings dropdown menu.", true);
         });
         document.getElementById("buttondrop").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("buttondrop").addEventListener("focus", function () {
+            say("Button toggle for colorblindness settings dropdown menu.", true);
+        });
+        document.getElementById("buttondrop").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("circle1").addEventListener("focus", function () {
+            say("Button to create Bar Chart of file.", true);
+        });
+        document.getElementById("circle1").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("circle2").addEventListener("focus", function () {
+            say("Button to create Pie Chart of file.", true);
+        });
+        document.getElementById("circle2").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("circle3").addEventListener("focus", function () {
+            say("Button to create Scatter Plot of file.", true);
+        });
+        document.getElementById("circle3").addEventListener("blur", function () {
             speechSynthesis.cancel;
         });
 
