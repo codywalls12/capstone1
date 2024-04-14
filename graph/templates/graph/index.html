@@ -428,7 +428,7 @@
 
                 </fieldset>
 
-                <button class="new-button" type="submit" aria-label="Button to Create Graph">Create Graph</button>
+                <button id="create-graph-button" class="new-button" type="submit" aria-label="Button to Create Graph">Create Graph</button>
             </form>
         </div>
 
@@ -689,6 +689,12 @@
             say("Button to create Scatter Plot of file.", true);
         });
         document.getElementById("circle3").addEventListener("blur", function () {
+            speechSynthesis.cancel;
+        });
+        document.getElementById("create-graph-button").addEventListener("focus", function () {
+            say("Button to create Scatter Plot of file.", true);
+        });
+        document.getElementById("create-graph-button").addEventListener("blur", function () {
             speechSynthesis.cancel;
         });
 
