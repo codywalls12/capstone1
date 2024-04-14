@@ -606,137 +606,159 @@
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
         //native screenreader listeners
-        if(localStorage.getItem('reader') == "On"){
             document.getElementById("step1").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Image: step one is to upload your data.", true);
             });
             document.getElementById("step2").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Image: step two is to choose your settings.", true);
             });
             document.getElementById("step3").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Image: step three is to create your graph.", true);
             });
             document.getElementById("defaultID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select default colorblindness mode.", true);
             });
             document.getElementById("defaultID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("darkmodeID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select dark mode colorblindness mode.", true);
             });
             document.getElementById("darkmodeID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("protanopiaID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select protanopia colorblindness mode.", true);
             });
             document.getElementById("protanopiaID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("deuteranopiaID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select deuteranopia colorblindness mode.", true);
             });
             document.getElementById("deuteranopiaID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("tritanopiaID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select tritanopia colorblindness mode.", true);
             });
             document.getElementById("tritanopiaID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("monochromaID").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to select monochroma colorblindness mode.", true);
             });
             document.getElementById("monochromaID").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("buttondrop").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button toggle for colorblindness settings dropdown menu.", true);
             });
             document.getElementById("buttondrop").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("buttondrop").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button toggle for colorblindness settings dropdown menu.", true);
             });
             document.getElementById("buttondrop").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("circle1").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to create Bar Chart of file.", true);
             });
             document.getElementById("circle1").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("circle2").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to create Pie Chart of file.", true);
             });
             document.getElementById("circle2").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("circle3").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to create Scatter Plot of file.", true);
             });
             document.getElementById("circle3").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("create-graph-button").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to create a graph using entered values.", true);
             });
             document.getElementById("create-graph-button").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("more-X&Y-button").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to add more X and Y values", true);
             });
             document.getElementById("more-X&Y-button").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("x-values-in").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Input values for X, separated by commas", true);
             });
             document.getElementById("x-values-in").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("y-values-in").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Input values for Y, separated by commas", true);
             });
             document.getElementById("y-values-in").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("X_name").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Input a name for X", true);
             });
             document.getElementById("X_name").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("Y_name").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Input a name for Y", true);
             });
             document.getElementById("Y_name").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("graph_name").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Input a name for the graph", true);
             });
             document.getElementById("graph_name").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("savePdfBtn").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Button to Save to PDF.", true);
             });
             document.getElementById("savePdfBtn").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
             document.getElementById("team-logo").addEventListener("focus", function () {
+                if(localStorage.getItem('reader') == "On")
                 say("Image of the Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it", true);
             });
             document.getElementById("team-logo").addEventListener("blur", function () {
                 speechSynthesis.cancel;
             });
-        }
+        
 
         function say(speech, callback) { //the speaker
             const text = new SpeechSynthesisUtterance(speech);
