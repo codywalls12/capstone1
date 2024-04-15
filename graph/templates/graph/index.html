@@ -3,6 +3,8 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta charset="UTF-8">
     <title>Graph Sonification</title>
     {% load static %}
@@ -438,6 +440,28 @@
     </form>
   </div>
         <div class="right-half">
+            <div class="step-container">
+                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
+                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
+                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
+            </div>
+        </div>
+<!-- <div class="dropdown">
+  <button class="dropbutton">Settings</button>
+  <div class="dropdown-content"> -->
+    <!-- <a href="#" onclick="defaultMode()">Default</a>
+    <a href="#" onclick="darkMode()">Dark Mode</a>
+    <a href="#" onclick="protanopiaMode()">Protanopia</a>
+    <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
+    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
+    <!-- <button id="bodyID" onclick="defaultMode()">Default</button>
+    <button id="darkmodeID" onclick="darkMode()">Dark Mode</button>
+    <button id="protanopiaID" onclick="protanopiaMode()">Protanopia</button>
+    <button id="deuteranopiaID" onclick="deuteranopiaMode()">Deuteranopia</button>
+    <button id="tritanopiaID" onclick="tritanopiaMode()">Tritanopia</button>
+    <button id = "monochromaID" onclick="monochromaMode()">Monochroma</button> -->
+  <!-- </div>
+</div> -->
 
 
     <div class="step-container">
@@ -456,6 +480,7 @@
             const inputDiv = document.createElement("div");
 
             const inputX = document.createElement("input");
+            inputX.type = "number";
             inputX.type = "number";
             inputX.name = "x_values[]";
             inputX.classList.add("xy-input");
