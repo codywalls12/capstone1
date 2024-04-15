@@ -91,7 +91,12 @@ def graph_creation(request):
     graph_type = request.POST.get('graph_type')
 
 
+<<<<<<< HEAD
     
+=======
+
+    # Create file path to save .wav file to static folder
+>>>>>>> main
     save_path = "graph/static/graph"
     file_name = "graph_audio.wav"
     graph_audio = os.path.join(save_path, file_name)
@@ -138,9 +143,16 @@ def graph_creation(request):
 
     return render(request, "graph/graph_creation.html", context)
 
+<<<<<<< HEAD
 
 def graph_form_upload(request):
     if request.method == 'POST':
+=======
+def excel_upload(request):
+    print("Entered excel_upload")
+    if request.method == 'POST':
+        print("Entered request.method==post")
+>>>>>>> main
         form = ExcelDataForm(request.POST, request.FILES)
         if form.is_valid():
             print("Form is valid")
@@ -149,6 +161,7 @@ def graph_form_upload(request):
             except StopIteration:
                  print("No file was uploaded!")
             form.save()
+<<<<<<< HEAD
             #Check if excel file
             if form.instance.filename().endswith(".xlsx"):
                 df = pd.read_excel("graph/static/graph/" + form.instance.filename())
@@ -205,3 +218,13 @@ def graph_form_upload(request):
     return render(request, 'graph/graph_creation.html', context)
 
 
+=======
+            print(form.instance.filename())
+            df = pd.read_excel("graph/static/graph/" + form.instance.filename())
+            first_column = df.iloc[:, 1]
+            print(first_column)
+    else:
+        print("request not POST")
+        form = UploadForm()
+    return render(request, 'graph/graph_creation.html', {'form': form})
+>>>>>>> main
