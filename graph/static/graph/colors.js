@@ -53,9 +53,9 @@ function darkMode(content) {
     let image1 = document.getElementById("step1");
     let image2 = document.getElementById("step2");
     let image3 = document.getElementById("step3");
-    image1.src = "https://i.ibb.co/dgCzR5q/step1D.jpg";
-    image2.src = "https://i.ibb.co/3Y1XhVT/step2D.jpg";
-    image3.src = "https://i.ibb.co/gPq6WcD/step3D.jpg";
+    image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
 }
 function protanopiaMode(content) {
     let elementBody = document.body;
@@ -68,9 +68,9 @@ function protanopiaMode(content) {
     let image1 = document.getElementById("step1");
     let image2 = document.getElementById("step2");
     let image3 = document.getElementById("step3");
-    image1.src = "https://i.ibb.co/yst2vrZ/step1Pro.jpg";
-    image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-    image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+    image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
 }
 function deuteranopiaMode(content) {
     let elementBody = document.body;
@@ -83,9 +83,9 @@ function deuteranopiaMode(content) {
     let image1 = document.getElementById("step1");
     let image2 = document.getElementById("step2");
     let image3 = document.getElementById("step3");
-    image1.src = "https://i.ibb.co/dKLvMKR/step1Deu.jpg";
-    image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-    image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+    image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
 }
 function tritanopiaMode(content) {
     let elementBody = document.body;
@@ -98,9 +98,9 @@ function tritanopiaMode(content) {
     let image1 = document.getElementById("step1");
     let image2 = document.getElementById("step2");
     let image3 = document.getElementById("step3");
-    image1.src = "https://i.ibb.co/YDf4fHm/step2tri-JPG.jpg";
-    image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-    image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+    image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
 }
 function monochromaMode(content) {
     let elementBody = document.body;
@@ -113,7 +113,7 @@ function monochromaMode(content) {
     let image1 = document.getElementById("step1");
     let image2 = document.getElementById("step2");
     let image3 = document.getElementById("step3");
-    image1.src = "https://i.ibb.co/ySDqb4R/step1mono.jpg";
-    image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
-    image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
+    image1.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image2.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
+    image3.src = "https://i.ibb.co/pZZRGV0/logo-removebg-preview.png";
 }
