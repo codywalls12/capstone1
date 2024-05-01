@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>  
         <link href=”http://cdn.pydata.org/bokeh/release/bokeh-3.3.1.min.css" rel=”stylesheet” type=”text/css”>
         <link href=”http://cdn.pydata.org/bokeh/release/bokeh-widgets-3.3.1.min.css" rel=”stylesheet” type=”text/css”>
@@ -13,7 +13,7 @@
     <body>
         <div class="navbar2">
         <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="100" width="190">        
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="100" width="190">        
         </a>
     </div>
 <!--         <div class="navbar">
@@ -31,7 +31,7 @@
         
         <audio id="audioPlayer" src="{% static 'graph/graph_audio.wav' %}"></audio>
     
-        <button onclick="playAudio()" aria-label="Click to Play Audio.">Play Audio</button>
+        <button onclick="playAudio()">Play Audio</button>
     
         <script>
             function playAudio() {

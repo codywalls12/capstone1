@@ -154,16 +154,6 @@ body {
     cursor: pointer;
 }
 
-.reader-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0085FF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
 .content {
     display: flex;
     justify-content: center;
@@ -391,7 +381,7 @@ width: 100px;
 height: 70px;
 
 background-color:  #0085FF;
-border: none;
+
 margin: 25px;
 cursor: pointer;
 }

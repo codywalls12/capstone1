@@ -18,6 +18,3 @@ The main goals of this project is to read in sonic data and to represent it as a
 * Push the committed file: git push
 * Check file status: git status
 * Clean untracked files that are added when running the server: git clean -f 
-# Screen Reader Testing
-* Download the screen reader for Windows 10 from https://www.nvaccess.org/download/ to test accessibility
-

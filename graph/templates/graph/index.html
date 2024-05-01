@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -10,27 +9,24 @@
     <link rel="stylesheet" href="{% static 'graph/style.css' %}">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <!-- <link rel="stylesheet" href="style.css"> -->
-
+    
     <!-- <script src="{% static 'graph/colors.js' %}"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 </head>
-
 <body>
-
-    <div id="canvasContainer"></div>
-
-
+    
+    <div id = "canvasContainer"></div>
+    
+    
 
     <div class="navbar">
         <a href="{% url 'graph:index' %}">
-            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" id="team-logo"
-                aria-label="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it"
-                height="60" width="100">
+            <img src="https://i.ibb.co/pZZRGV0/logo-removebg-preview.png" border="0" alt="Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it" height="60" width="100">        
         </a>
-        <button class="reader-button" id="screen-reader" type="button" aria-label="Button to toggle the screen reader.">Screen Reader</button>
-    </div>
-    <div class="content-container" width="400" height="400">
 
+    </div>
+    <div class="content-container" width = "400" height = "400">
+ 
         <!-- 
             <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -39,41 +35,36 @@
         </form>
         -->
 
-        <div class="left-half">
+        <div class="left-half">   
             <div class="upload-container">
                 <span class="upload-icon">📄</span>
                 <p>Browse your device to upload files</p>
-                <form action="{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data"
-                    id="uploadForm" class="formClass">
-
-                    <div class="drop-zone"
-                        aria-label="Button that opens file explorer. Choose a suitable file for sonifictation.">
-                        <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
-                        {% csrf_token %}
-                        <input type="file" name="myFile" class="drop-zone__input">
-
-                    </div>
-                    <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
+                <form action = "{% url 'graph:excel_upload' %}" method="post" enctype="multipart/form-data" id = "uploadForm" class = "formClass">
+                
+                <div class="drop-zone">
+                    <span class="drop-zone__prompt"> Drop File Here or Click To Upload </span>
+                    {% csrf_token %}
+                    <input type = "file" name = "myFile" class = "drop-zone__input">
+                    
+                </div>
+                <!-- <button type="submit" class = "submitFormButton"> [TEST FORM]</button> -->
                 </form>
-
-                <button class="circle" id="circle1" style = "border: none; font-size: 16px; color: white; margin: 20px 0px 0px;" aria-label="Button for a Bar Graph of file data"> Bar Graph</button>
-                <button class="circle" id="circle2" style = "border: none; font-size: 16px; color: white; margin: 20px 0px 0px;" aria-label="Button for a Pie Chart of file data"> Pie Chart</button>
-                <button class="circle" id="circle3" style = "border: none; font-size: 16px; color: white; margin: 20px 0px 0px;" aria-label="Button for a Scatter Plot of file data"> Scatter Plot</button>
-                <button id="savePdfBtn" style = "margin: 20px 0px 0px; color: white;" aria-label="Button to save output to PDF">Save as PDF</button>
-
+                
+                <div class = "circle" id = "circle1"> Bar Graph</div>
+                <div class = "circle" id = "circle2"> Pie Chart</div>
+                <div class = "circle" id = "circle3"> Scatter Plot</div>
+                <button id="savePdfBtn">Save as PDF</button>
+                
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-                <script>
-
-
+                <script >
+                    
+                    
                     document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
                         const dropZoneElement = inputElement.closest(".drop-zone");
 
                         dropZoneElement.addEventListener("click", e => {
                             inputElement.click();
-                        });
-                        dropZoneElement.addEventListener("focus", function () {
-                            say("Button to add a file. Opens file explorer.", true);
                         });
 
                         inputElement.addEventListener("change", e => {
@@ -102,8 +93,8 @@
                             dropZoneElement.classList.remove("drop-zone--over");
                         });
 
-
-
+                        
+                        
 
                         function updateThumbnail(dropZoneElement, file) {
                             let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
@@ -115,7 +106,7 @@
                             if (!thumbnailElement) {
                                 thumbnailElement = document.createElement("div");
                                 thumbnailElement.classList.add("drop-zone__thumb");
-                                dropZoneElement.appendChild(thumbnailElement);
+                                dropZoneElement.appendChild(thumbnailElement);   
                             }
 
                             thumbnailElement.dataset.label = file.name;
@@ -124,7 +115,9 @@
                             fileSizeElement.textContent = formatFileSize(file.size);
                             thumbnailElement.appendChild(fileSizeElement);
 
-                            thumbnailElement.innerHTML = `<div>${file.name}</div><div class="file-size">${formatFileSize(file.size)}</div>`;
+                            thumbnailElement.innerHTML = `
+                            <div>${file.name}</div>
+                            <div class="file-size">${formatFileSize(file.size)}</div>`;
 
                             if (file.name.toLowerCase().endsWith(".xlsx")) {
                                 alert("excel file has been accepted");
@@ -140,29 +133,30 @@
                                     // assuming that the first row contains labels and the rest contains actual data
                                     const labels = jsonData[0];
                                     const values = jsonData[1];
-
+                                    
                                     //createBarChart(labels, values, file.name);
                                     //createPieChart(labels, values, file.name);
                                     //createScatterPlot(labels, values, file.name);
 
-                                    document.getElementById('circle1').addEventListener('click', function () {
-                                        color = window.getComputedStyle(document.getElementById('circle1')).getPropertyValue('background-color');
+                                    document.getElementById('circle1').addEventListener('click', function() {
+                                    color = window.getComputedStyle(document.getElementById('circle1')).getPropertyValue('background-color');
+                                
+                                createBarChart(labels, values, file.name, color);
+                                //lastClickedCircle = 'circle1';
+                            });
 
-                                        createBarChart(labels, values, file.name, color);
-                                        //lastClickedCircle = 'circle1';
-                                    });
+                            document.getElementById('circle2').addEventListener('click', function() {
+                                color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
+                                
+                                createPieChart(labels, values, file.name, color);
+                                //lastClickedCircle = 'circle2';
+                            });
 
-                                    document.getElementById('circle2').addEventListener('click', function () {
-                                        color = window.getComputedStyle(document.getElementById('circle2')).getPropertyValue('background-color');
+                            document.getElementById('circle3').addEventListener('click', function() {
+                                color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
+                                createScatterPlot(labels, values, file.name, color);
+                            });
 
-                                        createPieChart(labels, values, file.name, color);
-                                        //lastClickedCircle = 'circle2';
-                                    });
-
-                                    document.getElementById('circle3').addEventListener('click', function () {
-                                        color = window.getComputedStyle(document.getElementById('circle3')).getPropertyValue('background-color');
-                                        createScatterPlot(labels, values, file.name, color);
-                                    });
 
                                 };
                                 reader.readAsArrayBuffer(file);
@@ -170,12 +164,12 @@
                                 alert("please drop an excel file");
                             }
                             console.log("labels test");
-
+                            
                             console.log("values test");
-
+                            
                             let lastClickedCircle = null;
 
-
+                            
 
 
                             window.jsPDF = window.jspdf.jsPDF
@@ -190,7 +184,7 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
-
+                                
                                 const myBarChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
@@ -214,30 +208,30 @@
                                                 }
                                             }
                                         }
-                                    },
+                                    }, 
                                     layout: {
-                                        padding: {
+                                        padding : {
                                             top: 20,
                                             bottom: 20,
                                             left: 20,
                                             right: 20
                                         }
-                                    },
-
+                                    }, 
+                                    
                                 });
 
                                 // the save graph selected as pdf consts
 
-
-                                const savePdfBtn = document.getElementById("savePdfBtn");
-                                savePdfBtn.addEventListener('click', function () {
-                                    const pdfWidth = canvas.width;
-                                    const pdfHeight = canvas.height;
+                                
+                                    const savePdfBtn = document.getElementById("savePdfBtn");
+                                    savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
 
                                     var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
-                                });
+                                });                                
                             }
 
 
@@ -251,7 +245,7 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
-
+                                
                                 const myPieChart = new Chart(ctx, {
                                     type: 'pie',
                                     data: {
@@ -275,7 +269,7 @@
                                                 }
                                             }
                                         }
-                                    },
+                                    }, 
                                     layout: {
                                         padding: {
                                             top: 20,
@@ -283,14 +277,14 @@
                                             left: 20,
                                             right: 20
                                         }
-                                    },
-
+                                    }, 
+                                    
                                 });
                                 // the save graph selected as pdf consts
                                 const savePdfBtn = document.getElementById("savePdfBtn");
-                                savePdfBtn.addEventListener('click', function () {
-                                    const pdfWidth = canvas.width;
-                                    const pdfHeight = canvas.height;
+                                savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
 
                                     var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
@@ -308,7 +302,7 @@
                                 //const ctx = document.getElementById("myChart").getContext('2d');
                                 var ctx = canvas.getContext('2d');
                                 container.appendChild(canvas);
-
+                                
                                 const myPieChart = new Chart(ctx, {
                                     type: 'scatter',
                                     data: {
@@ -317,7 +311,7 @@
                                             label: file,
                                             data: values,
                                             backgroundColor: color,
-                                            borderColor: color,
+                                            borderColor:color,
                                             borderWidth: 1
                                         }]
 
@@ -329,25 +323,26 @@
                                                 position: 'bottom'
                                             }]
                                         }
-                                    },
-
-
+                                    }, 
+                                     
+                                    
                                 });
                                 // the save graph selected as pdf consts
                                 const savePdfBtn = document.getElementById("savePdfBtn");
-                                savePdfBtn.addEventListener('click', function () {
-                                    const pdfWidth = canvas.width;
-                                    const pdfHeight = canvas.height;
+                                savePdfBtn.addEventListener('click', function() {
+                                    const pdfWidth = canvas.width; 
+                                    const pdfHeight = canvas.height; 
 
                                     var pdf = new jsPDF('l', 'pt', [pdfWidth, pdfHeight]);
                                     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
                                     pdf.save('graph.pdf');
                                 });
+                                
                             }
 
+                            
 
-
-
+                            
                             function formatFileSize(size) {
                                 const kb = size / 1024;
                                 if (kb < 1024) {
@@ -360,110 +355,84 @@
                         }
                     });
 
-                    function toggledrop() {
+                    function toggledrop(){
                         document.getElementById("dropperdowner").classList.toggle("show");
                     }
-                    window.onclick = function (event) {
-                        if (!event.target.matches('.dropbutton')) {
+                    window.onclick = function(event){
+                        if (!event.target.matches('.dropbutton')){
                             var dropdowns = document.getElementsByClassName("dropdown-content");
                             var i;
-                            for (i = 0; i < dropdowns.length; i++) {
+                            for (i = 0; i < dropdowns.length; i++){
                                 var openDropdown = dropdowns[i];
-                                if (openDropdown.classList.contains('show')) {
+                                if (openDropdown.classList.contains('show')){
                                     openDropdown.classList.remove('show');
                                 }
                             }
                         }
-                    }
-                    function say(speech, callback) { //the speaker
-                        const text = new SpeechSynthesisUtterance(speech);
-
-                        if (callback) {
-                            text.onend = callback;
-                        }
-
-                        speechSynthesis.cancel();
-                        speechSynthesis.speak(text);
-                    }            
+                    }                   
                 </script>
             </div>
         </div>
-
-        <div class="form-container">
-            <h2>Graph Settings</h2>
-
-            <form action="{% url 'graph:graph_creation' %}" method="post">
-                {% csrf_token %}
-                <fieldset class="form" id="inputFields">
-                    <label for="graph_name">Enter Graph Name</label>
-                    <input type="text" name="graph_name" id="graph_name" aria-label="Enter Graph Name.">
-
-                    <label for="X_name">Enter X Values Name</label>
-                    <input type="text" name="X_name" id="X_name" aria-label="Enter X Values Name.">
-
-                    <label for="Y_name">Enter Y Values Name</label>
-                    <input type="text" name="Y_name" id="Y_name" aria-label="Enter Y Values Name.">
-
-                    <label for="xy_values">Enter X and Y values</label>
-                    <div class="xy-container" id="xy_container">
-                        <div>
-                            <input id="x-values-in" type="text" name="x_values[]" class="xy-input" placeholder="X"
-                                aria-label="Enter X values, seperated by commas.">
-                            <input id="y-values-in" type="text" name="y_values[]" class="xy-input" placeholder="Y"
-                                aria-label="Enter Y values, seperated by commas.">
-                        </div>
-                    </div>
-                    <button id="more-X&Y-button" class="new-button" type="button" onclick="addInput()"
-                        aria-label="Add more X and Y Values.">Add X and Y Values</button>
-
-                </fieldset>
-
-                <button id="create-graph-button" class="new-button" type="submit" aria-label="Button to Create Graph">Create Graph</button>
-            </form>
-        </div>
-
         
+        <div class="form-container">
+                <h2>Graph Settings</h2>
 
+                <form action="{% url 'graph:graph_creation' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset class="form" id="inputFields">
+                        <label for="graph_name">Enter Graph Name</label>
+                        <input type="text" name="graph_name" id="graph_name">
+
+			<label for="X_name">Enter X Values Name</label>
+                        <input type="text" name="X_name" id="graph_name">
+
+			<label for="Y_name">Enter Y Values Name</label>
+                        <input type="text" name="Y_name" id="graph_name">
+
+                        <label for="xy_values">Enter X and Y values</label>
+                        <div class="xy-container" id="xy_container">
+                            <div>
+                                <input type="text" name="x_values[]" class="xy-input" placeholder="X">
+                                <input type="text" name="y_values[]" class="xy-input" placeholder="Y">
+                            </div>
+                        </div>
+                        <button class="new-button" type="button" onclick="addInput()">Add X and Y Values</button>
+
+                    </fieldset>
+
+                    <button class="new-button" type="submit">Create Graph</button>
+                </form>
+            </div>
         <div class="right-half">
             <div class="step-container">
-                <img id="step1" role="img" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg"
-                    aria-label="The first step is to upload your data." border="0">
-                <img id="step2" role="img" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg"
-                    aria-label="The second step is to choose settings." border="0">
-                <img id="step3" role="img" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg"
-                    aria-label="The last step is to create your graph." border="0">
+                <img id="step1" class="step1" src="https://i.ibb.co/SfDTf84/step1.jpg" alt="step1" border="0">
+                <img id="step2" class="step2" src="https://i.ibb.co/4m4ddWD/step2.jpg" alt="step2" border="0">
+                <img id="step3" class="step3" src="https://i.ibb.co/jvmLfpF/step3.jpg" alt="step3" border="0">
             </div>
         </div>
 
-        <div class="dropdown">
-            <button id="buttondrop" onclick="toggledrop()" class="dropbutton"
-                aria-label="Button for Colorblindness Settings; toggles a dropdown selection menu.">Settings</button>
-            <div id="dropperdowner" class="dropdown-content">
-                <!-- <a href="#" onclick="defaultMode()">Default</a>
-                <a href="#" onclick="darkMode()">Dark Mode</a>
-                <a href="#" onclick="protanopiaMode()">Protanopia</a>
-                <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
-                <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
-                <button id="defaultID" onclick="defaultMode('defaultCSS')"
-                    aria-label="Set to Default Mode.">Default</button>
-                <button id="darkmodeID" onclick="darkMode('darkmodeCSS')" 
-                    aria-label="Set to Dark Mode.">Dark Mode</button>
-                <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')"
-                    aria-label="Set to Protanopia Mode.">Protanopia</button>
-                <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')"
-                    aria-label="Set to Deuteranopia Mode.">Deuteranopia</button>
-                <button id="tritanopiaID" onclick="tritanopiaMode('tritanopiaCSS')"
-                    aria-label="Set to Tritanopia Mode.">Tritanopia</button>
-                <button id="monochromaID" onclick="monochromaMode('monochromaCSS')"
-                    aria-label="Set to Monochromia Mode.">Monochroma</button>
-            </div>
-
-        </div>
+<div class="dropdown">
+  <button onclick="toggledrop()" class="dropbutton">Settings</button>
+  <div id="dropperdowner" class="dropdown-content">
+    <!-- <a href="#" onclick="defaultMode()">Default</a>
+    <a href="#" onclick="darkMode()">Dark Mode</a>
+    <a href="#" onclick="protanopiaMode()">Protanopia</a>
+    <a href="#" onclick="deuteranopiaMode()">Deuteranopia</a>
+    <a href="#" onclick="tritanopiaMode()">Tritanopia</a> -->
+    <button id="defaultID" onclick="defaultMode('defaultCSS')">Default</button>
+    <button id="darkmodeID" onclick="darkMode('darkmodeCSS')">Dark Mode</button>
+    <button id="protanopiaID" onclick="protanopiaMode('protanopiaCSS')">Protanopia</button>
+    <button id="deuteranopiaID" onclick="deuteranopiaMode('deuteranopiaCSS')">Deuteranopia</button>
+    <button id="tritanopiaID" onclick="tritanopiaMode('tritanopiaCSS')">Tritanopia</button>
+    <button id = "monochromaID" onclick="monochromaMode('monochromaCSS')">Monochroma</button>
+  </div>
+  
+</div>
 
 
-    </div>
+</div>
 
-    <script>
+	<script>
         function addInput() {
             const container = document.getElementById("xy_container");
             const inputDiv = document.createElement("div");
@@ -480,12 +449,12 @@
             inputY.classList.add("xy-input");
             inputY.placeholder = "Y";
 
-            inputDiv.appendChild(inputX);
+ 	    inputDiv.appendChild(inputX);
             inputDiv.appendChild(inputY);
             container.appendChild(inputDiv);
         }
 
-
+        
         //This part below handles the color modes by setting the html page to the css type
         var setMode = localStorage.getItem('theme');
         console.log('theme:', setMode);
@@ -530,7 +499,7 @@
         function darkMode(content) {
             let elementBody = document.body;
             elementBody.className = "darkmode"; //css class name
-
+            
             //const elementBody = document.getElementById("darkmode");
             //let sheet = document.getElementById("darkmodeID");
             //let content = document.getElementById("darkmodeID"); //html id name
@@ -605,202 +574,6 @@
             image2.src = "https://i.ibb.co/4m4ddWD/step2.jpg";
             image3.src = "https://i.ibb.co/jvmLfpF/step3.jpg";
         }
-        //native screenreader listeners
-            document.getElementById("step1").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Image: step one is to upload your data.", true);
-            });
-            document.getElementById("step2").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Image: step two is to choose your settings.", true);
-            });
-            document.getElementById("step3").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Image: step three is to create your graph.", true);
-            });
-            document.getElementById("defaultID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select default colorblindness mode.", true);
-            });
-            document.getElementById("defaultID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("darkmodeID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select dark mode colorblindness mode.", true);
-            });
-            document.getElementById("darkmodeID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("protanopiaID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select protanopia colorblindness mode.", true);
-            });
-            document.getElementById("protanopiaID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("deuteranopiaID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select deuteranopia colorblindness mode.", true);
-            });
-            document.getElementById("deuteranopiaID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("tritanopiaID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select tritanopia colorblindness mode.", true);
-            });
-            document.getElementById("tritanopiaID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("monochromaID").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to select monochroma colorblindness mode.", true);
-            });
-            document.getElementById("monochromaID").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("buttondrop").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button toggle for colorblindness settings dropdown menu.", true);
-            });
-            document.getElementById("buttondrop").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("buttondrop").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button toggle for colorblindness settings dropdown menu.", true);
-            });
-            document.getElementById("buttondrop").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("circle1").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to create Bar Chart of file.", true);
-            });
-            document.getElementById("circle1").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("circle2").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to create Pie Chart of file.", true);
-            });
-            document.getElementById("circle2").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("circle3").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to create Scatter Plot of file.", true);
-            });
-            document.getElementById("circle3").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("create-graph-button").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to create a graph using entered values.", true);
-            });
-            document.getElementById("create-graph-button").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("more-X&Y-button").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to add more X and Y values", true);
-            });
-            document.getElementById("more-X&Y-button").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("x-values-in").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Input values for X, separated by commas", true);
-            });
-            document.getElementById("x-values-in").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("y-values-in").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Input values for Y, separated by commas", true);
-            });
-            document.getElementById("y-values-in").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("X_name").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Input a name for X", true);
-            });
-            document.getElementById("X_name").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("Y_name").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Input a name for Y", true);
-            });
-            document.getElementById("Y_name").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("graph_name").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Input a name for the graph", true);
-            });
-            document.getElementById("graph_name").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("savePdfBtn").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Button to Save to PDF.", true);
-            });
-            document.getElementById("savePdfBtn").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-            document.getElementById("team-logo").addEventListener("focus", function () {
-                if(localStorage.getItem('reader') == "On")
-                say("Image of the Logo for the website. Has the team name: Syntax Squad in a circle with a graph depicting sound waves behind it", true);
-            });
-            document.getElementById("team-logo").addEventListener("blur", function () {
-                speechSynthesis.cancel;
-            });
-        
-
-        function say(speech, callback) { //the speaker
-            const text = new SpeechSynthesisUtterance(speech);
-
-            if (callback) {
-                text.onend = callback;
-            }
-
-            speechSynthesis.cancel();
-            speechSynthesis.speak(text);
-        }
-
-        document.getElementById("screen-reader").addEventListener("click",function(){
-            if(localStorage.getItem('reader') == null){
-                localStorage.setItem('reader',"Off");
-            }
-            if(localStorage.getItem('reader') == "Off"){
-                localStorage.setItem('reader',"On");
-                speechSynthesis.cancel();
-                say("Screen reader enabled.",true);
-            }
-            else{
-                localStorage.setItem('reader',"Off");
-                speechSynthesis.cancel();
-                say("Screen reader disabled.",true);
-            }
-        });
-        document.getElementById("screen-reader").addEventListener("focus",function(){
-            if(localStorage.getItem('reader') == null){
-                localStorage.setItem('reader',"Off");
-            }
-            if(localStorage.getItem('reader') == "Off"){
-                say("Button to toggle this site's screen reader, which is currently off.",true);
-            }
-            else{
-                say("Button to toggle this site's screen reader, which is currently on.",true);
-            }
-        });
-        document.getElementById("screen-reader").addEventListener("blur",function(){
-            speechSynthesis.cancel;
-        });
-
     </script>
 
     <!--
@@ -869,11 +642,10 @@
         </script> 
     </body>
     -->
-    <form action="{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data">
+    <form action = "{% url 'graph:graph_form_upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <button type="submit" aria-label="Upload Excel File.">Upload Excel File</button>
+        <button type="submit">Upload Excel File</button>
     </form>
 </body>
-
 </html>
